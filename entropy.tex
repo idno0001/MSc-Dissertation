@@ -1,0 +1,58 @@
+\chapter{Entropy}
+\emph{This chapter predominantly follows \cite[Chapter 4]{walters:intro-to-ergodic-theory}.}
+
+\section{Preliminaries}
+\begin{definition}
+	Conditional expectation operator $E(\:\cdot \mid \C) : L^1(X, \B, \mu) \to L^1(X, \C, \mu)$ is defined...
+\end{definition}
+
+The operator $E(f \mid \C)$ is uniquely determined by the requirement that:
+\begin{enumerate}
+	\item $E(f \mid \C)$ is $\C$-measurable, and
+	\item for all $C \in \C$ we have
+	\[
+	\int_C{f\ d\mu} = \int_C{E(f \mid \C)\ d\mu}.
+	\]
+\end{enumerate}
+
+We can think of $E(f \mid \C)$ as the best approximation of $f$ in the smaller space $\C$ of measurable functions.~\cite[Lecture 21]{ergodic-lectures}
+
+...
+
+\section{Conditional entropy}
+\begin{theorem}\label{thm:walters-4.3}
+	Let $(X, \B, \mu)$ be a probability space and let $\A, \B, \D$ be finite sub-$\sigma$-algebras of $\B$. Suppose $T : X \to X$ is a measure-preserving transformation. Then
+	\begin{enumerate}
+		\item $H_\mu(\A \join \C \mid \D) = H_\mu(\A \mid \D) + H_\mu(\C \mid \A \join \D)$,
+		\item $H_\mu(\A \join \C) = H_\mu(\A) + H_\mu(\C \mid \A)$,
+		\item if $\A \subset \C$  then $H_\mu(\A \mid \D) \leq H_\mu(\C \mid \D)$,
+		\item if $\A \subset \C$  then $H_\mu(\A) \leq H_\mu(\C)$,
+		\item if $\C \subset \D$ then $H_\mu(\A \mid \C) \geq H_\mu(\A \mid \D)$,
+		\item $H_\mu(\A) \geq H_\mu(\A \mid \D)$,
+		\item $H_\mu(\A \join \C \mid \D) \leq H_\mu(\A \mid \D) + H_\mu(\C \mid \D)$,
+		\item $H_\mu(\A \join \C) \leq H_\mu(\A) + H_\mu(\C)$,
+		\item $H_\mu(T^{-1}\A \mid T^{-1}\C) = H_\mu(\A \mid \C)$,
+		\item $H_\mu(T^{-1}\A) = H_\mu(\A)$.
+	\end{enumerate}
+	\begin{proof}
+		Coming soon!
+	\end{proof}
+\end{theorem}
+
+...
+
+\begin{theorem}\label{thm:walters-4.12}
+	Let $\A, \C$ be finite sub-algebras of $\B$ and let $T$ be a measure-preserving transformation of a probability space $(X, \B, \mu)$ Then
+	\begin{enumerate}
+		\item $h_\mu(T, \A) \leq H_\mu(\A)$,
+		\item $h_\mu(T, \A \join \C) \leq h_\mu(T, \A) + h_\mu(T, \C)$,
+		\item if $\A \subset \C$ then $h_\mu(T, \A) \leq h_\mu(T, \C)$,
+		\item $h_\mu(T, \A) \leq h_\mu(T, \C) + H_\mu(\A \mid \C)$,
+		\item $h_\mu(T, T^{-1}{\A}) = h_\mu(T, \A)$,
+		\item if $k \geq 1$ then $h_\mu(T, \A) = h_\mu\left(T, \bigjoin\limits_{i = 0}^{k - 1}{T^{-i}{\A}}\right)$,
+		\item if $T$ is invertible and $k \geq 1$ then $h_\mu(T, \A) = h_\mu\left(T, \bigjoin\limits_{i = -k}^k{T^{-i}{\A}}\right)$.
+	\end{enumerate}
+	\begin{proof}
+		Coming soon!
+	\end{proof}
+\end{theorem}

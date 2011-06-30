@@ -1,10 +1,80 @@
-% Delete the MSc option if you are doing a PhD, or replace it with MPhil
-% for a Master of Philosophy thesis
-%
-% The 12pt option is required by the 2001/02 thesis regulations
-% Last update 15th August 2007: new Abstract format and Copyright Statement
-
 \documentclass[12pt,MSc]{muthesis}
+\usepackage{hyperref}
+\usepackage{amssymb,amsmath}
+\usepackage{graphicx}
+\usepackage[amsmath,thmmarks]{ntheorem}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{eucal}
+
+\graphicspath{{fig/}}
+
+% Inkscape graphics. Compiles new diagram if svg file changes.
+\newcommand{\executeiffilenewer}[3]{%
+	\ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+	{\pdffilemoddate{#2}}>0%
+	{\immediate\write18{#3}}\fi%
+}
+\newcommand{\includesvg}[1]{%
+	\executeiffilenewer{fig/#1.svg}{fig/#1.pdf}%
+	{inkscape -z -D --file=fig/#1.svg %
+		--export-pdf=fig/#1.pdf --export-latex}%
+		\input{fig/#1.pdf_tex}%
+}
+
+% Theorem environments.
+\newcounter{ctr}[section]
+\def\thectr{\thesection.\arabic{ctr}}
+\theoremstyle{plain}
+\theorembodyfont{}
+\theoremseparator{.}
+\theoremsymbol{$\blacksquare$}
+\newtheorem{lemma}[ctr]{Lemma}
+\newtheorem{proposition}[ctr]{Proposition}
+\newtheorem{theorem}[ctr]{Theorem}
+\newtheorem{corollary}[ctr]{Corollary}
+\theoremstyle{nonumberplain}
+\newtheorem{definition}[ctr]{Definition}
+\newtheorem{example}[ctr]{Example}
+\newtheorem{remark}[ctr]{Remark}
+\theoremheaderfont{\sc}\theorembodyfont{\upshape}
+\theoremsymbol{$\square$}
+\newtheorem{proof}{Proof}
+
+% Redefine lists to use roman numerals.
+\setenumerate[1]{label=(\roman{*})}
+
+% Key words.
+\newcommand{\key}[1]{\emph{#1}}
+
+% Redefine the spacing used in the cases environment. (Default: 1.2)
+\makeatletter
+\renewcommand*\env@cases[1][1.0]{%
+	\let\@ifnextchar\new@ifnextchar
+	\left\lbrace
+	\def\arraystretch{#1}%
+	\array{@{}l@{\quad}l@{}}%
+}
+\makeatother
+
+% Frequently used symbols.
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\complex}{\mathbb{C}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\join}{\vee}
+\newcommand{\bigjoin}{\bigvee}
+\DeclareMathOperator{\var}{var}
+
+% Avoids inconsistent use of notation.
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\supset}{\supseteq}
 
 \begin{document}
 \title{Concentration Bounds For Entropy Estimation of One-Dimensional Gibbs Measures}
@@ -12,25 +82,18 @@
 % Faculty of Life Sciences people should comment the next line out
 \school{Mathematics}
 \faculty{Engineering and Physical Sciences}
-\def\wordcount{\input{wordcount.txt}}
+\immediate\write18{texcount.pl -1 -inc -sum thesis.tex > thesis.count}
+\def\wordcount{\input{thesis.count}}
 
 % Uncomment the line below to suppress the `List of Tables' page (optional)
-%\tablespagefalse
+\tablespagefalse
 
 % Uncomment the line below to suppress the `List of Figures' page (optional)
-%\figurespagefalse
+\figurespagefalse
 
 \beforeabstract
 
-Write your abstract here: Remember, it must fit on this A4 page and should
-describe contents of the thesis. Here might also be a good place to indicate
-what you have achieved in the thesis and, in the case of a PhD, what new
-results you have discovered. Note that single-spacing is used throughout the
-Abstract, including displayed equations
-\[
-e = mc^{2}
-\]
-as for the above example.
+Abstract here.
 
 \afterabstract
 
@@ -42,84 +105,11 @@ I would like to thank...
 % The next line is NOT optional and MUST appear
 \afterpreface
 
-
 % Finally, you can start writing about all the new theorems you have proved
 % and all the new results that you have discovered
 
-\chapter{Introduction}
-This chapter covers the background material for my thesis and introduces
-the notation that I will use throughout.
-
-\newpage
-
-The page is to demonstrate the page margins -- 2003 regulations
-require a 15mm margin on all side except the binding side that
-should have a 40mm margin. The page is to demonstrate the page
-margins -- 2003 regulations require a 15mm margin on all side
-except the binding side that should have a 40mm margin. The page
-is to demonstrate the page margins -- 2003 regulations require a
-15mm margin on all side except the binding side that should have a
-40mm margin. The page is to demonstrate the page margins -- 2003
-regulations require a 15mm margin on all side except the binding
-side that should have a 40mm margin. The page is to demonstrate
-the page margins -- 2003 regulations require a 15mm margin on all
-side except the binding side that should have a 40mm margin. The
-page is to demonstrate the page margins -- 2003 regulations
-require a 15mm margin on all side except the binding side that
-should have a 40mm margin. The page is to demonstrate the page
-margins -- 2003 regulations require a 15mm margin on all side
-except the binding side that should have a 40mm margin. The page
-is to demonstrate the page margins -- 2003 regulations require a
-15mm margin on all side except the binding side that should have a
-40mm margin. The page is to demonstrate the page margins -- 2003
-regulations require a 15mm margin on all side except the binding
-side that should have a 40mm margin. The page is to demonstrate
-the page margins -- 2003 regulations require a 15mm margin on all
-side except the binding side that should have a 40mm margin. The
-page is to demonstrate the page margins -- 2003 regulations
-require a 15mm margin on all side except the binding side that
-should have a 40mm margin\footnote{Do NOT forget the footnote
-space. Do NOT forget the footnote space.}. The page is to
-demonstrate the page margins -- 2003 regulations require a 15mm
-margin on all side except the binding side that should have a 40mm
-margin. The page is to demonstrate the page margins -- 2003
-regulations require a 15mm margin on all side except the binding
-side that should have a 40mm margin. The page is to demonstrate
-the page margins -- 2003 regulations require a 15mm margin on all
-side except the binding side that should have a 40mm margin. The
-page is to demonstrate the page margins -- 2003 regulations
-require a 15mm margin on all side except the binding side that
-should have a 40mm margin.
-
-
-\chapter{Some new theorems that give rise to a very long chapter name}
-\chaptermark{Shortened chapter header}
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-Another intermediate page to demonstrate the shortened running header.
-
-
-\chapter{Conclusions}
-And here is the final chapter showing how clever you are ....
-
+\input{background}
+\input{entropy}
 
 \bibliographystyle{alpha}
 \bibliography{references}

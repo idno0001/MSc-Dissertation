@@ -514,7 +514,6 @@ of \degreetitle.
 \renewcommand{\headrulewidth}{0pt}
 \lhead{\nouppercase{\textbf{\leftmark}}}
 \rhead{\textbf{\thepage}}
-
 %% This produces the chapter title at the top of each page. It can be
 %% changed in the obvious way, e.g., \pagestyle{empty} or \pagestyle{plain}
 %%
@@ -539,3 +538,9 @@ of \degreetitle.
 \def\endthebibliography{%
   \def\@noitemerr{\@warning{Empty `thebibliography' environment}}%
   \endlist}
+
+%% Redefine \arraystretch which controls the interline spacing for
+%% matrices. (Global interline spacing is 1.6, so changing the
+%% arraystretch to 0.6 effectively restores matrix interline
+%% spacing to 1).
+\renewcommand{\arraystretch}{0.6}

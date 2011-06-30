@@ -1,0 +1,165 @@
+\chapter{Background}
+\section{Preliminaries}
+This section briefly introduces some concepts which will be used throughout this dissertation.
+
+\begin{definition}
+	Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f : X \to Y$ is a \key{Lipschitz function} if there exists a constant $C \in \reals^+$ such that
+	\[
+	d_Y(f(x), f(y)) \leq Cd_X(x, y)
+	\]
+	for all $x, y \in X$. We say that $f$ is a Lipschitz function with \key{Lipschitz constant} $C$.~\cite[p154]{searcoid:metric-spaces}
+	
+	More generally, $f$ is \key{H\"older continuous} if there exists $C \in \reals^+$ and $\alpha \in (0, 1]$ such that
+	\[
+	d_Y(f(x), f(y)) \leq C(d_X(x, y))^\alpha
+	\]
+	for all $x, y \in X$. In this case, we say that $f$ is H\"older continuous with \key{H\"older exponent} $\alpha$ and \key{H\"older constant} $C$.~\cite[p143]{brin-stuck:dynsys}
+\end{definition}
+
+\section{Shifts of finite type}
+\emph{A large portion of this section follows \cite[Chapter 1]{parry-pollicott:zeta-fns-periodic-orbits}.}
+\subsection{The basics}
+Let $A$ be a $k \times k$ matrix with entries in $\{0, 1\}$. A \key{(two-sided) shift of finite type} $\Sigma_A$ is defined by
+\[
+	\Sigma_A = \{(x_j)_{j = -\infty}^\infty \mid A_{x_j, x_{j + 1}} = 1,\ j \in \integers\}.
+\]
+Similarly, a \key{(one-sided) shift of finite type} $\Sigma_A^+$ is defined by
+\[
+	\Sigma_A^+ = \{(x_j)_{j = 0}^\infty \mid A_{x_j, x_{j + 1}} = 1,\ j \in \naturals\}.
+\]
+
+Let $x = (x_j)_{j = -\infty}^\infty \in \Sigma_A$. We define the \key{(two-sided, left) shift map} $\sigma : \Sigma_A \to \Sigma_A$ by
+\[
+	(\sigma(x))_j = x_{j + 1}.
+\]
+which shifts each coordinate of $x$ one position to the left.
+
+Now let $x = (x_j)_{j = 0}^\infty \in \Sigma_A^+$. We similarly define the \key{(one-sided, left) shift map} $\sigma^+ : \Sigma_A^+ \to \Sigma_A^+$ by
+\[
+	(\sigma^+(x))_j = x_{j + 1}.
+\]
+As with the one-sided case, this shifts the coordinates of $x$ one position to the left but also deletes the first coordinate $x_0$. It is clear that $\sigma^+$ is not invertible, whereas $\sigma$ is invertible.
+
+Let $x = (x_j)_{j = -\infty}^\infty$. We call $(x_j)_{j = -\infty}^0$ the \key{past}, $x_0$ the \key{present}, and $(x_j)_{j = 0}^\infty$ the \key{future}.
+
+Let $A$ be a $k \times k$ matrix with entries in $\{0, 1\}$. We say that $A$ is \key{irreducible} if, for each $i, j \in \{1, \dots, k\}$, there exists $n = n(i, j) > 0$ such that $(A^n)_{i, j} > 0$. If there exists $n > 0$ such that $(A^n)_{i, j} > 0$ for all $i, j \in \{1, \dots, k\}$, then we say that $A$ is \key{aperiodic}.
+
+If we consider $A$ as an adjacency matrix of a graph $G_A$, then $A$ is irreducible if there exists an edge-path between any two vertices in $G_A$. If all edge-paths can be chosen to be of the same length, then $A$ is aperiodic.
+
+A shift of finite type $\Sigma_A$ is irreducible or aperiodic if the associated matrix $A$ is irreducible or aperiodic, respectively.
+
+A \key{cylinder} $C$ on $\Sigma_A$ is defined
+\[
+	C = [i_{-m}, \dots, i_{-1}, i_0, i_1, \dots, i_n]_{-m, n} = \{(x_j)_{j = -\infty}^\infty \in \Sigma \mid x_j = i_j \text{ for } -m \leq j \leq n\}.
+\]
+Similarly, a cylinder $C^+$ on $\Sigma_A^+$ is given by
+\[
+	C^+ = [i_0, i_1, \dots, i_{n - 1}, i_n]_{0, n} = \{(x_j)_{j = 0}^\infty \in \Sigma \mid x_j = i_j \text{ for } 0 \leq j \leq n\}.
+\]
+That is, a cylinder is the set of all sequences which agree in the given positions.
+
+\subsection{Function spaces for shifts of finite type}
+\subsubsection{Two-sided shifts of finite type}
+Let $\Sigma = \Sigma_A$ be a shift of finite type and let $\theta \in (0, 1)$ be given.
+
+Let $x = (x_j)_{j = -\infty}^\infty, y = (y_j)_{j = -\infty}^\infty \in \Sigma$. We define $n = n(x, y) \geq 0$ to be the largest integer such that $x_j = y_j$ for all $|j| < n$, but $x_n \neq y_n$ or $x_{-n} \neq y_{-n}$. If $x_j = y_j$ for all $j \in \integers$ then we define $n = +\infty$.
+
+We define the map $d_\theta : \Sigma \times \Sigma \to \reals^+$ by
+\[
+	d_\theta(x, y) =
+	\begin{cases}
+		\theta^n, & \text{if } x \neq y; \\
+		0 & \text{if } x = y.
+	\end{cases}
+\]
+It can be shown that $d_\theta$ is a \key{metric} on $\Sigma$, so sequences in $\Sigma$ are `close' if they agree for a large number of leading coordinates.
+
+Let $f : \Sigma \to \complex$ be a continuous function and let $n \geq 0$. We define the \key{$n$-th variation of $f$} by
+\[
+	\var_n(f) = \sup\{|f(x) - f(y)| \mid x, y \in \Sigma,\ x_j = y_j \text{ for } |j| < n\}.
+\]
+That is, $\var_n(f)$ is a measure of how much $f$ varies on cylinders of length $n$.~\cite[Lecture 8]{magic-ergodic}
+
+It is easy to see that $|f(x) - f(y)| \leq Cd_\theta(x, y)$ if and only if $\var_n(f) \leq C\theta^n$ for $n = 0, 1, 2, \dots$, where $C > 0$ is some constant.
+
+We define
+\begin{align*}
+	F_\theta = F_\theta(\Sigma) = \{f : \Sigma \to \complex &\mid f \text{ is continuous}, \ \var_n(f) \leq C\theta^n \text{ for all } n \geq 0, \\
+			& \quad \text{for some } C > 0\}
+\end{align*}
+to be the space of Lipschitz functions with respect to the metric $d_\theta$.
+
+Let $f \in F_\theta(\Sigma)$. Define
+\[
+	|f|_\theta = \sup_{n \geq 0}\left\{\frac{\var_n(f)}{\theta^n}\right\}
+\]
+to be the least Lipschitz constant of $f$. In other words, $|f|_\theta$ is the smallest $C > 0$ such that $\var_n(f) \leq C\theta^n$ for all $n \geq 0$.
+
+We can then define a \key{norm} on $F_\theta$ by
+\[
+	\|f\|_\theta = |f|_\infty+ |f|_\theta,
+\]
+where $|f|_\infty = \sup_{x \in \Sigma}\{|f(x)|\}$.
+
+\subsubsection{One-sided shifts of finite type}
+Similar definitions hold for one-sided shifts of finite type $\Sigma^+ = \Sigma_A^+$.
+
+If $x = (x_j)_{j = 0}^\infty, y = (y_j)_{j = 0}^\infty \in \Sigma^+$ then we define $n = n(x, y) \geq 0$ to be the largest integer such that $x_j = y_j$ for all $0 \leq j < n$ but $x_n \neq y_n$. We then define the metric $d_\theta : \Sigma^+ \times \Sigma^+ \to \reals^+$ in the same way as before.
+
+The \key{$n$-th variation of $f$} is given by
+\[
+	\var_n(f) = \sup\{|f(x) - f(y)| \mid x, y \in \Sigma^+,\ x_j = y_j \text{ for } 0 \leq j < n\}.
+\]
+The space of Lipschitz functions with respect to $d_\theta$ is similarly given by
+\begin{align*}
+	F_\theta^+ = F_\theta^+(\Sigma^+) = \{f : \Sigma^+ \to \complex &\mid f \text{ is continuous}, \ \var_n(f) \leq C\theta^n \text{ for all } n \geq 0, \\
+			& \quad \text{for some } C > 0\}.
+\end{align*}
+If $f \in F_\theta^+(\Sigma^+)$ then the definitions of $|f|_\theta$, $|f|_\infty$ and $\|f\|_\theta$ are identical to the two-sided analogues.
+
+\begin{proposition}
+	The spaces $(F_\theta, \|\cdot\|_\theta)$ and $(F_\theta^+, \|\cdot\|_\theta)$ are Banach spaces.
+	
+	Moreover, if $f, g \in F_\theta$ (or $F_\theta^+$) then $\|fg\|_\theta \leq \|f\|_\theta |g|_\infty + |f|_\infty \|g\|_\theta$. If $f$ is nowhere zero then $\|1 / f\|_\theta \leq |1 / f^2|_\infty \|f\|_\theta$.
+\end{proposition}
+
+\begin{proposition}
+	Suppose $f \in F_\theta$. Then there exists $g, h \in F_{\theta^{\frac{1}{2}}}$ such that $f = g + h - h \circ \sigma$, where $g(x) = g(y)$ if $x_j = y_j$ for all $j \geq 0$, i.e. the value of $g(x)$ is determined only by the future coordinates of $x$.
+\end{proposition}
+
+If a function $f : \Sigma \to \complex$ is $\alpha$-H\"older continuous, $\alpha \in (0, 1]$, then it is a Lipschitz function with respect to $d_{\theta^\alpha}$.
+
+Suppose we have $0 < \theta < \theta' < 1$. Then
+\[
+	F_{\theta'}(\Sigma) \supset F_\theta(\Sigma) \quad \text{and} \quad F_{\theta'}^+(\Sigma^+) \supset F_\theta^+(\Sigma^+).
+\]
+We can therefore define
+\[
+	F = \bigcup_{0 < \theta < 1}{F_\theta(\Sigma)} \quad \text{and} \quad F^+ = \bigcup_{0 < \theta < 1}{F_\theta^+(\Sigma^+)},
+\]
+the spaces of all H\"older continuous functions.
+
+We now consider a class of functions lying in $F_\theta^+$ for all $0 < \theta < 1$. For all $m \geq 1$ we define
+\[
+	F_m^+ = \{f : \Sigma^+ \to \complex \mid f(x) = f(y) \text{ if } x_j = y_j, \text{ for all } 0 \leq j < m\},
+\]
+the set of all locally constant functions which depend on the first $m$ terms of $x \in \Sigma^+$. It is clear that
+\[
+	F_1^+ \subset F_2^+ \subset F_3^+ \subset \dots.
+\]
+and, for $f \in F_m^+$, $\var_m(f) = 0$. Hence
+\[
+	\bigcup_{m = 1}^\infty{F_m^+} \subset \bigcap_{0 < \theta < 1}{F_\theta^+}.
+\]
+
+\begin{proposition}
+	Suppose $0 < \theta < \theta' < 1$. Then for all $m \geq 0$ we have
+	\begin{equation*}
+		|f - f_m|_{\theta'} \leq |f|_\theta \left(\frac{\theta}{\theta'}\right)^m.
+	\end{equation*}
+\end{proposition}
+
+\section{The Ruelle operator}
+\begin{theorem}[Ruelle's Perron-Frobenius Theorem]
+	Coming soon!
+\end{theorem}
