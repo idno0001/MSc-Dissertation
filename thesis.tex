@@ -7,6 +7,8 @@
 \usepackage{color}
 \usepackage{enumitem}
 \usepackage{eucal}
+%\usepackage{accents}
+\usepackage{mdframed}
 
 \graphicspath{{fig/}}
 
@@ -35,9 +37,10 @@
 \newtheorem{theorem}[ctr]{Theorem}
 \newtheorem{corollary}[ctr]{Corollary}
 \theoremstyle{nonumberplain}
-\newtheorem{definition}[ctr]{Definition}
-\newtheorem{example}[ctr]{Example}
-\newtheorem{remark}[ctr]{Remark}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{notation}{Notation}
+\newtheorem{remark}{Remark}
 \theoremheaderfont{\sc}\theorembodyfont{\upshape}
 \theoremsymbol{$\square$}
 \newtheorem{proof}{Proof}
@@ -71,10 +74,18 @@
 \newcommand{\join}{\vee}
 \newcommand{\bigjoin}{\bigvee}
 \DeclareMathOperator{\var}{var}
+\newcommand{\symdiff}{\bigtriangleup}
 
 % Avoids inconsistent use of notation.
 \renewcommand{\subset}{\subseteq}
 \renewcommand{\supset}{\supseteq}
+\renewcommand{\tilde}[1]{\widetilde{#1}}
+
+% Special `almost everywhere' notation.
+%	(Possible alternatives: \circeq, \accentset{\circ}{=} [requires package accents])
+\newcommand{\eqae}{\ \mathring{=}\ }	% `equal almost everywhere'
+\newcommand{\subsetae}{\ \mathring{\subset}\ }
+\newcommand{\supsetae}{\ \mathring{\supset}\ }
 
 \begin{document}
 \title{Concentration Bounds For Entropy Estimation of One-Dimensional Gibbs Measures}

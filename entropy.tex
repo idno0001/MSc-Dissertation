@@ -1,7 +1,63 @@
 \chapter{Entropy}
-\emph{This chapter predominantly follows \cite[Chapter 4]{walters:intro-to-ergodic-theory}.}
+\begin{mdframed}[linewidth=2,leftmargin=108,rightmargin=108,skipbelow=30]
+	\textbf{Throughout this chapter $(X, \B, \mu)$ will denote a probability space.}
+\end{mdframed}
 
-\section{Preliminaries}
+\section{Isomorphisms of measure-preserving transformations}
+One of the main problems in ergodic theory is to classify measure-preserving transformations. To this end, we want to decide the conditions required for two measure-preserving transformations to be `the same' -- up to sets of measure zero.
+
+\subsection{Isomorphism and conjugacy of measure spaces}
+\emph{This subsection predominantly follows \cite[Chapter 2]{walters:intro-to-ergodic-theory}.}
+
+We begin by defining when two probability spaces are isomorphic or conjugate.
+
+\begin{definition}
+	Two probability spaces $(X_1, \B_1, \mu_1), (X_2, \B_2, \mu_2)$ are \key{isomorphic} if there exists $M_1 \in \B_1$, $M_2 \in \B_2$ such that $\mu_1(M_1) = 1 = \mu_2(M_2)$ and if there exists an invertible measure-preserving transformation $\phi: M_1 \to M_2$.
+\end{definition}
+
+Let $A, C \subset \B$. We define an equivalence relation on $\B$: we have $A \sim C$ if and only if $\mu(A \symdiff C) = 0$. In other words, $A$ and $C$ belong to the same equivalence class if they are equal almost everywhere. It can be easily checked that $\sim$ is indeed an equivalence relation.
+
+Let $\tilde{\B}$ denote the collection of all equivalence classes in $\B$. Since $\B$ is a $\sigma$-algebra, it is clear that $\tilde{B}$ is also a $\sigma$-algebra. We can define a measure $\tilde{\mu} : \tilde{\B} \to \reals^+$ by $\tilde{\mu}(\tilde{B}) = \mu(B)$, where $B$ belongs to the equivalence class $\tilde{B}$.
+
+\begin{definition}
+	A \key{measure algebra} is a Boolean $\sigma$-algebra equipped with a measure.
+\end{definition}
+
+In view of this definition, we see that $(\tilde{\B}, \tilde{\mu})$ is a \key{measure algebra}.
+
+\begin{definition}
+	Let $(X_1, \B_1, \mu_1), (X_2, \B_2, \mu_2)$ be probability spaces with corresponding measure algebras $(\tilde{\B}_1, \tilde{\mu}_1), (\tilde{\B}_2, \tilde{\mu}_2)$, respectively.
+	
+	We say $(\tilde{\B}_1, \tilde{\mu}_1)$ and $(\tilde{\B}_2, \tilde{\mu}_2)$ are \key{isomorphic} if there exists a bijection $\phi : \tilde{\B}_2 \to \tilde{\B}_1$ which preserves complmentation and countable unions and intersections such that $\tilde{\mu}_1(\phi \tilde{B}) = \tilde{\mu}_2(\tilde{B})$ for all $\tilde{B} \in \tilde{\B}_2$.
+	
+	The probability spaces $(X_1, \B_1, \mu_1)$ and $(X_2, \B_2, \mu_2)$ are \key{conjugate} if their corresponding measure algebras are isomorphic.
+\end{definition}
+
+\begin{proposition}
+	If two probability spaces are isomorphic then they are also conjugate.
+	\begin{proof}
+		Suppose $(X_1, \B_1, \mu_1), (X_2, \B_2, \mu_2)$ are isomorphic probability spaces with corresponding measure algebras $(\tilde{\B}_1, \tilde{\mu}_1), (\tilde{\B}_2, \tilde{\mu}_2)$. By definition, this means there exists $M_1 \in \B_1$, $M_2 \in \B_2$ such that $\mu_1(M_1) = 1 = \mu_2(M_2)$ and there exists an invertible measure-preserving transformation $\phi: M_1 \to M_2$.
+		
+		Now we can define the map
+		\[
+			\psi : \tilde{\B}_2 \to \tilde{\B}_1 : \tilde{B} \mapsto (\phi^{-1}(M_2 \cap B))^\sim.
+		\]
+		This is clearly a bijection and, since $\phi$ is measure-preserving and $M_2 = X_2$ almost everywhere, we have
+		\[
+			\tilde{\mu}_1(\psi\tilde{B}) = \tilde{\mu}_1(\phi^{-1}(M_2 \cap B))^\sim = \tilde{\mu}_2(M_2 \cap B)^\sim = \tilde{\mu}_2(\tilde{B}),
+		\]
+		for all $\tilde{B} \in \tilde{\B}_2$. Therefore the measure algebras are isomorphic and hence the corresponding measure spaces are isomorphic.
+	\end{proof}
+\end{proposition}
+
+The converse statement is not necessarily true. Indeed, suppose we have the probability space $(X_1, \B_1, \mu_1)$ consisting of exactly one point, and another probability space $(X_2, \B_2, \mu_2)$ consisting of exactly two points, with $\B_2 = \{\emptyset, X_2\}$. It is easy to see that the measure algebras are isomorphic and hence the measure spaces are conjugate.
+
+We need to choose $M_1 \in \B_1$, $M_2 \in \B_2$ such that $\mu_1(M_1) = 1 = \mu_2(M_2)$; the only possibility is $M_1 = X_1$ and $M_2 = X_2$. However there does not exist bijection between these two sets, so the probability spaces are \emph{isomorphic}.
+
+\subsection{A motivational example}
+We describe a scenario when two measure-preserving transformations could be considered `the same'. We follow the example in \cite[p58]{walters:intro-to-ergodic-theory}.
+
+\section{Conditional expectation}
 \begin{definition}
 	Conditional expectation operator $E(\:\cdot \mid \C) : L^1(X, \B, \mu) \to L^1(X, \C, \mu)$ is defined...
 \end{definition}
@@ -18,6 +74,8 @@ The operator $E(f \mid \C)$ is uniquely determined by the requirement that:
 We can think of $E(f \mid \C)$ as the best approximation of $f$ in the smaller space $\C$ of measurable functions.~\cite[Lecture 21]{ergodic-lectures}
 
 ...
+
+\emph{The remainder of this chapter predominantly follows \cite[Chapter 4]{walters:intro-to-ergodic-theory}.}
 
 \section{Conditional entropy}
 \begin{theorem}\label{thm:walters-4.3}
