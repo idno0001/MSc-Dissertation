@@ -1,0 +1,138 @@
+\chapter{Auxiliary results}
+This appendix contains results which are used throughout the dissertation. We separate the appendix into sections depending on which chapter the result is first used.
+
+\section{Gibbs measures}
+The follow result is used in the proof of Proposition \ref{prop:pp-3-4}. First, we need to a definition.
+
+\begin{definition}
+	Let $X$ be a convex set and suppose $f : X \to \reals$ (or $\complex$). We say that the function $f$ is \key{concave} on $X$ if for all $x, y \in X$ we have
+	\[
+		f(\alpha x + (1 - \alpha)y) \geq \alpha f(x) + (1 - \alpha)f(y),
+	\]
+	for all $\alpha \in [0, 1]$. The function $f$ is \key{strictly concave} if the inequality is strict.~\cite[p11]{cambini-martein:generalized}
+\end{definition}
+
+\begin{lemma}
+	Suppose that $(p_1, \dots, p_k), (q_1, \dots, q_k)$ are probability vectors with $p_j > 0$ for all $j = 1, \dots, k$. Then
+	\[
+		-\sum_{j = 1}^k{q_j \log{q_j}} + \sum_{j = 1}^k{q_j \log{p_j}} \leq 0,
+	\]
+	with equality if and only if $p_j = q_j$ for all $j = 1, \dots, k$.
+	\begin{proof}
+		We have
+		\begin{align}
+			-\sum_{j = 1}^k{q_j \log{q_j}} + \sum_{j = 1}^k{q_j \log{p_j}} &= \sum_{j = 1}^k{q_j \log\left(\frac{p_j}{q_j}\right)} \nonumber \\
+				&= \sum_{j = 1}^k{-p_j \frac{q_j}{p_j} \log\left(\frac{q_j}{p_j}\right)} \nonumber \\
+				&= \sum_{j = 1}^k{p_j \phi\left(\frac{q_j}{p_j}\right)}, \label{fml:pp-3-3-sums}
+		\end{align}
+		where $\phi(x) = -x \log{x}$, with the convention that $\phi(0) = 0$. By Theorem \ref{thm:walters-4-2-xlogx-convex}, we have that $x \log{x}$ is a strictly convex function, and so $\phi$ is strictly concave. Continuing from \eqref{fml:pp-3-3-sums}, we have
+		\[
+			-\sum_{j = 1}^k{q_j \log{q_j}} + \sum_{j = 1}^k{q_j \log{p_j}} \leq \phi\left(\sum_{j = 1}^k{p_j \frac{q_j}{p_j}}\right) = \phi(1) = 0,
+		\]
+		with equality if and only if all the $(q_j / p_j)$ terms are equal.
+	\end{proof}
+\end{lemma}
+
+\section{Concentration bounds}
+
+The following result is used in the proof of Theorem \ref{thm:cm-4-1}.
+
+\begin{proposition}\label{prop:logs-thm-4-1}
+	Let $\ell, k \in \naturals$ be such that $\ell + k \leq n$. Then
+	\[
+		\left|\left(\frac{\ell}{n}\right)\log\left(\frac{\ell}{n}\right) - \left(\frac{\ell + k}{n}\right)\log\left(\frac{\ell + k}{n}\right)\right| \leq \left(\frac{k}{n}\right)\log{n}.
+	\]
+	
+	\begin{proof}
+		We have
+		\begin{align*}
+			&\left(\frac{\ell}{n}\right)\log\left(\frac{\ell}{n}\right) - \left(\frac{\ell + k}{n}\right)\log\left(\frac{\ell + k}{n}\right) \\
+				&\quad = \left(\frac{k}{n}\right)\log{n} - \left[\left(\frac{\ell + k}{n}\right)\log(\ell + k) - \left(\frac{\ell}{n}\right)\log{\ell}\right].
+		\end{align*}
+		Since $k \geq 1$, we have
+		\begin{align*}
+			0 &\leq \left(\frac{\ell + k}{n}\right)\log(\ell + k) - \left(\frac{\ell}{n}\right)\log{\ell} \\
+				&\leq \left(\frac{\ell + k}{n}\right)\log(\ell + k) + \left(\frac{k - \ell}{n}\right)\log{\ell} \\
+				&\leq \left(\frac{\ell + k}{n}\right)\log{n} + \left(\frac{k - \ell}{n}\right)\log{n} \\
+				&\leq 2\left(\frac{k}{n}\right)\log{n}.
+		\end{align*}
+		Hence
+		\[
+			-\left(\frac{k}{n}\right)\log{n} \leq \left(\frac{\ell}{n}\right)\log\left(\frac{\ell}{n}\right) - \left(\frac{\ell + k}{n}\right)\log\left(\frac{\ell + k}{n}\right) \leq \left(\frac{k}{n}\right)\log{n},
+		\]
+		in other words,
+		\[
+			\left|\left(\frac{\ell}{n}\right)\log\left(\frac{\ell}{n}\right) - \left(\frac{\ell + k}{n}\right)\log\left(\frac{\ell + k}{n}\right)\right| \leq \left(\frac{k}{n}\right)\log{n}.
+		\]
+	\end{proof}
+\end{proposition}
+
+The following result allows us to write the $k$-block conditional empirical entropy $\hat{h}_{k(n)}(x_0^{n - 1})$ in a more useful form. It is used in the proof of Theorem \ref{thm:cm-4-2}.
+
+\begin{lemma}\label{lem:cm-4-1}
+	Let $\phi \in F_\theta$. We have
+	\begin{equation}
+		\hat{h}_{k(n)}(x_0^{n - 1}) = \frac{1}{n}\sum_{j = 0}^{n - 1}(-\phi \circ \sigma^j(x)) + \hat{\Delta}_{k(n)}(x_0^{n - 1}) + O(\theta^{k(n)}),
+	\end{equation}
+	where
+	\[
+		|E(\hat{\Delta}_{k(n)})| \leq \frac{M|A|^{k(n)}}{n},
+	\]
+	for some $M > 0$.
+	\begin{proof}
+		We follow the proof given in \cite[p10-11]{chazottes-maldonado:cbfee}.
+		
+		We have
+		\begin{align}
+			\hat{h}_k(x_0^{n - 1}) &= h_k(\E_k(\seedot; x_0^{n - 1})) \nonumber \\
+				&= -\sum_{a_0^{k - 1} \in A^k}{\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\E_k(a_0^{k - 1}; x_0^{n - 1})}{\E_{k - 1}(a_0^{k - 2}; x_0^{n - 1})}}} \nonumber \\
+				&= \hat{\Delta}_k(x_0^{n - 1}) -\sum_{a_0^{k - 1} \in A^k}\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\mu_\phi[a_0^{k - 1}]}{\mu_\phi[a_1^{k - 1}]}}, \label{fml:cm-11}
+		\end{align}
+		where
+		\begin{align*}
+			\hat{\Delta}_k(x_0^{n - 1}) &=-\sum_{a_0^{k - 1} \in A^k}{\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\E_k(a_0^{k - 1}; x_0^{n - 1})}{\E_{k - 1}(a_0^{k - 2}; x_0^{n - 1})}}} \\
+				& \qquad + \sum_{a_0^{k - 1} \in A^k}\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\mu_\phi[a_0^{k - 1}]}{\mu_\phi[a_1^{k - 1}]}} \\
+				&=-\sum_{a_0^{k - 1} \in A^k}{\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\E_k(a_0^{k - 1}; x_0^{n - 1})}{\mu_\phi[a_0^{k - 1}]}}} \\
+				& \qquad + \sum_{a_0^{k - 1} \in A^k}\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\E_{k - 1}(a_0^{k - 2}; x_0^{n - 1})}{\mu_\phi[a_1^{k - 1}]}}.
+		\end{align*}
+		Since $\E_k(\seedot; x_0^{n - 1})$ is locally $\sigma$-invariant, we have
+		\[
+			\sum_{a_0 \in A}{\E_k(a_0^{k - 1}; x_0^{n - 1})} = \E_{k - 1}(a_1^{k - 1}; x_0^{n - 1}).
+		\]
+		It is also clear that
+		\[
+			\sum_{a_{k - 1} \in A}{\mathcal{E}_k(a_0^{k - 1}; x_0^{n - 1})} = \mathcal{E}_{k - 1}(a_0^{k - 2}; x_0^{n - 1}).
+		\]
+		This means that
+		\begin{align*}
+			\sum_{a_0^{k - 1} \in A^k}&\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\E_{k - 1}(a_0^{k - 2}; x_0^{n - 1})}{\mu_\phi[a_1^{k - 1}]}} \\
+				&= \sum_{a_0^{k - 1} \in A^k}\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\sum_{a_{k} \in A}{\mathcal{E}_k(a_0^{k - 1}; x_0^{n - 1})}}{\mu_\phi[a_1^{k - 1}]}} \\
+				&= \sum_{a_0^{k - 1} \in A^k}\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\mathcal{E}_k(a_0^{k - 1}; x_0^{n - 1})}{\mu_\phi[a_1^{k - 1}]}} \\
+				&= \sum_{a_1^{k - 1} \in A^{k - 1}}\sum_{a_0 \in A}\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\mathcal{E}_k(a_0^{k - 1}; x_0^{n - 1})}{\mu_\phi[a_1^{k - 1}]}} \\
+				&= \sum_{a_1^{k - 1} \in A^{k - 1}}\E_{k - 1}(a_1^{k - 1}; x_0^{n - 1}) \log{\frac{\mathcal{E}_{k - 1}(a_1^{k - 1}; x_0^{n - 1})}{\mu_\phi[a_1^{k - 1}]}} \\
+				&= H_{k - 1}(\E_{k - 1}(\seedot; x_0^{n - 1})).
+		\end{align*}
+		Hence $\hat{\Delta}_k(x_0^{n - 1}) = -H_k(\E_k(\seedot; x_0^{n - 1})) + H_{k - 1}(\E_{k - 1}(\seedot; x_0^{n - 1}))$.
+		
+		There is a formula due to \cite[Formulae (4.15), (4.16)]{gabrielli-galves-guiol:fluctuations} which gives the bound
+		\[
+			|E_{\mu_\phi}(\hat{\Delta}_{k(n)})| \leq \frac{M|A|^k}{n}
+		\]
+		for all $n \geq 1$, where $M > 0$ is a strictly positive constant.
+		
+		We now deal with the summation in Formula \eqref{fml:cm-11}. For $y \in \Sigma$ we put
+		\[
+			\phi_k(y) = \log\frac{\mu_\phi[y_0^{k - 1}]}{\mu_\phi[y_1^{k - 1}]}.
+		\]
+		By Proposition \ref{prop:pp-3-2}, for all $y \in \Sigma$ we have
+		\[
+			\|\phi_k(y) - \phi(y)\|_\infty = \left\|\log\frac{\mu_\phi[y_0^{k - 1}]}{\mu_\phi[y_1^{k - 1}]} - \phi(y)\right\|_\infty \leq |\phi|_\theta \theta^k.
+		\]
+		So we may reasonably replace any instance of $\phi_k(y)$ with $\phi(y) + O(\theta^k)$. By the way $\E_k(\seedot; x_0^{n - 1})$ is defined, we have
+		\begin{align*}
+			-\sum_{a_0^{k - 1} \in A^k}\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\mu_\phi[a_0^{k - 1}]}{\mu_\phi[a_1^{k - 1}]}} &= -\sum_{a_0^{k - 1} \in A^k}\E_k(a_0^{k - 1}; x_0^{n - 1}) \phi_k(a) \\
+				&= \frac{1}{n}\sum_{j = 0}^{n - 1}{(-\phi \circ \sigma^j(x))} + O(\theta^k).
+		\end{align*}
+		The result follows by substituting this back into Formula \eqref{fml:cm-11}.
+	\end{proof}
+\end{lemma}

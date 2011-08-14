@@ -1,8 +1,6 @@
 \documentclass[12pt,MSc]{muthesis}
-\usepackage{hyperref}
 \usepackage{amssymb,amsmath}
 \usepackage{graphicx}
-\usepackage[amsmath,thmmarks]{ntheorem}
 \usepackage{verbatim}
 \usepackage{color}
 \usepackage{enumitem}
@@ -10,6 +8,8 @@
 %\usepackage{accents}
 \usepackage{mdframed}
 \usepackage{soul}
+\usepackage{hyperref}
+\usepackage[thmmarks,amsmath]{ntheorem}
 
 \graphicspath{{fig/}}
 
@@ -27,12 +27,14 @@
 }
 
 % Theorem environments.
-\newcounter{ctr}[section]
-\def\thectr{\thesection.\arabic{ctr}}
+%\newcounter{ctr}[section]
+%\def\thectr{\thesection.\arabic{ctr}}
+\newcounter{ctr}[chapter]
+\def\thectr{\thechapter.\arabic{ctr}}
 \theoremstyle{plain}
 \theorembodyfont{}
 \theoremseparator{.}
-\theoremsymbol{$\blacksquare$}
+\theoremsymbol{\ensuremath{\blacksquare}}
 \newtheorem{lemma}[ctr]{Lemma}
 \newtheorem{proposition}[ctr]{Proposition}
 \newtheorem{theorem}[ctr]{Theorem}
@@ -42,8 +44,10 @@
 \newtheorem{example}{Example}
 \newtheorem{notation}{Notation}
 \newtheorem{remark}{Remark}
+\theoremheaderfont{\it}\theorembodyfont{\upshape}
+\newtheorem{claim}{Claim}
 \theoremheaderfont{\sc}\theorembodyfont{\upshape}
-\theoremsymbol{$\square$}
+\theoremsymbol{\ensuremath{\square}}
 \newtheorem{proof}{Proof}
 
 % Redefine lists to use roman numerals.
@@ -68,13 +72,17 @@
 \newcommand{\complex}{\mathbb{C}}
 \newcommand{\C}{\mathcal{C}}
 \newcommand{\D}{\mathcal{D}}
+\newcommand{\E}{\mathcal{E}}
 \newcommand{\naturals}{\mathbb{N}}
 \newcommand{\rationals}{\mathbb{Q}}
 \newcommand{\reals}{\mathbb{R}}
 \newcommand{\integers}{\mathbb{Z}}
 \newcommand{\join}{\vee}
 \newcommand{\bigjoin}{\bigvee}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\Lip}{Lip}
 \DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\Var}{Var}
 \newcommand{\symdiff}{\bigtriangleup}
 
 % Avoids inconsistent use of notation.
@@ -87,6 +95,12 @@
 \newcommand{\eqae}{\ \mathring{=}\ }	% `equal almost everywhere'
 \newcommand{\subsetae}{\ \mathring{\subset}\ }
 \newcommand{\supsetae}{\ \mathring{\supset}\ }
+
+% \relmiddle is like \middle, but gives the same spacing as \mid.
+\newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}}
+\newcommand{\midmid}{\relmiddle|}
+\newcommand{\seedot}{\mathrel{}\cdot\mathrel{}}
+\newcommand{\midcolon}{\,:\,}
 
 \begin{document}
 \title{Concentration Bounds For Entropy Estimation of One-Dimensional Gibbs Measures}
@@ -123,14 +137,14 @@ I would like to thank...
 \input{conventions}
 \input{background}
 \input{entropy}
+\input{gibbs}
+\input{concentration_bounds}
+
+\appendix
+\input{appendix}
 
 \bibliographystyle{alpha}
 \bibliography{references}
-
-% Comment the following THREE lines if you do NOT have an Appendix
-%\appendix
-%\chapter{A Long Proof}
-%.........
 
 % If you need more than one appendix, then just use another \chapter command
 %\chapter{Yet Another Appendix}

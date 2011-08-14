@@ -141,6 +141,7 @@ It is easy to see that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$ if and only
 	%Moreover, if $f, g \in F_\theta$ (or $F_\theta^+$) then $\|fg\|_\theta \leq \|f\|_\theta |g|_\infty + |f|_\infty \|g\|_\theta$. If $f$ is nowhere zero then $\|1 / f\|_\theta \leq |1 / f^2|_\infty \|f\|_\theta$.
 \end{proposition}
 
+\begin{comment}
 \begin{definition}
 	Let $f, g \in F_\theta$ (or $F_\theta^+$). We say $f$ and $g$ are \key{cohomologous} if there exists a continuous function $h$ such that $f = g + h \circ \sigma - h$. In this case, we write $f \sim g$.
 	
@@ -158,7 +159,6 @@ It is easy to see that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$ if and only
 	\end{proof}
 \end{proposition}
 
-\begin{comment}
 If a function $f : \Sigma \to \complex$ is $\alpha$-H\"older continuous, $\alpha \in (0, 1]$, then it is a Lipschitz function with respect to $d_{\theta^\alpha}$.
 
 Suppose we have $0 < \theta < \theta' < 1$. Then
@@ -194,20 +194,18 @@ and, for $f \in F_m^+$, $\var_m(f) = 0$. Hence
 \end{comment}
 
 \section{The Ruelle operator}
-\hl{(Something here to motivate or explain why we are introducing the Ruelle operator and the RPF Theorem.)}
-
 Throughout this section, let $\Sigma = \Sigma_A^+$ be a (one-sided) shift of finite type.
 
 \begin{definition}
 	Let $f \in F_\theta^+$. The \key{Ruelle operator} (or \key{transfer operator}) $L_f : F_\theta^+ \to F_\theta^+$ (or, more generally, $L_f : C(\Sigma, \complex) \to C(\Sigma, \complex)$) is defined
 	\[
-		(L_f{w})(x) = \sum_{y \in \Sigma\, :\, \sigma{y} = x}{e^{f(y)} w(y)} = \sum_{j\, :\, A_{j, x_0} = 1}{e^{f(j, x_0, x_1, \dots)} w(j, x_0, x_1, \dots)},
+		(L_f{w})(x) = \sum_{y \in \Sigma \midcolon \sigma{y} = x}{e^{f(y)} w(y)} = \sum_{j \midcolon A_{j, x_0} = 1}{e^{f(j, x_0, x_1, \dots)} w(j, x_0, x_1, \dots)},
 	\]
 	where $x = (x_j)_{j = 0}^\infty \in \Sigma$. This is a bounded linear operator.
 	
 	The $n$-th iterate of $L_f$ is given by
 	\[
-		(L_f^n{w})(x) = \sum_{y \in \Sigma\, :\, \sigma^n{y} = x}{e^{f^n(y)} w(y)}.
+		(L_f^n{w})(x) = \sum_{y \in \Sigma \midcolon \sigma^n{y} = x}{e^{f^n(y)} w(y)}.
 	\]
 	
 	If $f$ is also real-valued and $L_f{1} = 1$, then we say that $f$ or $L_f$ is \key{normalised}.
@@ -221,20 +219,20 @@ Throughout this section, let $\Sigma = \Sigma_A^+$ be a (one-sided) shift of fin
 	for all $w \in F_\theta^+$, where $K > 0$ is a constant depending only on $f$ and $\theta$.
 \end{proposition}
 
-\begin{theorem}[Ruelle's Perron-Frobenius Theorem]
+\begin{theorem}[Ruelle's Perron-Frobenius Theorem] \label{thm:rpf}
 	Suppose $\Sigma = \Sigma_A^+$ is an aperiodic shift of finite type and let $f \in F_\theta^+$ be a real-valued function. Then
 	\begin{enumerate}
-		\item There is a simple maximal eigenvalue $\lambda$ of $L_f : C(\Sigma_A^+, \reals) \to C(\Sigma_A^+, \reals)$ with a corresponding eigenfunction $h \in C(\Sigma_A^+, \reals)$, with $h > 0$. \label{rpf:1}
-		\item The remainder of the spectrum of $L_f$ is contained in a disc of radius strictly less than $\lambda$.
+		\item There is a simple maximal eigenvalue $\lambda$ of $L_f : C(\Sigma, \reals) \to C(\Sigma, \reals)$ with a corresponding eigenfunction $h \in C(\Sigma_A^+, \reals)$, with $h > 0$. \label{rpf:1}
+		\item The remainder of the spectrum of $L_f$ is contained in a disc of radius strictly less than $\lambda$. \label{rpf:2}
 		\item There is a unique probability measure $\mu$ such that $L_f^*{\mu} = \lambda\mu$. That is,
 		\[
 			\int{L_f{v}\ d\mu} = \lambda \int{v\ d\mu},
 		\]
-		for all $v \in C(\Sigma_A^+, \reals)$. Additionally, if $h$ is the eigenfunction as in \ref{rpf:1} and $\int{h\ d\mu} = 1$, then the measure $\nu$ defined by $d\nu = h\ d\mu$ is a $\sigma$-invariant probability measure.
-		\item If $h$ is the eigenfunction as in \ref{rpf:1} and $\int{h\ d\mu} = 1$, then for all $v \in C(\Sigma_A^+, \reals)$,
+		for all $v \in C(\Sigma, \reals)$. Additionally, if $h$ is the eigenfunction as in \ref{rpf:1} and $\int{h\ d\mu} = 1$, then the measure $\nu$ defined by $d\nu = h\ d\mu$ is a $\sigma$-invariant probability measure. \label{rpf:3}
+		\item If $h$ is the eigenfunction as in \ref{rpf:1} and $\int{h\ d\mu} = 1$, then for all $v \in C(\Sigma, \reals)$,
 		\[
 			\frac{1}{\lambda^n}L_f^n{v} \to h \int{v\ d\mu}
 		\]
-		uniformly.
+		uniformly. \label{rpf:4}
 	\end{enumerate}
 \end{theorem}

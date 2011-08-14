@@ -17,7 +17,7 @@ We begin by defining when two probability spaces are isomorphic or conjugate.
 
 Let $A, C \subset \B$. We define an equivalence relation on $\B$: we have $A \sim C$ if and only if $\mu(A \symdiff C) = 0$. In other words, $A$ and $C$ belong to the same equivalence class if they are equal almost everywhere. It can be easily checked that $\sim$ is indeed an equivalence relation.
 
-Let $\tilde{\B}$ denote the collection of all equivalence classes in $\B$. Since $\B$ is a $\sigma$-algebra, it is clear that $\tilde{B}$ is also a $\sigma$-algebra. We can define a measure $\tilde{\mu} : \tilde{\B} \to \reals^+$ by $\tilde{\mu}(\tilde{B}) = \mu(B)$, where $B$ belongs to the equivalence class $\tilde{B}$.
+Let $\tilde{\B}$ denote the collection of all equivalence classes in $\B$. Since $\B$ is a $\sigma$-algebra, it is clear that $\tilde{\B}$ is also a $\sigma$-algebra. We can define a measure $\tilde{\mu} : \tilde{\B} \to \reals^+$ by $\tilde{\mu}(\tilde{B}) = \mu(B)$, where $B$ belongs to the equivalence class $\tilde{B}$.
 
 \begin{definition}
 	A \key{measure algebra} is a Boolean $\sigma$-algebra equipped with a measure.
@@ -28,7 +28,7 @@ In view of this definition, we see that $(\tilde{\B}, \tilde{\mu})$ is a \key{me
 \begin{definition}
 	Let $(X_1, \B_1, \mu_1), (X_2, \B_2, \mu_2)$ be probability spaces with corresponding measure algebras $(\tilde{\B}_1, \tilde{\mu}_1), (\tilde{\B}_2, \tilde{\mu}_2)$, respectively.
 	
-	We say $(\tilde{\B}_1, \tilde{\mu}_1)$ and $(\tilde{\B}_2, \tilde{\mu}_2)$ are \key{isomorphic} if there exists a bijection $\phi : \tilde{\B}_2 \to \tilde{\B}_1$ which preserves complmentation and countable unions and intersections such that $\tilde{\mu}_1(\phi \tilde{B}) = \tilde{\mu}_2(\tilde{B})$ for all $\tilde{B} \in \tilde{\B}_2$.
+	We say $(\tilde{\B}_1, \tilde{\mu}_1)$ and $(\tilde{\B}_2, \tilde{\mu}_2)$ are \key{isomorphic} if there exists a bijection $\phi : \tilde{\B}_2 \to \tilde{\B}_1$ which preserves complementation and countable unions and intersections such that $\tilde{\mu}_1(\phi \tilde{B}) = \tilde{\mu}_2(\tilde{B})$ for all $\tilde{B} \in \tilde{\B}_2$.
 	
 	The probability spaces $(X_1, \B_1, \mu_1)$ and $(X_2, \B_2, \mu_2)$ are \key{conjugate} if their corresponding measure algebras are isomorphic.
 \end{definition}
@@ -112,15 +112,91 @@ where $a_j \in \{0, 1\}$ for $j = 0, 1, \dots, s - 2$ and $a_k = 1$ for $k \geq 
 \end{align*}
 Hence $\phi$ is measure-preserving on dyadic intervals, which generate the Borel $\sigma$-algebra $\B$ on $[0, 1)$. We may therefore apply the Kolmogorov Extension Theorem and it follows that $\phi$ is \emph{measure-preserving} on all Borel sets $B \in \B$.
 
-Let $D = \{\frac{a}{2^s} \in [0, 1) \mid s \in \naturals,\ 0 \leq a < s^s\}$ be the set of all dyadic rationals in $[0, 1)$. Clearly, $T^{-1}D = D$ and this means that $T^{-1}([0, 1) \setminus D) = [0, 1) \setminus D$. Since $D \subset \rationals$, we have $\mu(D) = 0$.
+Let $D = \{\frac{a}{2^s} \in [0, 1) \mid s \in \naturals,\ 0 \leq a < 2^s\}$ be the set of all dyadic rationals in $[0, 1)$. Clearly, $T^{-1}D = D$ and this means that $T^{-1}([0, 1) \setminus D) = [0, 1) \setminus D$. It is also clear that $\sigma^{-1}E = E$ and so $\sigma^{-1}(X \setminus E) = X \setminus E$. So by the above observations, we see that $\phi: X \setminus E \to [0, 1) \setminus D$ is a bijection. It is also clear that $\phi \circ \sigma(x) = T \circ \phi(x)$ for all $x \in X \setminus E$.
 
-It is also clear that $\sigma^{-1}E = E$ and so $\sigma^{-1}(X \setminus E) = X \setminus E$. Since there are countably many sequences in $E$, we have $\nu(E) = 0$.
+Finally, we have $D \subset \rationals$ which gives $\mu(D) = 0$, and we also note that there are countably many sequences in $E$, thus $\nu(E) = 0$. Therefore $\phi$ is an invertible measure-preserving transformation between $X$ and $[0, 1)$ (modulo sets of measure zero), that is, the measure-preserving transformations are \emph{isomorphic}. Therefore it makes sense to say that these measure-preserving transformations are `the same'.
 
-By the above observations...
+\subsection{\texorpdfstring{\sloppy Isomorphism and conjugacy of measure-preserving transformations}{Isomorphism and conjugacy of measure-preserving transformations}}
+We now formalise the ideas illustrated in the above example.
+
+\begin{definition}
+	\sloppy Let $(X_1, \B_1, \mu_1, T_1)$, $(X_2, \B_2, \mu_2, T_2)$ be measure-preserving transformations of probability spaces. We say that $T_1$ is \key{isomorphic} to $T_2$ if there exists $M_1 \in \B_1$, $M_2 \in \B_2$ such that $\mu_1(M_1) = 1 = \mu_2(M_2)$ with
+	\begin{enumerate}
+		\item $T_1{M_1} \subset M_1$ and $T_2{M_2} \subset M_2$, and \label{mpt-iso-i}
+		\item there exists an invertible measure-preserving transformation $\phi : M_1 \to M_2$ such that $\phi \circ T_1(x) = T_2 \circ \phi(x)$ for all $x \in M_1$. \label{mpt-iso-ii}
+	\end{enumerate}
+	If this is the case, we write $T_1 \simeq T_2$.
+\end{definition}
+
+Now suppose $T_1 \simeq T_2$ with $M_1$, $M_2$ and $\phi : M_1 \to M_2$ as in the above definition. Then for $n \geq 1$ we clearly have $T_1^n{M_1} \subset M_1$ and $T_2^n{M_2} \subset M_2$, satisfying condition \ref{mpt-iso-i}. This in turn gives that $\phi \circ T_1^n(x) = T_2^n \circ \phi(x)$ for all $x \in M_1$, satisfying condition \ref{mpt-iso-ii}. In other words, if $T_1 \simeq T_2$, then $T_1^n \simeq T_2^n$ for all $n \geq 1$.
+
+We also have the notion of conjugacy of measure-preserving transformations.
+
+\begin{definition}
+	Let $(X_1, \B_1, \mu_1, T_1)$, $(X_2, \B_2, \mu_2, T_2)$ be measure-preserving transformations of probability spaces. We say that $T_1$ is \key{conjugate} to $T_2$ if there exists an isomorphism $\Phi : (\tilde{\B}_2, \tilde{\mu}_2) \to (\tilde{\B}_1, \tilde{\mu}_1)$ of measure algebras such that $\Phi \circ \tilde{T}_2^{-1} = \tilde{T}_1^{-1} \circ \Phi$.
+\end{definition}
+
+It can be easily checked that isomorphism and conjugacy are equivalence relations on the set of all measure-preserving transformations.
+
+As with probability spaces, isomorphic measure-preserving transformations are also conjugate:
+
+\begin{theorem}\label{thm:walters-2-5}
+	Let $(X_1, \B_1, \mu_1, T_1)$, $(X_2, \B_2, \mu_2, T_2)$ be measure-preserving transformations of probability spaces and suppose that $T_1 \simeq T_2$. Then $T_1$ is conjugate to $T_2$.
+	\begin{proof}
+		Suppose $T_1 \simeq T_2$, so a measure-preserving transformation $\phi : M_1 \to M_2$ such that $\phi \circ T_1(x) = T_2 \circ \phi(x)$ for all $x \in M_1$, where $M_1, M_2$ are as in the definition.
+		
+		Define $\Phi : (\tilde{\B}_2, \tilde{\mu}_2) \to (\tilde{\B}_1, \tilde{\mu}_1)$ by $\Phi(\tilde{B}) \mapsto (\phi^{-1}(B \cap M_2))^\sim$ for $B \in B_2$. Recall that $\tilde{B}$ is an equivalence class, so it is easy to see that $\Phi$ is an isomorphism. We also have
+		\[
+			\tilde{T}_1^{-1} \circ \Phi(\tilde{B}) = \tilde{T}_1^{-1} \circ (\phi^{-1}(B \cap M_2))^\sim = \phi^{-1} \circ \tilde{T}_2^{-1} (B \cap M_2)^\sim = \Phi \circ \tilde{T}_2^{-1}(B)
+		\]
+		for all $B \in \B_2$. Hence $T_1$ is conjugate to $T_2$.
+	\end{proof}
+\end{theorem}
+
+The following theorem gives the conditions for which the converse of Theorem \ref{thm:walters-2-5} is true.
+
+\begin{theorem}
+	p59
+\end{theorem}
+
+\dots
+
+Here is Theorem 4.2 from Walters. We use this in the final chapter and also in a proof in the appendix.
+
+\begin{theorem} \label{thm:walters-4-2-xlogx-convex}
+	Let $f : [0, +\infty) \to \reals$ be the function defined by
+	\[
+		f(x) =
+		\begin{cases}
+			0, & \text{if } x = 0; \\
+			x\log{x}, & \text{if } x \neq 0.
+		\end{cases}
+	\]
+	Then $f$ is \emph{strictly convex}, i.e. for all $x, y \in [0, +\infty)$ we have
+	\[
+		f(\alpha x + (1 - \alpha)y) \leq \alpha f(x) + (1 - \alpha)f(y),
+	\]
+	for all $\alpha \in [0, 1]$, with equality if and only if $x = y$ or $\alpha = 0$ or $1$. We can generalise the notion of convexity as
+	\[
+		f\left(\sum_{j = 1}^k{\alpha_j x_j}\right) \leq \sum_{j = 1}^k{\alpha_j} f(x_j),
+	\]
+	where $x_j \in [0, +\infty)$, $\alpha_j \in (0, 1)$ such that $\sum_{j = 1}^k{\alpha_j} = 1$, and with equality if and only if the $x_j$ values are all equal whenever $\alpha_j \neq 0$ for all $j = 1, \dots, k$.
+	\begin{proof}
+		\hl{TODO. (notes p98)}
+	\end{proof}
+\end{theorem}
+
+\begin{corollary} \label{cor:walters-4-2-1}
+	\hl{TODO.}
+\end{corollary}
+
+\hl{In particular, $\log{|A|}$ is an upper bound for entropy by partitions.}
+
+\dots
 
 \section{Conditional expectation}
 \begin{definition}
-	Conditional expectation operator $E(\:\cdot \mid \C) : L^1(X, \B, \mu) \to L^1(X, \C, \mu)$ is defined...
+	Conditional expectation operator $E(\seedot \mid \C) : L^1(X, \B, \mu) \to L^1(X, \C, \mu)$ is defined...
 \end{definition}
 
 The operator $E(f \mid \C)$ is uniquely determined by the requirement that:

@@ -1,0 +1,664 @@
+\chapter[Concentration bounds for entropy estimation]{Concentration bounds for entropy estimation of Gibbs measures}\label{chap:concentration-bounds}
+\section{Overview}
+We now have the required background knowledge to discuss \cite{chazottes-maldonado:cbfee}, which is concerned with methods for estimating entropy of Gibbs measures. In particular, we will show that these methods yield estimated entropy values which concentrate around the actual value of entropy.
+
+\section{Restrictions and notation}
+\subsection{Full shifts}
+Let $A$ be a finite alphabet. Throughout this chapter, $\Sigma = \{(x_j)_{j = 0}^\infty \mid x_j \in A\}$ will denote the full (one-sided) shift. As usual, $\sigma : \Sigma \to \Sigma$ will be the (one-sided) shift map.
+
+For the sake of readability, if $(x_j)_{j = 0}^\infty \in \Sigma$, then will write $x_m^n := (x_j)_{j = m}^n$.
+
+\subsection{Entropy}
+\begin{definition}
+	Let $\nu$ be a $\sigma$-invariant probability measure on $\Sigma$. For shifts of finite type, for $k > 1$ we can define the \key{$k$-block entropy} of $\nu$ by
+	\[
+		H_k(\nu) = -\sum_{a_0^{k - 1} \in A^k}{\nu[a_0^{k - 1}] \log\nu[a_0^{k - 1}]},
+	\]
+	where the sum is taken over all sequences of length $k$.
+\end{definition}
+If we let $\alpha$ be the partition of $(\Sigma, \B, \nu)$ by cylinders of length $k$, then by the earlier definition in Section \hl{[Reference to section on entropy of partitions]} we have
+\[
+	H(\alpha) = -\sum_{a_0^{k - 1} \in A^k}{\nu[a_0^{k - 1}] \log\nu[a_0^{k - 1}]} = H_k(\nu).
+\]
+This shows that the definition of $k$-block entropy is consistent.
+
+We can also define the \key{entropy} of $\nu$ in terms of $k$-block entropy by
+\[
+	h(\nu) = \lim_{k \to +\infty}\frac{H_k(\nu)}{k}.
+\]
+Again, this is consistent with the results in \hl{[Reference to entropy sections]} because cylinder sets generate the Borel $\sigma$-algebra of $\Sigma$, and we may then apply \hl{[General version of K-S theorem]}.
+
+\begin{definition}
+	The \key{conditional $k$-block entropy}, where $k \geq 2$, is defined
+	\[
+		h_k(\nu) := -\sum_{a_0^{k - 1} \in A^k}{\nu[a_0^{k - 1}] \log{\frac{\nu[a_0^{k - 1}]}{\nu[a_0^{k - 2}]}}}.
+	\]
+\end{definition}
+Let $\alpha = \{[a_0^{k - 1}] \mid a_0^{k - 1} \in A^k\}$ is the partition of $\Sigma$ by cylinders of length $k$, and $\gamma = \{[a_0^{k - 2}] \mid a_0^{k - 2} \in A^{k - 1}\}$ is the partition of $\Sigma$ by cylinders of length $k - 1$. Note that $[a_0^{k - 1}] \subset [a_0^{k - 2}]$ and hence for $C \in \gamma$,
+\[
+	[a_0^{k - 1}] \cap C =
+	\begin{cases}
+		\left[a_0^{k - 1}\right],	& \text{if } C = [a_0^{k - 2}]; \\
+		\emptyset,	& \text{otherwise}.
+	\end{cases}
+\]
+Then by the definition of conditional entropy in Section \hl{[Reference to section on conditional entropy]}, we have
+\begin{align*}
+	H(\alpha \mid \gamma) &= -\sum_{a_0^{k - 1}}{\nu([a_0^{k - 2}] \cap [a_0^{k - 1}]) \log{\frac{[a_0^{k - 2}] \cap [a_0^{k - 1}]}{[a_0^{k - 2}]}}} \\
+		&= -\sum_{a_0^{k - 1}}{\nu[a_0^{k - 1}] \log{\frac{[a_0^{k - 1}]}{[a_0^{k - 2}]}}} \\
+		&= h_k(\nu),
+\end{align*}
+so the definitions are consistent.
+
+For $k \geq 2$, we also clearly have the relation $h_k(\nu) = H_k(\nu) - H_{k - 1}(\nu)$.
+
+\begin{definition}
+	For $k \geq 1$, the \key{$k$-block relative entropy} of a measure $\nu$ with respect to a measure $\mu$ is defined
+	\[
+		H_k(\nu \mid \mu) = \sum_{a_0^{k - 1} \in A^k}{\nu[a_0^{k - 1}] \log{\frac{\nu[a_0^{k - 1}]}{\mu[a_0^{k - 1}]}}}.
+	\]
+\end{definition}
+
+\subsection{Gibbs measures}
+Let $\phi \in F_\theta$. Recall that if there exist constants $C = C(\phi) > 1$, $P = P(\phi)$ such that
+\[
+	C^{-1} \leq \frac{\mu_\phi[x_0^{n - 1}]}{\exp\left(-Pn + \sum_{j = 0}^{n - 1}{\phi(\sigma^j x)}\right)} \leq C,
+\]
+then $\mu_\phi$ is a Gibbs measure for $\phi$.
+
+Throughout this chapter, we will assume that the pressure $P$ of $\phi$ is zero. \hl{[Remember to explain why in the Gibbs chapter!]} With this in mind, recall that
+Gibbs measures satisfy the Variational Principle (Theorem \hl{[Variational Principle]}), so we have
+\[
+	0 = P = h(\mu_\phi) + \int{\phi\ d\mu_\phi}.
+\]
+This gives the identity
+\begin{equation}\label{fml:vp-identity}
+	h(\mu_\phi) = -\int{\phi\ d\mu_\phi},
+\end{equation}
+which will be useful later in this chapter.
+
+\subsection{Probability theory}
+We will use and prove some results related to a couple of basic ideas in probability theory.
+\begin{definition}
+	The \key{expectation} of a continuous function $f : X \to \reals$ with respect to a probability measure $\mu$ is given by
+	\[
+		E_\mu(f) = \int{f\ d\mu}.
+	\]
+	The expectation is a weighted average, or mean, of the values $f$ takes.~\cite[p127]{gray:probability}
+\end{definition}
+
+\begin{definition}
+	The \key{variance} of a function $f : X \to \reals$ with respect to a probability measure $\mu$ is given by
+	\[
+		\Var_{\mu}(f) = \int{\left(K(x) - \int{K(y)\ d\mu(y)}\right)^2\ d\mu(x)}.
+	\]
+	The variance gives a measurement of the spread of the values $f$ takes.
+\end{definition}
+
+\section{An exponential inequality}
+Throughout the remainder of this chapter, we will assume that $\phi \in F_\theta$, and that $\mu_\phi$ is the unique Gibbs measure for $\phi$ by assuming $P(\phi) = 0$.
+
+The results in Section \ref{sec:estimator-bounds} utilise an exponential inequality proved in \cite{collet-martinez-schmitt:exp-ineq}. We first introduce some definitions which are used in the inequality.
+
+\begin{definition}
+	Let $K : \Sigma^n \to \reals$ be a function of $n$ variables in $\Sigma$. For $j = 0, \dots, n - 1$, we define
+	\begin{align*}
+%		\Lip_j(K) &= \sup_{x^{(0)}, x^{(1)}, \dots, x^{(n - 1)}} \sup_{y^{(j)} \neq x^{(j)}} \frac{|G_K\left((x^{(0)}, \dots, x^{(n - 1)}), y^{(j)}\right)|}{d_\theta(x^{(j)}, y^{(j)})}, \\
+		&\Lip_j(K) \\ & \quad := \sup_{\substack{x^{(0)}, x^{(1)}, \dots, x^{(n - 1)} \\ y^{(j)} \neq x^{(j)}}} \frac{|K(x^{(0)}, \dots, x^{(n - 1)}) - K(x^{(0)}, \dots, x^{(j - 1)}, y^{(j)}, x^{(j + 1)}, \dots, x^{(n - 1)})|}{d_\theta(x^{(j)}, y^{(j)})},
+	\end{align*}
+	where each $x^{(k)}, y^{(k)}$ is a sequence in $\Sigma$ for $k = 0, \dots, n - 1$.
+	
+	In other words, $\Lip_j(K)$ is a measurement of how much $K$ varies when the $j$-th variable is changed. There is an additional weighting which depends on how close the old $j$-th variable is to the new $j$-th variable.
+%	where
+%	\begin{align*}
+%		G_K\left((x^{(0)}, \dots, x^{(n - 1)}), y^{(j)}\right) &= K(x^{(0)}, \dots, x^{(j - 1)}, x^{(j)}, x^{(j + 1)}, \dots, x^{(n - 1)}) \\ & \qquad - K(x^{(0)}, \dots, x^{(j - 1)}, y^{(j)}, x^{(j + 1)}, \dots, x^{(n - 1)}).
+%	\end{align*}
+	
+	If $\Lip_j(K) < +\infty$ for all $j = 0, \dots, n - 1$, then we say that $K$ is a \key{separately Lipschitz function} of $n$ variables.
+\end{definition}
+
+We now present the exponential inequality, which appears in its original form in \cite[Theorem I.1]{collet-martinez-schmitt:exp-ineq}.
+
+\begin{theorem}\label{thm:cm-3-1}
+	Let $\mu_\phi$ be a Gibbs measure. Then there exists some constant $D = D(\phi) > 0$ such that
+	\begin{equation}\label{fml:cms-exp-ineq}
+		\int{e^{K(x, \dots, \sigma^{n - 1}{x})}\ d\mu_\phi(x)} \leq e^{\int{K(y, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)}} \; e^{D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}}.
+	\end{equation}
+	 for all $n \in \naturals$ and any separately Lipschitz function $K : \Sigma^n \to \reals$.
+\end{theorem}
+
+We may write \eqref{fml:cms-exp-ineq} more succinctly by defining a measure $\mu_\phi^{(n)}$ on $\Sigma^n$ by
+\[
+	d\mu_\phi^{(n)}(x^{(0)}, \dots, x^{(n - 1)}) = d\mu_\phi(x^{(0)}) \prod_{j = 1}^{n - 1}{\delta(x^{(j)} - \sigma^j{x^{(0)}})},
+\]
+where $\delta(x - a) = \delta_a(x)$ is the Dirac measure at $a$. Using this, \eqref{fml:cms-exp-ineq} becomes
+\[
+	\int{e^K\ d\mu_\phi^{(n)}} \leq e^{\int{K\ d\mu_\phi^{(n)}}} \; e^{D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}}.
+\]
+
+\subsection{Important results}
+We will mostly use the results in this subsection which follow from the Theorem \ref{thm:cm-3-1}. To begin, we need Markov's Inequality.
+
+\begin{lemma}[Markov's Inequality]\label{lem:markov-ineq}
+	Let $f \geq 0$ be a nonnegative measurable function on a measure space $(X, \B, \mu)$. Then for all $t > 0$ we have
+	\[
+		\mu\{x \in X \mid f(x) \geq t\} \leq \frac{1}{t}\int{f\ d\mu}.
+	\]
+	
+	\begin{proof}
+		We follow the proof given in \cite[Theorem 3.1.1]{athreya-lahiri:measure-theory}.
+		
+		We have $f \geq 0$ and so
+		\begin{align*}
+			\int{f\ d\mu} &\geq \int_{\{f \geq t\}}{f\ d\mu} \\ &= \mu\{f(x) \mid x \in X \text{ and } f(x) \geq t \} \\ &\geq t\mu\{x \in X \mid f(x) \geq t \}.
+		\end{align*}
+		The result follows by dividing by $t$.
+	\end{proof}
+\end{lemma}
+
+\begin{corollary}\label{cor:cm-3-1}
+	For all $t > 0$ we have
+	\begin{align}\label{fml:cm-4}
+		\mu_\phi&\left\{x \midmid K(x, \sigma{x}, \dots, \sigma^{n - 1}{x}) \geq \int{K(y, \sigma{y}, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)} + t\right\} \nonumber \\
+			&\leq \exp\left(-\frac{t^2}{4D\sum_{j = 0}^{n - 1}{\Lip_j^2(K)}}\right),
+	\end{align}
+	for all $n \in \naturals$ and all separately Lipschitz $K$.
+	\begin{proof}
+		Since $K$ is a separately Lipschitz function, then it is clear that $\lambda K$ is also a separately Lipschitz function for all $\lambda > 0$.
+		
+		Now, for all $\lambda > 0$ and $t > 0$ we have
+		\begin{align}
+			\mu_\phi&\left\{x \midmid K(x, \sigma{x}, \dots, \sigma^{n - 1}{x}) \geq \int{K(y, \sigma{y}, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)} + t\right\} \nonumber \\
+				&= \mu_\phi\left\{x \midmid e^{\lambda\left[K(x, \sigma{x}, \dots, \sigma^{n - 1}{x}) - \int{K(y, \sigma{y}, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)}\right]} \geq e^{\lambda t}\right\} \nonumber \\
+				&\leq \frac{1}{e^{\lambda t}} \int{e^{\lambda\left[K(x, \sigma{x}, \dots, \sigma^{n - 1}{x}) - \int{K(y, \sigma{y}, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)}\right]}\ d\mu_\phi(x)} \nonumber \\
+				& \leq \exp(-\lambda t) \exp\left(\lambda^2 D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}\right). \label{fml:cor-3-1-exp}
+		\end{align}
+		(We have used Lemma \ref{lem:markov-ineq} on the penultimate line and Theorem \ref{thm:cm-3-1} on the last line.)
+		
+		We now optimise \eqref{fml:cor-3-1-exp} over $\lambda$, that is, we find the value of $\lambda$ for which \eqref{fml:cor-3-1-exp} has derivative zero with respect to $\lambda$:
+		\begin{align*}
+			0 &= \frac{d}{d\lambda} \exp\left(-\lambda t + \lambda^2 D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}\right) \\
+				&= \left(-t + 2\lambda D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}\right) \exp\left(-\lambda t + \lambda^2 D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}\right).
+		\end{align*}
+		Since $\exp\left(-\lambda t + \lambda^2 D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}\right) > 0$ for all $\lambda > 0$, we get that
+		\[
+			\lambda = \frac{t}{2D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}}.
+		\]
+		Substituting this value of $\lambda$ into \eqref{fml:cor-3-1-exp} gives
+		\begin{align*}
+			\mu_\phi&\left\{x \midmid K(x, \sigma{x}, \dots, \sigma^{n - 1}{x}) \geq \int{K(y, \sigma{y}, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)} + t\right\} \\
+			 &\leq \exp\left(-\frac{t^2}{2D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}} + \frac{t^2 D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}}{4D^2 \left(\sum_{j = 0}^{n - 1}{\Lip_j^2(K)}\right)^2}\right) \\
+			 &= \exp\left(-\frac{t^2}{4D\sum_{j = 0}^{n - 1}{\Lip_j^2(K)}}\right),
+		\end{align*}
+		and the result holds.
+	\end{proof}
+\end{corollary}
+
+The following result is an immediate consequence of Corollary \ref{cor:cm-3-1}.
+
+\begin{corollary}\label{cor:cm-3-1-5}
+	For all $t > 0$ we have
+	\begin{align}\label{fml:cm-4}
+		\mu_\phi&\left\{x \midmid \left| K(x, \sigma{x}, \dots, \sigma^{n - 1}{x}) - \int{K(y, \sigma{y}, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)} \right| \geq t\right\} \nonumber \\
+		&\leq 2\exp\left(-\frac{t^2}{4D\sum_{j = 0}^{n - 1}{\Lip_j^2(K)}}\right),
+	\end{align}
+	for all $n \in \naturals$ and all separately Lipschitz $K$.
+	\begin{proof}
+		Apply Corollary \ref{cor:cm-3-1} for $K$ and $-K$ and then the result follows by countable subadditivity.
+	\end{proof}
+\end{corollary}
+
+We can also find an upper bound for the variance of $K$ with respect to $\mu_\phi$.
+
+\begin{corollary}
+	For all $n \in \naturals$ and all separately Lipschitz functions $K$, we have
+	\[
+		\int{\left[K(x, \dots, \sigma^{n - 1}{x}) - \int{K(y, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)}\right]^2\ d\mu_\phi(x)} \leq 2D\sum_{j = 0}^{n - 1}{\Lip_j^2(K)}.
+	\]
+	
+	\begin{proof}
+		Suppose $\lambda \neq 0$. Applying Theorem \ref{thm:cm-3-1} $\lambda K$, subtracting one and then dividing by $\lambda^2$, we get
+		\begin{equation} \label{fml:cor-3-2-variance}
+			\frac{1}{\lambda^2}\left(\int{e^{\lambda\left[(x, \dots, \sigma^{n - 1}{x}) - \int{K(y, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)}\right]}\ d\mu_\phi(x)} - 1\right) \leq \frac{1}{\lambda^2}\left(e^{\lambda^2 D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}} - 1\right).
+		\end{equation}
+		Now put $L := (x, \dots, \sigma^{n - 1}{x}) - \int{K(y, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)}$ and note that $\int{L\ d\mu_\phi(x)} = 0$. The Taylor expansion of the left-hand side of \eqref{fml:cor-3-2-variance} is
+		\begin{align*}
+			\frac{1}{\lambda^2}&\left[\int{\left(1 + \lambda L + \frac{\lambda^2 L^2}{2!} + \frac{\lambda^3 L^3}{3!} + \dots\right)\ d\mu_\phi(x)} - 1\right] \\
+				&= \frac{1}{\lambda^2}\left(\int{1 + \lambda L\ d\mu_\phi(x)} - 1\right) + \frac{L^2}{2} + \int{O(\lambda)\ d\mu_\phi(x)} \\
+				&= \frac{L^2}{2} + \int{O(\lambda)\ d\mu_\phi(x)} \\
+				&\to \frac{L^2}{2},
+		\end{align*}
+		as $\lambda \to 0$.
+		
+		The Taylor expansion of the right-hand side of \eqref{fml:cor-3-2-variance} is
+		\begin{align*}
+			\frac{1}{\lambda^2}&\left[\left(1 + \lambda^2 D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)} + \lambda^4 D^2 \left(\sum_{j = 0}^{n - 1}{\Lip_j^2(K)} \right)^2 + \dots\right) - 1 \right] \\
+				&= D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)} + O(\lambda^2) \\
+				&\to D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)},
+		\end{align*}
+		as $\lambda \to 0$. The result then follows by combining the two sides.
+	\end{proof}
+\end{corollary}
+
+We can also apply the above results to find results about ergodic averages.
+
+\begin{corollary}\label{cor:cm-3-3}
+	Let $f : \Sigma \to \reals$ be a Lipschitz function. Then for all $t > 0$ and all $n \geq 1$ we have
+	\begin{equation}
+		\mu_\phi\left\{x \midmid \frac{1}{n}\sum_{j = 0}^{n - 1}{f(\sigma^j{x})} - \int{f\ d\mu_\phi} \geq t\right\} \leq \exp(-Bnt^2),
+	\end{equation}
+	where $B := (4D|f|_\theta^2)^{-1}$.
+	\begin{proof}
+		Let $K_0(x^{(0)}, x^{(1)}, \dots, x^{(n - 1)}) = f(x^{(0)}) + f(x^{(1)}) + \dots + f(x^{(n - 1)})$. Since $f$ is Lipschitz, it follows that $K_0$ is separately Lipschitz. In particular, note that for all $j = 0, \dots, n - 1$, we have
+		\begin{align*}
+			\Lip_j(K_0) &= \sup_{y^{(j)} \neq x^{(j)}}{\frac{|f(x^{(j)}) - f(y^{(j)})|}{d_\theta(x^{(j)}, y^{(j)})}} \\
+				&\leq \sup_{m \geq 0}\left\{\frac{\var_m(f)}{\theta^m}\right\} \\
+				&= |f|_\theta.
+		\end{align*}
+		
+		Now we apply Corollary \ref{cor:cm-3-1} to $\frac{1}{n}K_0$, so that
+		\begin{align*}
+			\mu_\phi&\left\{x \midmid \frac{1}{n}\sum_{j = 0}^{n - 1}{f(\sigma^j{x})} - \frac{1}{n}\int{\sum_{j = 0}^{n - 1}{f(\sigma^j{y})}\ d\mu_\phi(y)} \geq t\right\} \\
+			&=\mu_\phi\left\{x \midmid \frac{1}{n}\sum_{j = 0}^{n - 1}{f(\sigma^j{x})} - \int{f\ d\mu_\phi} \geq t\right\} \\
+			&\leq \exp\left(-\frac{t^2}{4D\frac{1}{n^2}\sum_{j = 0}^{n - 1}{\Lip_j^2(K_0)}}\right) \\
+			&\leq \exp\left(-\frac{nt^2}{4D|f|_\theta^2}\right) \\
+			&= \exp(-Bnt^2).
+		\end{align*}
+	\end{proof}
+\end{corollary}
+
+This result implies that, as $t$ increases, the ergodic average $\frac{1}{n}\sum_{j = 0}^{n - 1}{f(\sigma^j{x})}$ is exponentially less likely to deviate from the space average $\int{f\ d\mu_\phi}$. In other words, the ergodic average concentrates around the space average, hence the term \emph{concentration bound}.
+
+\subsection{Functions of \texorpdfstring{$n$}{n} symbols}
+We will consider entropy estimators that utilise functions of $n$ \emph{symbols}, as opposed to functions of $n$ variables in $\Sigma$. We will discuss the estimators in more detail in the next section.
+
+It is clear that we can identify a function $\tilde{K} : A^n \to \reals$ of $n$ symbols with a function $K : \Sigma^n \to \reals$ of $n$ sequences. We can therefore apply Theorem \ref{thm:cm-3-1} and its corollaries to $\tilde{K}$. However, for each $j = 0, \dots, n - 1$, we must replace $\Lip_j(K)$ in the above results with
+\[
+	\delta_j(\tilde{K}) := \sup_{\substack{a_0^{n - 1} \in A^k \\ b_j \neq a_j}}{|\tilde{K}(a_0, \dots, a_{n - 1}) - \tilde{K}(a_0, \dots, a_{j - 1}, b_j, a_{j + 1}, \dots, a_{n - 1})|},
+\]
+the \key{oscillation at the $j$-th coordinate}.
+
+\section{Entropy estimators}\label{sec:estimator-bounds}
+\subsection{Motivation}
+Suppose we have an ergodic source with a typical sample output $(x_0, x_1, \dots, x_{n - 1}) \in A^n$. Without knowing any additional information about the source, our aim is to estimate its entropy. To do this, we will consider \key{plug-in estimators} and the \key{hitting-time estimator}.
+
+\subsection{Plug-in estimators}
+Before we define any \key{plug-in estimators}, we first introduce some definitions. The main concept employed by plug-in estimators is the \key{empirical frequency} with which a word $a_0^{k - 1}$ of length $k$ occurs in a sample path $x_0^{n - 1}$ of length $n$.\footnote{The word ``empirical'' relates to information gained by observations. In our case, empirical frequency is the frequency observed by taking a sample path and matching it with a word of length $k$.}
+
+\begin{definition}
+	The \key{empirical frequency} with which the word $a_0^{k - 1}$ occurs in $x_0^{n - 1}$ is given by
+	\[
+		\E_k(a_0^{k - 1}; x_0^{n - 1}) := \frac{1}{n}\card\left\{j \in \{0, \dots, n - 1\} \midmid \tilde{x}_j^{j + k - 1} = a_0^{k - 1} \right\},
+	\]
+	where $\tilde{x} = x_0^{n - 1} x_0^{n - 1} x_0^{n - 1} \dots$ is the sequence of period $n$ obtained by concatenating $x_j^{n - 1}$ continually, i.e. $\tilde{x}_j = x_{j \bmod n}$.
+\end{definition}
+
+The definition of $\tilde{x}$ means that $\E_k(\seedot; x_0^{n - 1})$ is a locally $\sigma$-invariant probability measure on $A^k$. That is, for all words $a_1^k \in A^k$ there exists some $a_0 \in A$ such that
+\[
+	\E_k(a_0^{k - 1}; x_0^{n - 1}) = \E_k(a_1^k; x_0^{n - 1}).
+\]
+
+Given an ergodic measure $\nu$, Birkhoff's Ergodic Theorem gives that for $\nu$-almost every $x \in \Sigma$ and for all $k \geq 1$, we have
+\[
+	\E_k(a_0^{k - 1}; x_0^{n - 1}) = \frac{1}{n}\card\left\{j \in \{0, \dots, n - 1\} \midmid \tilde{x}_j^{j + k - 1} = a_0^{k - 1} \right\} \to \nu[a_0^{k - 1}],
+\]
+as $n \to +\infty$.
+
+We are now in the position to define the following examples of plug-in entropy estimators, which can be found in \cite[Definition 2.1]{chazottes-gabrielle:large-deviations}.
+
+\begin{definition}
+	Suppose $x_0^{n - 1} \in A^n$ is a word of length $n$.
+	
+	For $k \geq 1$, the \key{$k$-block empirical entropy} is defined
+	\[
+		\hat{H}_k(x_0^{n - 1}) := H_k(\E_k(\seedot; x_0^{n - 1})).
+	\]
+	
+	For $k \geq 2$, the \key{$k$-block conditional empirical entropy} is defined
+	\[
+		\hat{h}_k(x_0^{n - 1}) = h_k(\E_k(\seedot; x_0^{n - 1})).
+	\]
+\end{definition}
+
+We have that
+\begin{align*}
+	\frac{\hat{H}_k(x_0^{n - 1})}{k} &= \frac{H_k(\E_k(\seedot; x_0^{n - 1}))}{k} \\
+		&\to \frac{H_k(\nu)}{k}, & \text{as } n \to +\infty \text{ for } \nu \text{-a.e. } x \in \Sigma  \\
+		&\to h(\nu),	& \text{as } k \to +\infty.
+\end{align*}
+In other words,
+\[
+	\lim_{k \to +\infty} \lim_{n \to +\infty}{\frac{1}{k} \hat{H}_k(x_0^{n - 1})} = h(\nu).
+\]
+
+We can actually remove one of these limits: Recall that $0 \leq h(\nu) \leq \log{|A|}$ and so we have
+\[
+	\frac{\log{n}}{\log{|A|}} \leq \frac{\log{n}}{h(\nu)}.
+\]
+Hence we can define a monotonically increasing function $k : \naturals \to \naturals$ such that $k(n) \leq \frac{\log{n}}{h(\nu)}$. Then a result by Ornstein and Weiss~\cite{shields:ergodic} shows that
+\[
+	\lim_{n \to +\infty}{\frac{\hat{H}_{k(n)}(x_0^{n -1})}{k(n)}} = h(\nu),
+\]
+for $\nu$-almost every $x \in \Sigma$.
+
+For conditional empirical entropy, we have the following result proved in \cite[Theorem II.3.5]{shields:ergodic}.
+
+\begin{theorem}[Entropy-Estimation Theorem]
+	 Let $\nu$ be ergodic measure and let $\alpha \in (0, 1)$. Let $k : \naturals \to \naturals$ be a function such that $\frac{(1 - \alpha)}{\log{|A|}}\log{n}$. Then
+	 \[
+	 	\lim_{n \to +\infty}{\hat{h}_{k(n)}(x_0^{n - 1})} = h(\nu),
+	 \]
+	 for $\nu$-almost every $x \in \Sigma$.
+\end{theorem}
+
+Therefore both kinds of empirical entropy are useful for estimating the actual entropy $h(\nu)$.
+
+We now present a concentration bound for the $k$-block empirical entropy about its expectation value.
+
+\begin{theorem}\label{thm:cm-4-1}
+	For all $\alpha \in (0, 1)$, $t > 0$ and $n \geq 2$, if
+	\[
+		k(n) \leq \frac{\alpha}{2 \log{|A|}}\log{n},
+	\]
+	then
+	\[
+		\mu_\phi\left\{\left|\frac{\hat{H}_{k(n)}}{k(n)} - E_{\mu_\phi}\left(\frac{\hat{H}_{k(n)}}{k(n)}\right)\right| \geq t\right\} \leq \exp\left(-\frac{n^{1 - \alpha} t^2}{16D(\log{n})^2}\right),
+	\]
+	where $D > 0$ is as in Theorem \ref{thm:cm-3-1}.
+	
+	Furthermore, for all $n \geq 2$ we have
+	\[
+		\Var_{\mu_\phi}\left(\frac{\hat{H}_{k(n)}}{k(n)}\right) \leq 8D\frac{(\log{n})^2}{n^{1 - \alpha}}.
+	\]
+	\begin{proof}
+		Let $k \in \naturals$ and define a function $\tilde{K} : A^n \to \reals$ by $\tilde{K}(s_0, \dots, s_{n - 1}) = \hat{H}_k(s_0^{n - 1})$. Recall that
+		\[
+			\delta_j(\tilde{K}) := \sup_{\substack{s_0^{n - 1} \in A^k \\ r_j \neq s_j}}{|\tilde{K}(s_0, \dots, s_{n - 1}) - \tilde{K}(s_0, \dots, s_{j - 1}, r_j, s_{j + 1}, \dots, s_{n - 1})|}
+		\]
+		replaces $\Lip_j$ in Theorem \ref{thm:cm-3-1} and its corollaries. To utilise these results, we must estimate $\delta_j$.
+		\begin{claim}
+			We claim that
+			\begin{equation}
+				\delta_j(\tilde{K}) \leq 2k|A|^k\frac{\log{n}}{n}, \label{fml:oscil-est}
+			\end{equation}
+			for $j = 0, \dots, n - 1$.
+			
+			Indeed, first suppose that $a_0^{k - 1} \in A^k$ is given. By the nature of how $\delta_j(\tilde{K})$ is defined, we want to consider the effect on the value of $\tilde{K}$, and hence $\E_k(a_0^{k - 1};s_0^{n - 1})$, when one coordinate in $s_0^{n - 1}$ is changed.
+			
+			If we change exactly one symbol $s_j$ in $s_0^{n - 1}$, then the value of $\E_k(a_0^{k - 1}; s_0^{n - 1})$ can decrease by \emph{at most} $k / n$. This is because, in the worst case scenario, $s_j$ matches all $k$ characters in $a_0^{k - 1}$ (and hence $\tilde{a}$). Likewise, changing one symbol in $s_0^{n - 1}$ can increase the value of $\E_k(a_0^{k - 1}; s_0^{n - 1})$ by at most $k / n$.
+			
+			By Proposition \ref{prop:logs-thm-4-1}, for $\ell, k \in \naturals$ with $\ell+ k \leq n$, we have that
+			\[
+				\left|\left(\frac{\ell}{n}\right)\log\left(\frac{\ell}{n}\right) - \left(\frac{\ell + k}{n}\right)\log\left(\frac{\ell + k}{n}\right)\right| \leq \frac{k}{n}\log{n}.
+			\]
+			Since $\tilde{K}(s_0^{n - 1}) = H_k(\E_k(\seedot; s_0^{n - 1}))$, by all the above results we have
+			\begin{align*}
+				\delta_j(\tilde{K}) &\leq 2\sum_{a_0^{k - 1} \in A^k}{\left|\left(\frac{\ell}{n}\right)\log\left(\frac{\ell}{n}\right) - \left(\frac{\ell + k}{n}\right)\log\left(\frac{\ell + k}{n}\right)\right|} \\
+				 &\leq 2k|A|^k \frac{\log{n}}{n},
+			\end{align*}
+			for all $j = 0, \dots, n - 1$. Hence the claim holds.
+		\end{claim}
+		
+		Now take $k(n) \leq \frac{\alpha}{2\log{|A|}}\log{n}$, where $\alpha \in (0, 1)$. By rearranging this, we have the relation $|A|^{2k(n)} \leq n^\alpha$. We now apply Corollary \ref{cor:cm-3-1-5} so that for all $t > 0$,
+		\begin{align*}
+			\mu_\phi\left\{\left| \frac{\hat{H}_{k(n)}}{k(n)} - E_{\mu_\phi}\left(\frac{\hat{H}_{k(n)}}{k(n)}\right) \right| \geq t\right\} &= \mu_\phi\left\{\left| \frac{\tilde{K}}{k(n)} - \int{\frac{\tilde{K}}{k(n)}\ d\mu_\phi} \right| \geq t\right\} \\
+				&\leq 2\exp\left(-\frac{t^2 (k(n))^2}{4D\sum_{j = 0}^{n - 1}{\delta_j^2(\tilde{K})}}\right) \\
+				&\leq 2\exp\left(-\frac{nt^2}{16D|A|^{2k(n)} (\log{n})^2}\right) \\
+				&\leq 2\exp\left(-\frac{n^{1 - \alpha} t^2}{16D (\log{n})^2}\right).
+		\end{align*}
+		This completes the proof of the concentration bound.
+		
+		For the variance, we apply Corollary \ref{fml:cor-3-2-variance} to get
+		\begin{align*}
+			\Var_{\mu_\phi}\left(\frac{\hat{H}_{k(n)}}{k(n)}\right) &= \Var_{\mu_\phi}\left(\frac{\tilde{K}}{k(n)}\right) \\
+				&= \frac{1}{(k(n))^2}\int{\left[\tilde{K} - E_{\mu_\phi}(\tilde{K})\right]^2\ d\mu_\phi} \\
+				&\leq \frac{2D}{(k(n))^2}\sum_{j = 0}^{n - 1}{\delta_j^2(\tilde{K})} \\
+				&\leq \frac{8D (\log{n})^2}{n^{1 - \alpha}}.
+		\end{align*}
+	\end{proof}
+\end{theorem}
+
+This result gives a concentration bound about the expectation value. However, to quantify the accuracy of an entropy estimator, it makes more sense to find a concentration bound about the entropy $h(\mu_\phi)$. For this, we use $k$-block conditional empirical entropy.
+
+\begin{theorem}\label{thm:cm-4-2}
+	Suppose $\theta < |A|^{-1}$. If $k(n) \leq \frac{\log{n}}{2\log{|A|}}$, then there exist strictly positive constants $c, \gamma, \Gamma, \xi > 0$ such that for all $t > 0$ we have
+	\begin{equation}
+		\mu_\phi\left\{\left|\hat{h}_{k(n)} - h(\mu_\phi)\right| \geq t + \frac{c}{n^\gamma}\right\} \leq 2\exp\left(-\frac{\Gamma n^\xi t^2}{(\log{n})^4}\right),
+	\end{equation}
+	for sufficiently large $n$.
+	\begin{proof}
+		Recall that $\hat{h}_k = \hat{H}_k - \hat{H}_{k - 1}$. We put
+		\[
+			\tilde{K}'(s_0, \dots, s_{n - 1}) = \hat{h}_k(s_0^{n - 1}) = \hat{H}_k(s_0^{n - 1}) - \hat{H}_{k - 1}(s_0^{n - 1}).
+		\]
+		We estimate $\delta_j(\tilde{K}')$ by $2\delta_j(\tilde{K})$, where $\tilde{K}(s_0, \dots, s_{n - 1}) = \hat{H}_k(s_0^{n - 1})$ and using the estimate for $\delta_j(\tilde{K})$ in Formula \eqref{fml:oscil-est}.
+		
+		By Lemma \ref{lem:cm-4-1}, we have
+		\begin{align}
+			E_{\mu_\phi}&\left(\hat{h}_{k(n)}(x_0^{n - 1}) - h(\mu_\phi)\right) \nonumber \\
+				&= E_{\mu_\phi}\left(\frac{1}{n}\sum_{j = 0}^{n - 1}(-\phi \circ \sigma^j) + \hat{\Delta}_{k(n)} + O(\theta^{k(n)}) - h(\mu_\phi)\right), \label{fml:cm-3-9-lem-ref}
+		\end{align}
+		where $\hat{\Delta}_{k(n)}(x_0^{n - 1}) = -H_{k(n)}(\E_{k(n)}(\seedot; x_0^{n - 1})) + H_{k(n) - 1}(\E_{k(n) - 1}(\seedot; x_0^{n - 1}))$. 
+		Recalling that $h(\mu_\phi) = -\int{\phi\ d\mu_\phi}$, \eqref{fml:cm-3-9-lem-ref} becomes
+		\begin{align*}
+			E_{\mu_\phi}\left(\hat{h}_{k(n)}\right) - h(\mu_\phi) &= -\int{\phi\ d\mu_\phi} + E_{\mu_\phi}\left(\hat{\Delta}_{k(n)})\right) + O(\theta^{k(n)}) - h(\mu_\phi) \\
+				&= h(\mu_\phi) + E_{\mu_\phi}\left(\hat{\Delta}_{k(n)}\right) + O(\theta^{k(n)}) - h(\mu_\phi) \\
+				&= E_{\mu_\phi}\left(\hat{\Delta}_{k(n)}\right) + O(\theta^{k(n)}).
+		\end{align*}
+		
+		We now put $k(n) = \frac{q\log{n}}{\log{|A|}}$, where $0 < q < 1$. If we choose $q$ to be
+		\[
+			q = \frac{1}{1 + \frac{\log{\theta^{-1}}}{\log{|A|}}},
+		\]
+		then using
+		\[
+			|E_{\mu_\phi}(\hat{h}_{k(n)}) - h(\mu_\phi)| \leq \frac{M|A|^{k(n)}}{n}
+		\]
+		from Lemma \ref{lem:cm-4-1}, a straightforward but tedious calculation shows that
+		\begin{equation}\label{fml:cm-8}
+			|E_{\mu_\phi}(\hat{h}_{k(n)}) - h(\mu_\phi)| \leq \frac{c}{n^\gamma},
+		\end{equation}
+		where $c > 0$ is a constant and $\gamma = \left(1 + \frac{\log{|A|}}{\log{\theta^{-1}}}\right)^{-1} > 0$. We then have
+		\begin{align*}
+			|\hat{h}_{k(n)} - h(\mu_\phi)| &= |\hat{h}_{k(n)} - E_{\mu_\phi}(\hat{k}_{k(n)}) - h(\mu_\phi) + E_{\mu_\phi}(\hat{k}_{k(n)})| \\
+				&\leq |\hat{h}_{k(n)} - E_{\mu_\phi}(\hat{k}_{k(n)})| + |h(\mu_\phi) - E_{\mu_\phi}(\hat{k}_{k(n)})| \\
+				&\leq |\hat{h}_{k(n)} - E_{\mu_\phi}(\hat{k}_{k(n)})| + \frac{c}{n^\gamma}.
+		\end{align*}
+		
+		We now apply Corollary \ref{cor:cm-3-1-5} to get
+		\begin{align*}
+			\mu_\phi\left\{\left|\hat{h}_{k(n)} - h(\mu_\phi)\right| \geq t + \frac{c}{n^\gamma}\right\} &\leq \mu_\phi\left\{\left|\hat{h}_{k(n)} - E_{\mu_\phi}(\hat{k}_{k(n)})\right| \geq t\right\} \\
+				&\leq 2\exp\left(-\frac{t^2}{4D\sum_{j = 0}^{n - 1}{\delta_j^2(\tilde{K}')}}\right) \\
+				&\leq 2\exp\left(-\frac{nt^2}{64D(k(n))^2|A|^{2k(n)}(\log{n})^2}\right) \\
+				&\leq 2\exp\left(-\frac{(\log{|A|})^2}{16D} \frac{nt^2}{|A|^{2k(n)}(\log{n})^4}\right) \\
+				&\leq 2\exp\left(-\frac{(\log{|A|})^2}{16D} \frac{\theta^{2k(n)} nt^2}{(\log{n})^4}\right) \\
+				&\leq 2\exp\left(-\frac{\Gamma n^\xi t^2}{(\log{n})^4}\right),
+		\end{align*}
+		where
+		\[
+			\Gamma = \frac{(\log{|A|})^2}{16D} \quad \text{and} \quad \xi = 1 - \frac{\log{\theta^{-1}}}{\log{|A|}}.
+		\]
+		The value of $\xi$ is found using the assumption that $k(n) \leq \frac{\log{n}}{2\log{|A|}}$. Furthermore, to guarantee that $\xi > 0$ we must have
+		\[
+			\xi = 1 - \frac{\log{\theta^{-1}}}{\log{|A|}} > 0 \iff \log{|A|} > \log{\theta^{-1}} \iff |A| > \theta^{-1},
+		\]
+		which is the first hypothesis in the theorem. This completes the proof.
+	\end{proof}
+\end{theorem}
+
+\subsection{Hitting time estimators}\label{ssec:hitting-times}
+We now focus on \key{hitting time entropy estimators}. Instead of using empirical frequencies, hitting time estimators use the first occurrence of the first $n$ symbols of a sequence $x \in \Sigma$ in another sequence $y \in \Sigma$. The following formal definition can be found in \cite[Definition 2.1]{chazottes-ugalde:hitting-times}.
+
+\begin{definition}
+	Let $x, y \in \Sigma$, let $a_0^{n - 1} \in A^n$. The (first) \key{hitting time of $x$ to a cylinder $[a_0^{n - 1}]$} is defined
+	\[
+		\tau_{[a_0^{n - 1}]}(x) := \inf\{j \geq 1 \mid x_j^{j + n - 1} = a_0^{n - 1}\}.
+	\]
+	
+	The \key{following hitting time} or \key{waiting-time}~\cite[Section III.5]{shields:ergodic} is defined
+	\[
+		W_n(x, y) := \tau_{[x_0^{n - 1}]}(y) = \inf\{j \geq 1 \mid y_j^{j + n - 1} = x_0^{n - 1}\}.
+	\]
+\end{definition}
+
+Note that, while the above definitions are largely the same, $\tau_{[a_0^{n - 1}]}$ is defined using a word $a_0^{n - 1}$ of length $n$, whereas $W_n$ is defined using sequences in $\Sigma$. In order to analyse the limiting behaviour as $n \to +\infty$, it makes more sense to work with $W_n$.
+
+The following result relates the waiting-time function to the entropy $h(\nu)$ of certain measures $\nu$. This result is proved in \cite[Theorem III.5.1]{shields:ergodic}.
+
+\begin{theorem}[Exact-Match Theorem]\label{thm:exact-match}
+	If $\nu$ is weak Bernoulli, then
+	\[
+		\lim_{n \to +\infty}{\frac{1}{n}\log{W_n(x, y)}} = h(\nu),
+	\]
+	for $\nu \otimes \nu$-almost every $(x, y) \in \Sigma \otimes \Sigma$.
+\end{theorem}
+
+That is, if $\nu$ is weak Bernoulli, then the time it takes for one sequence to hit another tends to the entropy $h(\nu)$, for almost all pairs of sequences. This is a \key{hitting time entropy estimator}.
+
+By Theorem \ref{thm:gibbs-is-weak-bernoulli}, Gibbs measures are weak Bernoulli and hence the Exact-Match Theorem applies. As with plug-in estimators, we also have concentration bounds for the hitting time estimator. To prove the main theorem, we will need two lemmata which follow from \cite[Theorem 1]{abadi:sharp}.
+
+\begin{lemma}\label{lem:cm-4-2}
+	There exists constants $C, c, \lambda_1, \lambda_2 > 0$ with $\lambda_1 < \lambda_2$ such that, for all $n \geq 1$ and for all $a_0^{n - 1} \in A^n$, there exists $\Lambda(a_0^{n - 1}) \in [\lambda_1, \lambda_2]$ such that for all $u > 0$ we have
+	\[
+		\left| \mu_\phi\left\{x \midmid \tau_{[a_0^{n - 1}]}(x) > \frac{u}{\Lambda(a_0^{n - 1}) \mu_\phi[a_0^{n - 1}]}\right\} - e^{-u} \right| \leq Ce^{-cu}.
+	\]
+\end{lemma}
+
+\begin{lemma}\label{lem:cm-4-3}
+	For all $v > 0$ and any word $a_0^{n - 1} \in A^n$ such that $v\mu_\phi[a_0^{n - 1}] \leq \frac{1}{2}$ we have
+	\[
+		\lambda_1 \leq -\frac{\log{\mu_\phi\{\tau_{[a_0^{n - 1}]} > v\}}}{v\mu_\phi[a_0^{n - 1}]} \leq \lambda_2,
+	\]
+	where $\lambda_1, \lambda_2 > 0$ are the same constants as in Lemma \ref{lem:cm-4-2}.
+\end{lemma}
+
+We are now ready to state and prove concentration bounds for the hitting time estimator.
+
+\begin{theorem}
+	There exist strictly positive constants $C_1, C_2 > 0$, $t_0 > 0$ such that, for all $n \geq 1$ and for all $t > t_0$, we have
+	\begin{equation}
+		(\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} > h(\mu_\phi) + t\right\} \leq C_1 e^{-C_2 nt^2} \label{fml:cm-9}
+	\end{equation}
+	and
+	\begin{equation}
+		(\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} < h(\mu_\phi) - t\right\} \leq C_1 e^{-C_2 nt}. \label{fml:cm-10}
+	\end{equation}
+	(Note that we have $t^2$ in the upper bound and $t$ in the lower bound.)
+	
+	Unfortunately, we cannot use Theorem \ref{thm:cm-3-1} and its corollaries directly. Our approach to the proof of this theorem involves approximating the value of $W_n(x, y)$.
+	
+	\begin{proof}
+		We concentrate on \eqref{fml:cm-9} first. We have
+		\begin{align*}
+			&(\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} > h(\mu_\phi) + t\right\} \\
+				&= (\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} + \frac{1}{n}\log{\mu_\phi[x_0^{n - 1}]} - \frac{1}{n}\log{\mu_\phi[x_0^{n - 1}]} - h(\mu_\phi) > t\right\} \\
+				&\leq T_1 + T_2, % (\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} + \frac{1}{n}\log{\mu_\phi[x_0^{n - 1}]} > \frac{t}{2}\right\}, \\
+				%& \quad + \mu_\phi\left\{x \midmid - \frac{1}{n}\log{\mu_\phi[x_0^{n - 1}]} - h(\mu_\phi) > \frac{t}{2}\right\} \\
+		\end{align*}
+		where
+		\begin{align*}
+			T_1 &:= (\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} + \frac{1}{n}\log{\mu_\phi[x_0^{n - 1}]} > \frac{t}{2}\right\} \\
+				&= (\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log\left(W_n(x, y) \mu_\phi[x_0^{n - 1}]\right) > \frac{t}{2}\right\}
+		\end{align*}
+		and
+		\[
+			T_2 := \mu_\phi\left\{x \midmid - \frac{1}{n}\log{\mu_\phi[x_0^{n - 1}]} - h(\mu_\phi) > \frac{t}{2}\right\}.
+		\]
+		
+		We find an upper bound for $T_2$ first. By the definition of Gibbs measures, we have
+		\begin{equation}\label{fml:gibbs-property}
+			-\log{C} + \sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})} \leq \log{\mu_\phi[x_0^{n - 1}]} \leq \log{C} + \sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})}.
+		\end{equation}
+		Once again, recalling that $h(\mu_\phi) = -\int{\phi\ d\mu_\phi}$, we apply Corollary \ref{cor:cm-3-3} with $f = -\phi$ to get
+		\begin{align*}
+			T_2 &= \mu_\phi\left\{x \midmid - \frac{1}{n}\log{\mu_\phi[x_0^{n - 1}]} - h(\mu_\phi) > \frac{t}{2}\right\} \\
+				&\leq \mu_\phi\left\{x \midmid -\frac{1}{n}\sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})} -h(\mu_\phi) > \frac{t}{2} -\frac{1}{n}\log{C}\right\} \\
+				&= \mu_\phi\left\{x \midmid -\frac{1}{n}\sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})} + \int{\phi\ d\mu_\phi} > \frac{t}{2} -\frac{1}{n}\log{C}\right\} \\
+				& \leq e^{-Bnt^2},
+		\end{align*}
+		for all $t > 2\log{C}$, where $B = (4D|f|_\theta^2)^{-1}$.
+		
+		We now find an upper bound for $T_1$. We have
+		\begin{align}
+			T_1 &= (\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log\left(W_n(x, y) \mu_\phi[x_0^{n - 1}]\right) > \frac{t}{2}\right\} \\
+				&= \mu_\phi\left\{x \midmid W_n(x, y) \mu_\phi[x_0^{n - 1}] > e^\frac{nt}{2}, \text{ for some } y \in \Sigma\right\} \nonumber \\
+				&\quad \cdot \mu_\phi\left\{y \midmid W_n(x, y) \mu_\phi[x_0^{n - 1}] > e^\frac{nt}{2}, \text{ for some } x \in \Sigma\right\} \\
+				&= \sum_{a_0^{n - 1} \in A^n}{\mu_\phi[a_0^{n - 1}] \mu_\phi\left\{y \midmid \tau_{[a_0^{n - 1}]}(y) \mu_\phi[a_0^{n - 1}] > e^\frac{nt}{2}\right\}}
+		\end{align}
+		By Lemma \ref{lem:cm-4-2} with $u = e^\frac{nt}{2}$ we have
+		\begin{align*}
+			&\left|T_1 - e^{-e^\frac{nt}{2}}\right| \\
+				& \qquad = \left|\sum_{a_0^{n - 1} \in A^n}\mu_\phi[a_0^{n - 1}]\left(\mu_\phi\left\{y \midmid \tau_{[a_0^{n - 1}]}(y) \mu_\phi[a_0^{n - 1}] > e^\frac{nt}{2}\right\} - e^{-e^\frac{nt}{2}}\right)\right| \\
+				& \qquad \leq \sum_{a_0^{n - 1} \in A^n}\mu_\phi[a_0^{n - 1}] \hat{C}e^{-\hat{c}e^\frac{nt}{2}} \\
+				& \qquad = \hat{C}e^{-\hat{c}e^\frac{nt}{2}},
+		\end{align*}
+		for some constants $\hat{C}, \hat{c} > 0$. So we have $T_1 \leq C'e^{-c'e^\frac{nt}{2}}$, for some constants $C', c' > 0$.
+		
+		Finally, we combine $T_1$ and $T_2$ to get
+		\begin{align*}
+			(\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} > h(\mu_\phi) + t\right\} &\leq C'e^{-c'e^\frac{nt}{2}} + e^{-Bnt^2} \\
+				& \leq C_1 e^{Bnt^2},
+		\end{align*}
+		for some constant $C_1 > 0$. This proves \eqref{fml:cm-9}.
+		
+		We now turn our attention to \eqref{fml:cm-10}. We have
+		\begin{align*}
+			&(\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} < h(\mu_\phi) - t\right\} \\
+				&= (\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \vphantom{\frac{1}{n}} \right. \\
+				&\hspace{26mm} \left. -\frac{1}{n}\log{W_n(x, y)} - \frac{1}{n}\log{\mu_\phi[x_0^{n - 1}]} + \frac{1}{n}\log{\mu_\phi[x_0^{n - 1}]} + h(\mu_\phi) > t\right\} \\
+				&\leq T'_1 + T'_2,
+		\end{align*}
+		where
+		\begin{align*}
+			T'_1 &:= (\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid -\frac{1}{n}\log{W_n(x, y)} - \frac{1}{n}\log{\mu_\phi[x_0^{n - 1}]} > \frac{t}{2}\right\} \\
+				&= (\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid -\frac{1}{n}\log\left(W_n(x, y) \mu_\phi[x_0^{n - 1}]\right) > \frac{t}{2}\right\}
+		\end{align*}
+		and
+		\[
+			T'_2 := \mu_\phi \left\{x \midmid \frac{1}{n}\log{\mu_\phi[x_0^{n - 1}]} + h(\mu_\phi) > \frac{t}{2}\right\}.
+		\]
+		
+		To find an upper bound for $T'_2$, we once again use the Gibbs property in \eqref{fml:gibbs-property} and apply Corollary \ref{cor:cm-3-3} with $f = \phi$ to get
+		\begin{align*}
+			T'_2 &\leq \mu_\phi\left\{x \midmid \frac{1}{n}\sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})} + h(\mu_\phi) > \frac{t}{2} - \frac{1}{n}\log{C}\right\} \\
+				&= \mu_\phi\left\{x \midmid \frac{1}{n}\sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})} - \int{\phi\ d\mu_\phi} > \frac{t}{2} - \frac{1}{n}\log{C}\right\} \\
+				&\leq e^{-\frac{Bnt^2}{4}},
+		\end{align*}
+		for all $t > 2\log{C}$. (We have applied Corollary 4.6 with $t = t / 2$.)
+		
+		As for $T_1$ above, for $T'_1$ we have
+		\begin{align*}
+			T'_1 &= (\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid -\frac{1}{n}\log\left(W_n(x, y) \mu_\phi[x_0^{n - 1}]\right) > \frac{t}{2}\right\} \\
+				&= \mu_\phi\left\{x \midmid W_n(x, y) \mu_\phi[x_0^{n - 1}] > e^\frac{-nt}{2}, \text{ for some } y \in \Sigma\right\} \\ 
+				&\quad \cdot \mu_\phi\left\{y \midmid W_n(x, y) \mu_\phi[x_0^{n - 1}] > e^\frac{-nt}{2}, \text{ for some } x \in \Sigma\right\} \\
+				&= \sum_{a_0^{n - 1} \in A^n} \mu_\phi[a_0^{n - 1}]\mu_\phi\left\{y \midmid \tau_{[a_0^{n - 1}]}(y) \mu_\phi[a_0^{n - 1}] < e^{-\frac{nt}{2}}\right\}.
+		\end{align*}
+		Now by Lemma \ref{lem:cm-4-3}, if $v\mu_\phi[a_0^{n - 1}] \leq \frac{1}{2}$, then we have
+		\[
+			-\frac{\log{\mu_\phi\{\tau_{[a_0^{n - 1}]} > v\}}}{v\mu_\phi[a_0^{n - 1}]} \leq -\frac{\log{\mu_\phi\{\tau_{[a_0^{n - 1}]} > v\}}}{v} \leq \lambda_2.
+		\]
+		Rearranging this, we get
+		\[
+			-\log\left(1 - \mu_\phi\{\tau_{[a_0^{n - 1}]} < v\}\right) = -\log{\mu_\phi\{\tau_{[a_0^{n - 1}]} > v\}} \leq \lambda_2 v,
+		\]
+		which gives
+		\[
+			\mu_\phi\{\tau_{[a_0^{n - 1}]} < v\} \leq 1 - e^{-\lambda_2 v} \leq \lambda_2 v,
+		\]
+		because $1 - e^{-u} \leq u$ for all $u \in \reals$.
+		
+		Since $0 \leq \mu_\phi[a_0^{n - 1}] \leq 1$ for all $a_0^{n - 1}$, if we let $v = e^{-\frac{nt}{2}}$, then we have
+		\begin{align*}
+			T'_1 &\leq \sum_{a_0^{n - 1} \in A^n} \mu_\phi[a_0^{n - 1}]\mu_\phi\left\{y \midmid \tau_{[a_0^{n - 1}]}(y) < e^{-\frac{nt}{2}}\right\} \\
+				&\leq \sum_{a_0^{n - 1} \in A^n} \mu_\phi[a_0^{n - 1}] \lambda_2 e^{-\frac{nt}{2}} \\
+				&= \lambda_2 e^{-\frac{nt}{2}},
+		\end{align*}
+		provided that $e^{-\frac{nt}{2}}\mu_\phi[a_0^{n - 1}] \leq \frac{1}{2}$. We want this to be true for all $n$ and all words $a_0^{n - 1}$ of length $n$, so this restriction is equivalent to $e^{-\frac{t}{2}} \leq \frac{1}{2}$ which is the same as $t \geq 2\log{2}$. So we take $t_0 = \max\{2\log{C}, 2 \log{2}\}$.
+		
+		Finally, we combine $T'_1$ and $T'_2$ to get
+		\[
+			(\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} < h(\mu_\phi) - t\right\} \leq \lambda_2 e^{-\frac{nt}{2}} + e^{-\frac{Bnt^2}{4}} \leq C_1e^{-C_2 nt},
+		\]
+		for some constants $C_1, C_2 > 0$.
+	\end{proof}
+\end{theorem}

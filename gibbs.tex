@@ -1,0 +1,206 @@
+\chapter{Gibbs measures}
+\emph{This chapter predominantly follows \cite[p36-47]{parry-pollicott:zeta-fns-periodic-orbits}.}
+
+\section{Overview}
+This chapter introduces Gibbs measures, a class of probability measures on shifts of finite type. Gibbs measures have properties which we make use of when we discuss \cite{chazottes-maldonado:cbfee} in Chapter \ref{chap:concentration-bounds}.
+
+Throughout this chapter we will let $\Sigma = \Sigma_A^+$, where $A$ is an irreducible $k \times k$ matrix.
+
+\section{Definition and basic results}
+
+\begin{definition}
+	Let $\phi \in C(\Sigma, \reals)$ be a continuous function. Let $\mu$ be a probability measure such that there exists a constants $C = C(\phi) > 1$, $P = P(\phi) \in \reals$, such that
+	\begin{equation}
+		C^{-1} \leq \frac{\mu[x_0, \dots, x_n]}{\exp\left(-Pn + \sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})} \right)} \leq C,
+	\end{equation}
+	for all $n \geq 0$ and for all $x \in \Sigma$. Then the measure $\mu$ is a \key{Gibbs measure for $\phi$} or a \key{Gibbs measure with potential $\phi$}. We will write $\mu_\phi = \mu$.
+\end{definition}
+
+\begin{remark}
+	The Gibbs measure $\mu_\phi$ is not necessarily $\sigma$-invariant.
+\end{remark}
+
+The following proposition and its corollary show that, given any $\phi \in F_\theta$, there exists a Gibbs measure $\mu_\phi$ for $\phi$.
+
+\begin{proposition} \label{prop:pp-3-2}
+	Suppose that $\phi \in F_\theta$ is a normalised, real-valued function. Then for all $x \in \Sigma$ we have
+	\begin{equation}
+		e^{-|\phi|_\theta \theta^n} \leq \frac{\mu[x_0, \dots, x_n]}{\mu[x_1, \dots, x_n]} e^{-\phi(x)} \leq e^{|\phi|_\theta \theta^n},
+	\end{equation}
+	where $L_\phi^*\mu = \mu$ is the unique measure in Ruelle's Perron-Frobenius Theorem \ref{rpf:3} (Theorem \ref{thm:rpf}) with $\lambda = 1$.
+	\begin{proof}
+		Let $w \in C(\Sigma, \reals)$. We have
+		\begin{align*}
+			\int{w \circ \sigma\ d\mu} &= \int L_\phi(w \circ \sigma)\ d\mu \\
+				&= \int{\sum_{y \in \Sigma \midcolon \sigma{y} = x}{e^{\phi(y)} w \circ \sigma(y)}\ d\mu} \\
+				&= \int{\sum_{y \in \Sigma \midcolon \sigma{y} = x}{e^{\phi(y)} w(x)}\ d\mu} \\
+				&= \int{w L_\phi{1}\ d\mu} \\
+				&= \int{w\ d\mu}.
+		\end{align*}
+		By a basic result~\cite[Lemma 11.3]{ergodic-lectures} in ergodic theory, it follows that $\mu$ is a $\sigma$-invariant measure. Hence
+		\begin{align}
+			\mu[x_1, \dots, x_n] &= \mu\left(\bigsqcup_{x_0 \midcolon A_{x_0, x_1} = 1}{[x_0, x_1, \dots, x_n]}\right) \nonumber \\
+				&= \int{\sum_{x_0 \midcolon A_{x_0, x_1} = 1} \chi_{[x_0, x_1, \dots, x_n]}(z)\ d\mu} \nonumber \\
+				&= \int{\sum_{y \midcolon \sigma{y} = z} e^{\phi(y)} \chi_{[x_0, \dots, x_n]}(y) e^{-\phi(y)}\ d\mu} & (\text{since } \chi_B(y) = 0 \text{ or } 1) \nonumber \\
+				&= \int{L_\phi\chi_{[x_0, x_1, \dots, x_n]}(z) e^{-\phi(z)}\ d\mu} \nonumber \\
+				&= \int{\left(\chi_{[x_0, \dots, x_n]} e^{-\phi}\right)(z)\ d\mu} \nonumber \\
+				&= \int_{[x_0, \dots, x_n]}{e^{-\phi}\ d\mu}. \label{fml:prop-3-2-mu-e}
+		\end{align}
+		Now let $z, w \in [x_0, \dots, x_n]$. Since $\phi \in F_\theta \subset C(\Sigma, \reals)$, we have that $\var_n(\phi) \leq |\phi|_\theta \theta^n$ and hence
+		\[
+			e^{-|\phi|_\theta \theta^n} \leq e^{\phi(z) - \phi(w)} \leq e^{|\phi|_\theta \theta^n}.
+		\]
+		Then by \eqref{fml:prop-3-2-mu-e} we have
+		\[
+			\mu[x_0, \dots, x_n] e^{-|\phi|_\theta \theta^n} \leq \mu[x_1, \dots, x_n] e^{\phi(x)} \leq \mu[x_0, \dots, x_n] e^{|\phi|_\theta \theta^n},
+		\]
+		and so
+		\[
+			e^{-|\phi|_\theta \theta^n} \leq \frac{\mu[x_0, \dots, x_n]}{\mu[x_1, \dots, x_n]} e^{-\phi(x)} \leq e^{|\phi|_\theta \theta^n}.
+		\]
+	\end{proof}
+\end{proposition}
+
+\begin{corollary} \label{cor:pp-3-2-1}
+	The measure $\mu$ in Proposition \ref{prop:pp-3-2} is a Gibbs measure for $\phi$ with $P = 0$.
+	\begin{proof}
+		We apply Proposition \ref{prop:pp-3-2} to $\phi$, $\phi \circ \sigma$, \dots, $\phi \circ \sigma^n$ to get the sequence of inequalities
+		\[
+			\left.
+			\begin{matrix}
+				e^{-|\phi|_\theta \theta^n} &\leq& \dfrac{\mu[x_0, \dots, x_n]}{\mu[x_1, \dots, x_n]} e^{-\phi(x)} &\leq& e^{|\phi|_\theta \theta^n} \\
+				e^{-|\phi|_\theta \theta^{n - 1}} &\leq& \dfrac{\mu[x_1, \dots, x_n]}{\mu[x_2, \dots, x_n]} e^{-\phi(\sigma{x})} &\leq& e^{|\phi|_\theta \theta^{n - 1}} \\
+				\vdots & & \vdots & & \vdots \\
+				e^{-|\phi|_\theta} &\leq& \mu[x_n] e^{-\phi(\sigma^n{x})} &\leq& e^{|\phi|_\theta}
+			\end{matrix}
+			\right\}
+		\]
+		for all $x \in \Sigma$. Multiplying these together, we get
+		\[
+			\exp\left(-\sum_{j = 0}^n{|\phi|_\theta \theta^j}\right) \leq \frac{\mu[x_0, \dots, x_n]}{\exp\left(-\sum_{j = 0}^n{\phi(\sigma^j{x})}\right)} \leq \exp\left(\sum_{j = 0}^n{|\phi|_\theta \theta^j}\right),
+		\]
+		and so
+		\[
+			\exp\left(-\frac{|f|_\theta}{1 - \theta}\right) \leq \frac{\mu[x_0, \dots, x_n]}{\exp\left(-\sum_{j = 0}^n{\phi(\sigma^j{x})}\right)} \leq \exp\left(\frac{|f|_\theta}{1 - \theta}\right).
+		\]
+		Hence $\mu$ is a Gibbs measure for $\phi$ with $P = 0$.
+	\end{proof}
+\end{corollary}
+
+We can generalise these results for $\phi \in F_\theta$ which is not normalised.
+
+\begin{corollary}
+	Suppose that $\phi \in F_\theta$ is a real-valued function. Let $\mu$ be the unique measure where $L_\phi^*\mu = \lambda\mu$, where $\lambda > 0$ is the maximal eigenvalue in Ruelle's Perron-Frobenius Theorem \ref{rpf:3}. Then $\mu$ is a Gibbs measure for $\phi$ with $P = \log{\lambda}$.
+	\begin{proof}
+		First note that $\psi = \phi - \log{(h \circ \sigma)} + \log{h} - \log{\lambda}$ is normalised, where $h > 0$ is the eigenfunction corresponding to $\lambda$ in Theorem \ref{thm:rpf}. We have
+		\begin{align*}
+			\exp\left(\sum_{j = 0}^{n - 1}{\psi(\sigma^j{x})}\right) &= \exp\left(\sum_{j = 0}^{n - 1}{\phi(\sigma^j{x}) - \log{h(\sigma^{j + 1}{x})} + \log{h(\sigma^j{x})} - \log{\lambda}}\right) \\
+				&= \exp\left(-n\log{\lambda} + \sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})}\right) \frac{h(x)}{h(\sigma^n{x})}.
+		\end{align*}
+		We apply Corollary \ref{cor:pp-3-2-1} to $\psi = \phi - \log{(h \circ \sigma)} + \log{h} - \log{\lambda}$ to get
+		\[
+			C_0^{-1} \leq \frac{\mu[x_0, \dots, x_n]}{\exp\left(-n\log{\lambda} + \sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})}\right)} \leq C_0,
+		\]
+		for some constant $C_0 > 1$. Hence $\mu$ is a Gibbs measure for $\phi$ with $P = \log{\lambda}$.
+	\end{proof}
+\end{corollary}
+
+\section{The variational principle and pressure}
+\hl{Gibbs measures attain the supremeum as per the variational principle} To prove this distinguishing property, we need some concepts and results.
+
+\begin{proposition} \label{prop:pp-3-4}
+	Suppose that $\phi \in F_\theta$ is a real-valued function and suppose that $L_\phi$ is normalised. Let $mu$ be a probability measure such that $L_\phi^*{\mu} = \mu$. Then for any $\sigma$-invariant probability measure $m$, we have
+	\[
+		h_m(\sigma) + \int{f\ dm} \leq 0,
+	\]
+	with equality if and only if $m = \mu$.
+	\begin{proof}
+		
+	\end{proof}
+\end{proposition}
+
+\dots
+
+\section{Gibbs measures are weak Bernoulli}
+We now describe a particular property of Gibbs measures which we will use in Subsection \ref{ssec:hitting-times}. The following definitions and results follow \cite[Section 1.E]{bowen:equilibrium}.
+
+\begin{definition}
+	Let $\beta, \gamma$ be two finite partitions of a measure space $(X, \B, \mu)$ and let $\varepsilon > 0$ be given. We say that $\beta$ and $\gamma$ are \key{$\varepsilon$-independent} if
+	\[
+		\sum_{B \in \beta,\ C \in \gamma}{|\mu(B \cap C) - \mu(B)\mu(C)|} < \varepsilon.
+	\]
+\end{definition}
+
+\begin{definition}
+	Let $\xi = \left\{[j] \mid j \in \{1, \dots, k\}\right\}$ be the partition of $(\Sigma, \B, \mu)$ by cylinders of length 1. We say that $\xi$ is \key{weak Bernoulli} (for $\sigma$ and $\mu$) if for all $\varepsilon > 0$ there exists $N(\varepsilon) > 0$ such that for all $n \geq 1$, then the partitions
+	\[
+		\beta = \bigvee_{j = 0}^n{\sigma^{-j}(\xi)} \quad \text{and} \quad \gamma = \bigvee_{j = t}^{t + r}{\sigma^{-j}(\xi)}
+	\]
+	are $\varepsilon$-independent for all $r \geq 0$ and for all $t \geq n + N(\varepsilon)$.
+\end{definition}
+
+Before we state the main result, we need an auxiliary lemma.
+
+\begin{lemma}\label{bowen:lem-1-12}
+	Let $r \geq 0$, $f \in C(\Sigma, \reals)$ and $\var_r(f) = 0$. Let
+	\begin{align*}
+		F \in \{g \in C(\Sigma, \reals) \mid g & \geq 0,\ \nu(g) = 1,\ g(x) \leq B_m g(x') \\
+			& \text{whenever } x_j = x'_j \text{ for all } j = 0, \dots, m\},
+	\end{align*}
+	where $B_m = \exp\left(\sum_{k = m + 1}^\infty{2b\alpha^k}\right)$, where $b > 0$, $\alpha \in (0, 1)$ are any pair of constants which satisfy $\var_k(\phi) \leq b\alpha^k$ for all $k > 0$.
+	
+	Then for any $n \geq 0$ we have
+	\[
+		\|\lambda^{-n - r}L_\phi^{n + r}(fF) - \nu(fF)h\| \leq M\nu(|fF|)\rho^n,
+	\]
+	where $\nu$, $\lambda$, $h$ are as in the Ruelle's Perron Frobenius Theorem, and $M > 0$, $\beta \in (0, 1)$ are constants.
+\end{lemma}
+
+\begin{theorem}\label{thm:gibbs-is-weak-bernoulli}
+	Let $\xi = \left\{[j] \mid j \in \{1, \dots, k\}\right\}$ be the partition of $(\Sigma, \B, \mu)$ by cylinders of length 1. Then $\xi$ is weak Bernoulli for the Gibbs measure $\mu_\phi$.
+	\begin{proof}
+		Let $\varepsilon > 0$ be given. Suppose that $\phi \in C(\Sigma, \reals)$, $n \geq 1$ and $t \geq n + N(\varepsilon)$, for some $N(\varepsilon)$. Let $\beta, \gamma$ be partitions of $\Sigma$ defined by
+		\[
+		\beta = \bigvee_{j = 0}^n{\sigma^{-j}(\xi)} \quad \text{and} \quad \gamma = \bigvee_{j = t}^{t + r}{\sigma^{-j}(\xi)}.
+		\]
+		For all $B \in \beta$ we clearly have $\chi_B \in C(\Sigma, \reals)$ and $\var_r(\chi_B) = 0$ for all $r \geq 0$.
+		
+		Now consider $C \in \gamma$. Since $t \geq n$, we know that $B$ consists of cylinders of lengths strictly less than the lengths of cylinders in $C$, and therefore $\sigma^{-t}C$. It follows that the intersection $B \cap C$ depends only on $B$, and hence
+		\[
+			\mu_\phi(B \cap C) = \mu_\phi(B \cap \sigma^{-t}{C}).
+		\]
+		We then have, where $\nu$, $h$ and $\lambda$ are as in the Ruelle's Perron Frobenius Theorem,
+		\begin{align*}
+			\mu_\phi(B \cap C) &= \mu_\phi(B \cap \sigma^{-t}C) \\
+				&= \mu_\phi(\chi_B \cdot \chi_{\sigma^{-t}}{C}) \\
+				&= \mu_\phi(\chi_B \cdot (\chi_{C} \circ \sigma^t)) \\
+				&= \nu(h \chi_B \cdot (\chi_C \circ \sigma^t)) \\
+				&= \lambda^{-t}(L_\phi^*)^t\nu(h\chi_B \cdot (\chi_C \circ \sigma^t)) \\
+				&= \nu(\lambda^{-t} L_\phi^t(h \chi_B \cdot (\chi_C \circ \sigma^t))) \\
+				&= \nu(\lambda^{-t} L_\phi^t(h \chi_B) \cdot \chi_C).
+		\end{align*}
+		Consequently,
+		\begin{align*}
+			|\mu_\phi(B \cap C) - \mu_\phi(B)\mu_\phi(C)| &= |\nu(\lambda^{-t} L_\phi^t(h \chi_B) \cdot \chi_C) - \nu(h \chi_B)\nu(h \chi_C)| \\
+				&= |\nu((\lambda^{-t} L_\phi^t(h \chi_B) - \nu(h \chi_B)h)\chi_C)| \\
+				&\leq \|\lambda^{-t} L_\phi^t(h \chi_B) - \nu(h \chi_B)h\| \nu(C).
+		\end{align*}
+		Since $\chi_B \in C(\Sigma, \reals)$ and $\var_r(\chi_B) = 0$ for all $r \geq 0$, we may apply Lemma \ref{bowen:lem-1-12}. So if $t \geq s$, then
+		\[
+			\|\lambda^{-t}L_\phi^{t}(h \chi_B) - \nu(h \chi_B)h\| \leq M\nu(h \chi_B)\rho^{t - s},
+		\]
+		where $M > 0$, $\rho \in (0, 1)$ are constants. We therefore have
+		\begin{align*}
+			|\mu_\phi(B \cap C) - \mu_\phi(B)\mu_\phi(C)| &\leq M\nu(h \chi_B)\rho^{t - s} \nu(C) \\
+				&= M\mu_\phi(B)\rho^{t - s} \nu(C) \\
+				&= M'\mu_\phi(B)\mu_\phi(C)\rho^{t - s},
+		\end{align*}
+		where $M' = M(\inf{h})^{-1}$. Summing over all elements in the partitions $\beta, \gamma$, we get
+		\[
+			\sum_{B \in \beta,\ C \in \gamma}{|\mu_\phi(B \cap C) - \mu_\phi(B)\mu_\phi(C)|} \leq M'\rho^{t - s} < \varepsilon
+		\]
+		for sufficiently large $t - s$.
+		
+		Hence $\mu_\phi$ is weak Bernoulli.
+	\end{proof}
+\end{theorem}
