@@ -26,6 +26,12 @@ This section briefly introduces some concepts which will be used throughout this
 \end{definition}
 
 \begin{definition}
+	Let $X$ be a compact metric space with Borel $\sigma$-algebra $\B$. We let $M(X)$ denote the set of all probability measures on $(X, \B)$.
+	
+	Let $T : X \to X$ be a continuous mapping on $X$. We let $M(X, T)$ denote the set of $T$-invariant probability measures on $(X, B)$.
+\end{definition}
+
+\begin{definition}
 	The \key{symmetric difference} of two sets $A, B$ is defined $(A \setminus B) \cup (B \setminus A)$. We will write this as
 	\begin{equation*}
 		A \symdiff B = (A \setminus B) \cup (B \setminus A).
@@ -141,7 +147,6 @@ It is easy to see that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$ if and only
 	%Moreover, if $f, g \in F_\theta$ (or $F_\theta^+$) then $\|fg\|_\theta \leq \|f\|_\theta |g|_\infty + |f|_\infty \|g\|_\theta$. If $f$ is nowhere zero then $\|1 / f\|_\theta \leq |1 / f^2|_\infty \|f\|_\theta$.
 \end{proposition}
 
-\begin{comment}
 \begin{definition}
 	Let $f, g \in F_\theta$ (or $F_\theta^+$). We say $f$ and $g$ are \key{cohomologous} if there exists a continuous function $h$ such that $f = g + h \circ \sigma - h$. In this case, we write $f \sim g$.
 	
@@ -152,13 +157,14 @@ It is easy to see that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$ if and only
 	It is clear that $\sim$ is an equivalence relation.
 \end{remark}
 
-\begin{proposition}
-	Suppose $f \in F_\theta$. Then there exists $g, h \in F_{\theta^{\frac{1}{2}}}$ such that $f = g + h - h \circ \sigma$, where $g(x) = g(y)$ if $x_j = y_j$ for all $j \geq 0$. In other words, the value of $g(x)$ is determined only by the future coordinates of $x$.
+\begin{proposition} \label{prop:pp-1-2}
+	Suppose $f \in F_\theta$. Then there exists $g, h \in F_{\theta^{1 / 2}}$ such that $f = g + h - h \circ \sigma$, where $g(x) = g(y)$ if $x_j = y_j$ for all $j \geq 0$. In other words, the value of $g(x)$ is determined only by the future coordinates of $x$.
 	\begin{proof}
-		\hl{TODO: Possibly prove this?}
+		\hl{TODO: Prove this.}
 	\end{proof}
 \end{proposition}
 
+\begin{comment}
 If a function $f : \Sigma \to \complex$ is $\alpha$-H\"older continuous, $\alpha \in (0, 1]$, then it is a Lipschitz function with respect to $d_{\theta^\alpha}$.
 
 Suppose we have $0 < \theta < \theta' < 1$. Then

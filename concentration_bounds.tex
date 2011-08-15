@@ -66,8 +66,8 @@ Let $\phi \in F_\theta$. Recall that if there exist constants $C = C(\phi) > 1$,
 \]
 then $\mu_\phi$ is a Gibbs measure for $\phi$.
 
-Throughout this chapter, we will assume that the pressure $P$ of $\phi$ is zero. \hl{[Remember to explain why in the Gibbs chapter!]} With this in mind, recall that
-Gibbs measures satisfy the Variational Principle (Theorem \hl{[Variational Principle]}), so we have
+Throughout this chapter, we will assume that the pressure $P$ of $\phi$ is zero. With this in mind, recall that
+Gibbs measures satisfy the Variational Principle (Theorem \ref{thm:variational-principle}), so we have
 \[
 	0 = P = h(\mu_\phi) + \int{\phi\ d\mu_\phi}.
 \]
@@ -579,12 +579,11 @@ We are now ready to state and prove concentration bounds for the hitting time es
 		for all $t > 2\log{C}$, where $B = (4D|f|_\theta^2)^{-1}$.
 		
 		We now find an upper bound for $T_1$. We have
-		\begin{align}
+		\begin{align*}
 			T_1 &= (\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log\left(W_n(x, y) \mu_\phi[x_0^{n - 1}]\right) > \frac{t}{2}\right\} \\
-				&= \mu_\phi\left\{x \midmid W_n(x, y) \mu_\phi[x_0^{n - 1}] > e^\frac{nt}{2}, \text{ for some } y \in \Sigma\right\} \nonumber \\
-				&\quad \cdot \mu_\phi\left\{y \midmid W_n(x, y) \mu_\phi[x_0^{n - 1}] > e^\frac{nt}{2}, \text{ for some } x \in \Sigma\right\} \\
+				&= \sum_{a_0^{n - 1} \in A^n}{(\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid x \in [a_0^{n - 1}],\ \frac{1}{n}\log\left(W_n(x, y) \mu_\phi[x_0^{n - 1}]\right) > \frac{t}{2}\right\}} \\
 				&= \sum_{a_0^{n - 1} \in A^n}{\mu_\phi[a_0^{n - 1}] \mu_\phi\left\{y \midmid \tau_{[a_0^{n - 1}]}(y) \mu_\phi[a_0^{n - 1}] > e^\frac{nt}{2}\right\}}
-		\end{align}
+		\end{align*}
 		By Lemma \ref{lem:cm-4-2} with $u = e^\frac{nt}{2}$ we have
 		\begin{align*}
 			&\left|T_1 - e^{-e^\frac{nt}{2}}\right| \\
@@ -629,8 +628,7 @@ We are now ready to state and prove concentration bounds for the hitting time es
 		As for $T_1$ above, for $T'_1$ we have
 		\begin{align*}
 			T'_1 &= (\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid -\frac{1}{n}\log\left(W_n(x, y) \mu_\phi[x_0^{n - 1}]\right) > \frac{t}{2}\right\} \\
-				&= \mu_\phi\left\{x \midmid W_n(x, y) \mu_\phi[x_0^{n - 1}] > e^\frac{-nt}{2}, \text{ for some } y \in \Sigma\right\} \\ 
-				&\quad \cdot \mu_\phi\left\{y \midmid W_n(x, y) \mu_\phi[x_0^{n - 1}] > e^\frac{-nt}{2}, \text{ for some } x \in \Sigma\right\} \\
+				&= \sum_{a_0^{n - 1} \in A^n}{(\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid x \in [a_0^{n - 1}],\ -\frac{1}{n}\log\left(W_n(x, y) \mu_\phi[x_0^{n - 1}]\right) > \frac{t}{2}\right\}} \\
 				&= \sum_{a_0^{n - 1} \in A^n} \mu_\phi[a_0^{n - 1}]\mu_\phi\left\{y \midmid \tau_{[a_0^{n - 1}]}(y) \mu_\phi[a_0^{n - 1}] < e^{-\frac{nt}{2}}\right\}.
 		\end{align*}
 		Now by Lemma \ref{lem:cm-4-3}, if $v\mu_\phi[a_0^{n - 1}] \leq \frac{1}{2}$, then we have

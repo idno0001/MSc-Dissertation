@@ -1,5 +1,5 @@
 \chapter{Gibbs measures}
-\emph{This chapter predominantly follows \cite[p36-47]{parry-pollicott:zeta-fns-periodic-orbits}.}
+\emph{This chapter predominantly follows \cite[Chapter 3]{parry-pollicott:zeta-fns-periodic-orbits}.}
 
 \section{Overview}
 This chapter introduces Gibbs measures, a class of probability measures on shifts of finite type. Gibbs measures have properties which we make use of when we discuss \cite{chazottes-maldonado:cbfee} in Chapter \ref{chap:concentration-bounds}.
@@ -81,7 +81,7 @@ The following proposition and its corollary show that, given any $\phi \in F_\th
 		\]
 		and so
 		\[
-			\exp\left(-\frac{|f|_\theta}{1 - \theta}\right) \leq \frac{\mu[x_0, \dots, x_n]}{\exp\left(-\sum_{j = 0}^n{\phi(\sigma^j{x})}\right)} \leq \exp\left(\frac{|f|_\theta}{1 - \theta}\right).
+			\exp\left(-\frac{|\phi|_\theta}{1 - \theta}\right) \leq \frac{\mu[x_0, \dots, x_n]}{\exp\left(-\sum_{j = 0}^n{\phi(\sigma^j{x})}\right)} \leq \exp\left(\frac{|\phi|_\theta}{1 - \theta}\right).
 		\]
 		Hence $\mu$ is a Gibbs measure for $\phi$ with $P = 0$.
 	\end{proof}
@@ -105,21 +105,133 @@ We can generalise these results for $\phi \in F_\theta$ which is not normalised.
 	\end{proof}
 \end{corollary}
 
-\section{The variational principle and pressure}
-\hl{Gibbs measures attain the supremeum as per the variational principle} To prove this distinguishing property, we need some concepts and results.
+In view of this, if $\phi \in F_\theta$ has Gibbs measure $\mu_\phi$ with $P(\phi) > 0$, then the Gibbs measure for $\phi - P(\phi)$ gives $P(\phi - P(\phi)) = 0$. In both cases we have the same Gibbs measure $\mu_\phi$.
 
-\begin{proposition} \label{prop:pp-3-4}
-	Suppose that $\phi \in F_\theta$ is a real-valued function and suppose that $L_\phi$ is normalised. Let $mu$ be a probability measure such that $L_\phi^*{\mu} = \mu$. Then for any $\sigma$-invariant probability measure $m$, we have
+\section{The variational principle and pressure}
+There is a characteristic which sets Gibbs measures apart from other $\sigma$-invariant probability measures. To prove this property, we need some concepts and results.
+
+Let $\mu$ be a $\sigma$-invariant probability measure on $\Sigma$. For $n \geq 0$ we have that $\mu[x_0, \dots, x_{n - 1}] > 0$ for $\mu$-almost every $x \in \Sigma$. For $j = 1, \dots, k$ we define
+\begin{align*}
+	\mu_n[j \mid \sigma^{-1}{x}] &:= \frac{\mu[j, x_0, \dots, x_{n - 1}]}{\mu[x_0, \dots, x_{n - 1}]} \\
+		&= \frac{\mu([j] \cap \sigma^{-1}[x_0, \dots, x_{n - 1}])}{\mu(\sigma^{-1}[x_0, \dots, x_{n - 1}])} \\
+		&= \mu\left([j] \midmid \bigvee_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}\right)(x),
+\end{align*}
+where $\alpha = \{[j] \mid j \in \{1, \dots, k\}\}$ is the partition of $\Sigma$ by cylinders of length 1. It is clear that this is a probability distribution for $\mu$-almost every $x$. \hl{[Need to say somewhere that $\bigvee_{r = 0}^{n - 1}{\sigma^{-r}\alpha} =$ cylinders of length n.]}
+
+\begin{proposition}\label{prop:mu-sq-bkt-pd}
+	For $n \geq 0$, we have that
 	\[
-		h_m(\sigma) + \int{f\ dm} \leq 0,
+		\mu[j \mid \sigma^{-1}{x}] := \lim_{n \to +\infty}{\mu_n[j \mid \sigma^{-1}{x}]}
 	\]
-	with equality if and only if $m = \mu$.
+	is a well-defined probability distribution on $\{1, \dots, k\}$ for $\mu$-almost every $x \in \Sigma$.
 	\begin{proof}
-		
+		First note that $\bigvee_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}} \to \B$, as $n \to +\infty$. By definition we also have $\mu([j] \mid \bigvee_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}) = E(\chi_{[j]} \mid \bigvee_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}})$. Since $\chi_{[j]} \in L^1(\Sigma, \B, \mu)$, we may apply the Increasing Martingale Theorem so that
+		\[
+			\lim_{n \to +\infty}{\mu\left([j] \midmid \bigvee_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}\right)} = \mu([j] \mid \B),
+		\]
+		for $\mu$-almost every $x$. Hence
+		\[
+			\mu[j \mid \sigma^{-1}{x}] = \mu([j] \mid \B)(x)
+		\]
+		for $\mu$-almost every $x$, i.e. $\mu[j \mid \sigma^{-1}{x}]$ is a well-defined probability distribution on $\{1, \dots, k\}$.
 	\end{proof}
 \end{proposition}
 
-\dots
+\begin{lemma} \label{lem:pp-prop-p36}
+	We have
+	\begin{equation}
+		\sum_{j = 1}^k{\int{\psi(j, x_0, x_1, \dots) \mu[j \mid \sigma^{-1}{x}] \ d\mu}} = \int{\psi\ d\mu},
+	\end{equation}
+	for all $\psi \in C(\Sigma, \reals)$.
+	\begin{proof}
+		Let $\psi = \chi_{[r_0, \dots, r_t]}$, where $t \in \naturals_0$. We have
+		\begin{align*}
+			\sum_{j = 1}^k{\int{\psi(j, x_0, x_1, \dots) \mu[j \mid \sigma^{-1}{x}] \ d\mu}} &= \lim_{n \to +\infty}{\sum_{j = 1}^k{\int{\chi_{[r_0, \dots, r_t]} \mu_n[j \mid \sigma^{-1}{x}] \ d\mu}}} \\
+				&= \mu[r_0, \dots, r_t] \sum_{j = 1}^k{\frac{\mu[j, x_0, \dots, x_{n - 1}]}{\mu[x_0, \dots, x_{n - 1}]}} \\
+				&= \int{\psi\ d\mu}.
+		\end{align*}
+		So the result holds for characteristic functions. We then apply the definitions from measure theory to show that the result holds for $\psi \in C(\Sigma, \reals)$.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma} \label{lem:pp-prop-3-4}
+	Suppose that $\phi \in F_\theta$ is a real-valued function and suppose that $L_\phi$ is normalised. Let $\mu$ be a probability measure such that $L_\phi^*{\mu} = \mu$. Then for any $\sigma$-invariant probability measure $m$, we have
+	\[
+		h_m(\sigma) + \int{\phi\ dm} \leq 0,
+	\]
+	with equality if and only if $m = \mu$.
+	\begin{proof}
+		Let $m \in M(\Sigma, \sigma)$ be a $\sigma$-invariant probability measure. We define a probability distribution on $\{1, \dots, k\}$ by $\mu[j \mid \sigma^{-1}{x}]$ as in Proposition \ref{prop:mu-sq-bkt-pd}. If $m = \mu$, then $L_\phi^*{m} = m$ and so we have the probability distribution
+		\[
+			m[j \mid \sigma^{-1}{x}] = \exp(\phi(j, x_0, x_1, \dots))
+		\]
+		for all $x \in \Sigma$.
+		
+		We apply Lemma \ref{lem:pp-3-3} so that
+		\[
+			-\sum_{j = 1}^k{m[j \mid \sigma^{-1}{x}] \log{m[j \mid \sigma^{-1}{x}]}} + \sum_{j = 1}^k{m[j \mid \sigma^{-1}{x}] \phi(j, x_0, x_1, \dots)} \leq 0,
+		\]
+		for $m$-almost every $x$, with equality if and only if $m[j \mid \sigma^{-1}{x}] = \phi(j, x_0, x_1, \dots)$ for all $j = 1, \dots, k$.
+		
+		We integrate with respect to $m$ and apply Lemma \ref{lem:pp-prop-p36} to get
+		\[
+			h_m(\sigma) + \sum_{j = 1}^k{\int{m[j \mid \sigma^{-1}{x}] \phi(j, x_0, x_1, \dots)\ dm}} = h_m(\sigma) + \int{\phi\ dm} \leq 0,
+		\]
+		with equality if and only if $m[j \mid \sigma^{-1}{x}] = \phi(j, x_0, x_1, \dots)$ for $m$-almost every $x$. By Lemma \ref{lem:pp-prop-p36}, this equality condition is equivalent to
+		\begin{align*}
+			\int{\sum_{j = 1}^k{m[j \mid \sigma^{-1}{x}] \psi(j, x_0, x_1, \dots)}\ dm} &= \int{\sum_{j = 1}^k{\phi(j, x_0, x_1, \dots) \psi(j, x_0, x_1, \dots)}\ dm} \\
+				&= \int{\psi\ dm}
+		\end{align*}
+		for all $\psi \in C(\Sigma, \reals)$. In other words, $\int{L_\phi{\psi}\ dm} = \int{g\ dm}$ for all $\psi$, and so we have $L_\phi^*{m} = m$. By Ruelle's Perron-Frobenius Theorem \ref{rpf:3}, $\mu$ is the unique $\sigma$-invariant probability measure such that $L_\phi^*{\mu} = \mu$, so we have
+		\[
+			h_m(\sigma) + \int{\phi\ dm} \leq 0,
+		\]
+		with equality if and only if $m = \mu$.
+	\end{proof}
+\end{lemma}
+
+It can be shown that similar results hold for 2-sided shifts of finite type, and also for $\phi \in F_\theta$ where $L_\phi$ is not necessarily normalised.
+
+The following result shows one of the main distinguishing characteristics of Gibbs measures.
+
+\begin{theorem}[The Variational Principle] \label{thm:variational-principle}
+	Suppose $\phi \in F_\theta^+$ (or $F_\theta$). The Gibbs measure $\mu_\phi$ is the unique $\sigma$-invariant probability measure such that
+	\[
+		h_m(\sigma) + \int{\phi\ dm} \leq h_{\mu_\phi}(\sigma) + \int{\phi\ d\mu_\phi}
+	\]
+	for all $m \in M(\Sigma, \sigma)$, with equality if and only if $m = \mu_\phi$.
+	\begin{proof}
+		Let $\phi \in F_\theta$. By Proposition \ref{prop:pp-1-2}, there exists $g, u \in F_{\theta^{\frac{1}{2}}}$ such that $\phi = g + (u \circ \sigma) - u$. By Ruelle's Perron-Frobenius Theorem, we can write $g = \log(h \circ \sigma) - \log{h} + \log{\lambda} + k$ for some $k \in F_{\theta^{1/2}}^+$ such that $L_k^*{\mu_\phi} = \mu_\phi$ and $L_k$ is normalised.
+		
+		Let $m$ be a $\sigma$-invariant probability measure. By Lemma \ref{lem:pp-prop-3-4} we have
+		\[
+			h_m(\sigma) + \int{k\ dm} \leq h_{\mu_\phi}(\sigma) + \int{k\ d\mu_\phi} = 0.
+		\]
+		Substituting in $k = \phi - (u \circ \sigma) + u - \log(h \circ \sigma) + \log{h} - \log{\lambda}$ and cancelling terms, we have
+		\[
+			h_m(\sigma) + \int{\phi\ dm} \leq h_{\mu_\phi}(\sigma) + \int{\phi\ d\mu_\phi},
+		\]
+		with equality if and only if $m = \mu_\phi$.
+	\end{proof}
+\end{theorem}
+
+From the proof of Theorem \ref{thm:variational-principle}, we see that
+\[
+	P(\phi) = \sup_{m \in M(\Sigma, \sigma)}\left\{h_m(\sigma) + \int{\phi\ dm}\right\} = h_{\mu_\phi}(\sigma) + \int{\phi\ d\mu_\phi}.
+\]
+So $P(\phi) = \log{\lambda}$, where $\lambda$ is the maximal positive eigenvalue for $L_{\phi'}$, where $\phi$ is cohomologous to $\phi' \in F_{\theta^{1 / 2}}^+$.
+
+\begin{definition}
+	We call
+	\[
+		P(\phi) := \sup_{m \in M(\Sigma, \sigma)}\left\{h_m(\sigma) + \int{\phi\ dm}\right\}
+	\]
+	the \key{pressure} of $\phi$.
+	
+	If a measure a $\sigma$-invariant probability measure $m$ attains this supremum, i.e. $P(\phi) = h_m(\sigma) + \int{\phi\ dm}$, then we say that $m$ is an \key{equilibrium state}.
+\end{definition}
+
+The Variational Principle gives that if we have $\phi \in F_\theta$, then the equilibrium states is unique and we can also define the pressure of $\phi$ by $P(\phi) = \log{\lambda}$.
 
 \section{Gibbs measures are weak Bernoulli}
 We now describe a particular property of Gibbs measures which we will use in Subsection \ref{ssec:hitting-times}. The following definitions and results follow \cite[Section 1.E]{bowen:equilibrium}.
