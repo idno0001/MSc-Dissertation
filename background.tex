@@ -143,8 +143,6 @@ It is easy to see that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$ if and only
 
 \begin{proposition}
 	The spaces $(F_\theta, \|\cdot\|_\theta)$ and $(F_\theta^+, \|\cdot\|_\theta)$ are Banach spaces.
-	%
-	%Moreover, if $f, g \in F_\theta$ (or $F_\theta^+$) then $\|fg\|_\theta \leq \|f\|_\theta |g|_\infty + |f|_\infty \|g\|_\theta$. If $f$ is nowhere zero then $\|1 / f\|_\theta \leq |1 / f^2|_\infty \|f\|_\theta$.
 \end{proposition}
 
 \begin{definition}
@@ -158,11 +156,61 @@ It is easy to see that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$ if and only
 \end{remark}
 
 \begin{proposition} \label{prop:pp-1-2}
-	Suppose $f \in F_\theta$. Then there exists $g, h \in F_{\theta^{1 / 2}}$ such that $f = g + h - h \circ \sigma$, where $g(x) = g(y)$ if $x_j = y_j$ for all $j \geq 0$. In other words, the value of $g(x)$ is determined only by the future coordinates of $x$.
+	Suppose that $f \in F_\theta$. Then there exists $g, h \in F_{\theta^{1 / 2}}$ such that $f = g + h - h \circ \sigma$, where $g(x) = g(y)$ if $x_j = y_j$ for all $j \geq 0$. In other words, the value of $g(x)$ is determined only by the future coordinates of $x$.
 	\begin{proof}
-		\hl{TODO: Prove this.}
+		For each $j = 1, \dots, k$ we choose a sequence $(a_n^{(j)})_{n = -\infty}^0$ from the past such that $a_0^{(j)} = j$. Now we define a function $\phi : \Sigma_A \to \Sigma_A : x \mapsto x'$, where
+		\[
+			(x')_n
+			\begin{cases}
+				x_n, & \text{if } n \geq 0; \\
+				a_n^{(x_0)}, & \text{if } n \leq 0.
+			\end{cases}
+		\]
+		So $\phi$ fixes the future coordinates of $x$, but replaces the past with $(a_n^{(x_0)})_{n = -\infty}^0$.
+		
+		Let $h(x) = \sum_{n = 0}^\infty{(f(\sigma^n{x}) - f(\sigma^n \phi{x}))}$. Note that $h$ converges because for all $n \geq 0$,
+		\[
+			|f(\sigma^n{x}) - f(\sigma^n \phi{x})| \leq \var_n(f) \leq |f|_\theta \theta^n,
+		\]
+		We have
+		\begin{align*}
+			h(x) - h(\sigma{x}) &= \sum_{n = 0}^\infty{(f(\sigma^n{x}) - f(\sigma^n \phi{x}))} - \sum_{n = 0}^\infty{(f(\sigma^{n + 1}{x}) - f(\sigma^n \phi \sigma{x}))} \\
+				&= f(x) - \left(f(\phi{x}) + \sum_{n = 0}^\infty{(f(\sigma^{n + 1} \phi{x}) - f(\sigma^n \phi \sigma{x}))}\right) \\
+				&= f(x) - g(x),
+		\end{align*}
+		where $g(x) := f(\phi{x}) + \sum_{n = 0}^\infty{(f(\sigma^{n + 1} \phi{x}) - f(\sigma^n \phi \sigma{x}))}$. Since all terms in $g$ contain $\phi$, we see that $g$ depends only on its future coordinates.
+		
+		It remains to show that $h \in F_{\theta^{1 / 2}}$ and it we will immediately have $g \in F_{\theta^{1 / 2}}$. It is sufficient to show that $\var_{2N}(h) \leq K\theta^N$ for all $N \geq 0$, for some constant $K > 0$, because this gives that
+		\[
+			\var_{2N + 1}(h) \leq K\theta^N = \frac{K}{\theta^{1 / 2}}(\theta^{1 / 2})^{2N + 1}.
+		\]
+		
+		Let $x, y \in \Sigma_A$ be such that $x_j = y_j$ for $|j| \leq 2N$. Then for all $n = 0, \dots, N$, we have
+		\[
+			|f(\sigma^n{x}) - f(\sigma^n{y})| \leq |f|_\theta \theta^{2N - n} \quad \text{and} \quad |f(\sigma^n \phi{x}) - f(\sigma^n \phi{y})| \leq |f|_\theta \theta^{2N - n}.
+		\]
+		By definition, for all $n \geq 0$ we have
+		\[
+			|f(\sigma^n{x}) - f(\sigma^n \phi{x})| \leq |f|_\theta \theta^n \quad \text{and} \quad |f(\sigma^n {y}) - f(\sigma^n \phi{y})| \leq |f|_\theta \theta^n.
+		\]
+		Hence
+		\begin{align*}
+			|h(x) - h(y)| &= \left|\sum_{n = 0}^\infty{(f(\sigma^n{x}) - f(\sigma^n \phi{x}) - f(\sigma^n{y}) + f(\sigma^n \phi{y}))}\right| \\
+				&\leq \sum_{n = 0}^N{|f(\sigma^n{x}) - f(\sigma^n{y})| + | f(\sigma^n \phi{x}) -  f(\sigma^n \phi{y})|} \\
+				&\quad + \sum_{n = N + 1}^\infty{|f(\sigma^n{x}) - f(\sigma^n \phi{x})| + | f(\sigma^n \phi{y}) -  f(\sigma^n {y})|} \\
+				&\leq 2|f|_\theta \sum_{n = 0}^N{\theta^{2N - n}} + 2|f|_\theta \sum_{n + N + 1}^\infty{\theta^n} \\
+				&= 2|f|_theta \theta^{2N} \left(\frac{\theta^{-N - 1} - 1}{\theta^{-1} - 1}\right) + |f|_\theta \frac{\theta^{N + 1}}{1 - \theta} \\
+				&\leq 4|f|_\theta \frac{\theta^N}{1 - \theta}.
+		\end{align*}
+		Therefore
+		\[
+			\var_{2N}(h) \leq \left(\frac{4|f|_\theta}{1 - \theta}\right)\theta^N
+		\]
+		and so $h \in F_{\theta^{1 / 2}}$.
 	\end{proof}
 \end{proposition}
+
+The above result allows us to write $f \in F_\theta$ using $g \in F_{\theta^{1 / 2}}^+$. This allows us to apply results to $g$ which hold for $F_\theta^+$ but not necessarily for $F_\theta$. We will encounter such uses for this proposition in due course.
 
 \begin{comment}
 If a function $f : \Sigma \to \complex$ is $\alpha$-H\"older continuous, $\alpha \in (0, 1]$, then it is a Lipschitz function with respect to $d_{\theta^\alpha}$.

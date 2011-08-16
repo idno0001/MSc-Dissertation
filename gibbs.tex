@@ -114,9 +114,9 @@ Let $\mu$ be a $\sigma$-invariant probability measure on $\Sigma$. For $n \geq 0
 \begin{align*}
 	\mu_n[j \mid \sigma^{-1}{x}] &:= \frac{\mu[j, x_0, \dots, x_{n - 1}]}{\mu[x_0, \dots, x_{n - 1}]} \\
 		&= \frac{\mu([j] \cap \sigma^{-1}[x_0, \dots, x_{n - 1}])}{\mu(\sigma^{-1}[x_0, \dots, x_{n - 1}])} \\
-		&= \mu\left([j] \midmid \bigvee_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}\right)(x),
+		&= \mu\left([j] \midmid \bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}\right)(x),
 \end{align*}
-where $\alpha = \{[j] \mid j \in \{1, \dots, k\}\}$ is the partition of $\Sigma$ by cylinders of length 1. It is clear that this is a probability distribution for $\mu$-almost every $x$. \hl{[Need to say somewhere that $\bigvee_{r = 0}^{n - 1}{\sigma^{-r}\alpha} =$ cylinders of length n.]}
+where $\alpha = \{[j] \mid j \in \{1, \dots, k\}\}$ is the partition of $\Sigma$ by cylinders of length 1. It is clear that this is a probability distribution for $\mu$-almost every $x$. \hl{[Need to say somewhere that $\bigjoin_{r = 0}^{n - 1}{\sigma^{-r}\alpha} =$ cylinders of length n.]}
 
 \begin{proposition}\label{prop:mu-sq-bkt-pd}
 	For $n \geq 0$, we have that
@@ -125,9 +125,9 @@ where $\alpha = \{[j] \mid j \in \{1, \dots, k\}\}$ is the partition of $\Sigma$
 	\]
 	is a well-defined probability distribution on $\{1, \dots, k\}$ for $\mu$-almost every $x \in \Sigma$.
 	\begin{proof}
-		First note that $\bigvee_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}} \to \B$, as $n \to +\infty$. By definition we also have $\mu([j] \mid \bigvee_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}) = E(\chi_{[j]} \mid \bigvee_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}})$. Since $\chi_{[j]} \in L^1(\Sigma, \B, \mu)$, we may apply the Increasing Martingale Theorem so that
+		First note that $\bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}} \to \B$, as $n \to +\infty$. By definition we also have $\mu([j] \mid \bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}) = E(\chi_{[j]} \mid \bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}})$. Since $\chi_{[j]} \in L^1(\Sigma, \B, \mu)$, we may apply the Increasing Martingale Theorem so that
 		\[
-			\lim_{n \to +\infty}{\mu\left([j] \midmid \bigvee_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}\right)} = \mu([j] \mid \B),
+			\lim_{n \to +\infty}{\mu\left([j] \midmid \bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}\right)} = \mu([j] \mid \B),
 		\]
 		for $\mu$-almost every $x$. Hence
 		\[
@@ -154,7 +154,7 @@ where $\alpha = \{[j] \mid j \in \{1, \dots, k\}\}$ is the partition of $\Sigma$
 	\end{proof}
 \end{lemma}
 
-\begin{lemma} \label{lem:pp-prop-3-4}
+\begin{lemma}\label{lem:pp-prop-3-4}[Lemma]
 	Suppose that $\phi \in F_\theta$ is a real-valued function and suppose that $L_\phi$ is normalised. Let $\mu$ be a probability measure such that $L_\phi^*{\mu} = \mu$. Then for any $\sigma$-invariant probability measure $m$, we have
 	\[
 		h_m(\sigma) + \int{\phi\ dm} \leq 0,
@@ -201,7 +201,7 @@ The following result shows one of the main distinguishing characteristics of Gib
 	\]
 	for all $m \in M(\Sigma, \sigma)$, with equality if and only if $m = \mu_\phi$.
 	\begin{proof}
-		Let $\phi \in F_\theta$. By Proposition \ref{prop:pp-1-2}, there exists $g, u \in F_{\theta^{\frac{1}{2}}}$ such that $\phi = g + (u \circ \sigma) - u$. By Ruelle's Perron-Frobenius Theorem, we can write $g = \log(h \circ \sigma) - \log{h} + \log{\lambda} + k$ for some $k \in F_{\theta^{1/2}}^+$ such that $L_k^*{\mu_\phi} = \mu_\phi$ and $L_k$ is normalised.
+		Let $\phi \in F_\theta$. By Proposition \ref{prop:pp-1-2}, there exists $g \in F_{\theta^{1 / 2}}^+$, $u \in F_{\theta^{1 / 2}}$ such that $\phi = g + (u \circ \sigma) - u$. By Ruelle's Perron-Frobenius Theorem, we can write $g = \log(h \circ \sigma) - \log{h} + \log{\lambda} + k$ for some $k \in F_{\theta^{1/2}}^+$ such that $L_k^*{\mu_\phi} = \mu_\phi$ and $L_k$ is normalised.
 		
 		Let $m$ be a $\sigma$-invariant probability measure. By Lemma \ref{lem:pp-prop-3-4} we have
 		\[
@@ -246,7 +246,7 @@ We now describe a particular property of Gibbs measures which we will use in Sub
 \begin{definition}
 	Let $\xi = \left\{[j] \mid j \in \{1, \dots, k\}\right\}$ be the partition of $(\Sigma, \B, \mu)$ by cylinders of length 1. We say that $\xi$ is \key{weak Bernoulli} (for $\sigma$ and $\mu$) if for all $\varepsilon > 0$ there exists $N(\varepsilon) > 0$ such that for all $n \geq 1$, then the partitions
 	\[
-		\beta = \bigvee_{j = 0}^n{\sigma^{-j}(\xi)} \quad \text{and} \quad \gamma = \bigvee_{j = t}^{t + r}{\sigma^{-j}(\xi)}
+		\beta = \bigjoin_{j = 0}^n{\sigma^{-j}(\xi)} \quad \text{and} \quad \gamma = \bigjoin_{j = t}^{t + r}{\sigma^{-j}(\xi)}
 	\]
 	are $\varepsilon$-independent for all $r \geq 0$ and for all $t \geq n + N(\varepsilon)$.
 \end{definition}
@@ -273,7 +273,7 @@ Before we state the main result, we need an auxiliary lemma.
 	\begin{proof}
 		Let $\varepsilon > 0$ be given. Suppose that $\phi \in C(\Sigma, \reals)$, $n \geq 1$ and $t \geq n + N(\varepsilon)$, for some $N(\varepsilon)$. Let $\beta, \gamma$ be partitions of $\Sigma$ defined by
 		\[
-		\beta = \bigvee_{j = 0}^n{\sigma^{-j}(\xi)} \quad \text{and} \quad \gamma = \bigvee_{j = t}^{t + r}{\sigma^{-j}(\xi)}.
+		\beta = \bigjoin_{j = 0}^n{\sigma^{-j}(\xi)} \quad \text{and} \quad \gamma = \bigjoin_{j = t}^{t + r}{\sigma^{-j}(\xi)}.
 		\]
 		For all $B \in \beta$ we clearly have $\chi_B \in C(\Sigma, \reals)$ and $\var_r(\chi_B) = 0$ for all $r \geq 0$.
 		

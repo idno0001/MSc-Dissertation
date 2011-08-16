@@ -3,11 +3,12 @@
 	\textbf{Throughout this chapter $(X, \B, \mu)$ will denote a probability space.}
 \end{mdframed}
 
-\section{Isomorphisms of measure-preserving transformations}
+\section{Isomorphisms of measure-preserving transformations}\label{sec:isos-of-mpts}
 One of the main problems in ergodic theory is to classify measure-preserving transformations. To this end, we want to decide the conditions required for two measure-preserving transformations to be `the same' -- up to sets of measure zero.
 
+\emph{This section predominantly follows material in \cite[Chapter 2]{walters:intro-to-ergodic-theory}.}
+
 \subsection{Isomorphism and conjugacy of measure spaces}
-\emph{This subsection predominantly follows \cite[Chapter 2]{walters:intro-to-ergodic-theory}.}
 
 We begin by defining when two probability spaces are isomorphic or conjugate.
 
@@ -142,6 +143,7 @@ As with probability spaces, isomorphic measure-preserving transformations are al
 
 \begin{theorem}\label{thm:walters-2-5}
 	Let $(X_1, \B_1, \mu_1, T_1)$, $(X_2, \B_2, \mu_2, T_2)$ be measure-preserving transformations of probability spaces and suppose that $T_1 \simeq T_2$. Then $T_1$ is conjugate to $T_2$.
+	
 	\begin{proof}
 		Suppose $T_1 \simeq T_2$, so a measure-preserving transformation $\phi : M_1 \to M_2$ such that $\phi \circ T_1(x) = T_2 \circ \phi(x)$ for all $x \in M_1$, where $M_1, M_2$ are as in the definition.
 		
@@ -153,11 +155,51 @@ As with probability spaces, isomorphic measure-preserving transformations are al
 	\end{proof}
 \end{theorem}
 
-The following theorem gives the conditions for which the converse of Theorem \ref{thm:walters-2-5} is true.
+The converse of this theorem is not necessarily true. However, we will find it useful to know the conditions for which the converse holds. We need the following definition from \cite[Definition A.21]{einsiedler-ward:ergodic-nt}.
 
-\begin{theorem}
-	p59
+\begin{definition}
+	Let $Y$ be a set of countably or finitely many points, where each $y \in Y$ has positive measure $p_y > 0$. Let $s = 1 - \sum_{y \in Y}{p_y}$ and let $\mathcal{L}[0, s]$ denote the $\sigma$-algebra of Lebesgue measurable sets on the closed interval $[0, s]$. Let $\lambda_{[0, s]}$ denote Lebesgue measure on $[0, s]$.
+	
+	If the probability space $(X, \B, \mu)$ is isomorphic to the probability space
+	\[
+		\left([0, s] \sqcup Y,\ \mathcal{L}[0, s],\ \lambda_{[0, s]} + \sum_{y \in Y}{p_y \delta_y} \right),
+	\]
+	where $\delta_y$ is Dirac measure at $y$, then $(X, \B, \mu)$ is a \key{Lebesgue space}.
+\end{definition}
+
+We will also use the following result, which is proved in \cite[Theorem 12]{royden:real-analysis}.
+
+\begin{lemma} \label{lem:walters-thm-2-2}
+	For $j = 1, 2$, let $(X_j, \B(X_j), \mu_j)$ be complete separable metric spaces endowed with Borel $\sigma$-algebra $\B(X_j)$ and probability measure $\mu_j$. Suppose that $\Phi: \tilde{\B}(X_2) \to \tilde{\B}(X_1)$ is an isomorphism of measure algebras. Then there exists $M_1 \in \B(X_1)$, $M_2 \in \B(X_2)$ such that $\mu_1(M_1) = 1 = \mu_2(M_2)$, and an invertible measure-preserving transformation $\phi: M_1 \to M_2$ such that $\Phi(\tilde{B}) = (\phi^{-1}(B \cap M_2))^\sim$ for all $B \in \B(X_2)$.
+	
+	If $\psi$ is any other isomorphism $(X_1, \B(X_1), \mu_1)$ to $(X_2, \B(X_2), \mu_2)$ which induces $\Phi$, then $\mu_1\{x \in X_1 \mid \phi(x) \neq \psi(x)\} = 0$.
+\end{lemma}
+
+The following result gives the conditions for which the converse of Theorem \ref{thm:walters-2-5} is true.
+
+\begin{theorem} \label{thm:walters-2-6}
+	Suppose that either $(X_1, \B_1, \mu_1)$, $(X_2, \B_2, \mu_2)$ are Lebesgue spaces, or that $X_1, X_2$ are each complete separable metric spaces with corresponding Borel $\sigma$-algebras $\B_1, \B_2$. Suppose that $T_1 : X_1 \to X_1$, $T_2 : X_2 \to X_2$ be measure-preserving transformations and that $T_1$ is conjugate to $T_2$. Then $T_1 \simeq T_2$.
+	\begin{proof}
+		Suppose $\Phi : (\tilde{B}_2, \tilde{\mu}_2) \to (\tilde{B}_1, \tilde{\mu}_1)$ is an isomorphism of measure algebras such that $\Phi \circ \tilde{T}_2^{-1} = \tilde{T}_1^{-1} \circ \Phi$. By Lemma \ref{lem:walters-thm-2-2} there exists sets $X'_1 \in \B_1$, $X'_2 \in \B_2$ such that $\mu_1(X'_1) = 1 = \mu(X'_2)$, and there exists an invertible measure-preserving transformation $\phi : X'_1 \to X'_2$ such that $\Phi(\tilde{B}) = (\phi^{-1}(B \cap X'_2))^\sim$ for all $B \in \B_2$. Then we have $\tilde{\phi}^{-1} \circ \tilde{T}_2^{-1} = \tilde{T}_1^{-1} \circ \tilde{\phi}^{-1}$, i.e. $T_2 \circ \phi = \phi \circ T_1$ almost everywhere.
+		
+		Now put
+		\[
+			A_1 = \{x \in X_1 \mid T_2 \circ \phi(x) = \phi \circ T_1(x)\} \quad \text{and} \quad M_1 = \bigcap_{n = 0}^\infty{T_1^{-n}{A_1}}.
+		\]
+		Then $\mu_1(M_1) = 1$, $T_1^{-1}{M_1} \supset M_1$ which means that $M_1 \supset T_1 M_1$. We then define $M_2 = \phi M_1$ so that $T_2 M_2 \subset M_2$. Hence $T_1 \simeq T_2$.
+	\end{proof}
 \end{theorem}
+
+As we mentioned briefly at the beginning of Section \ref{sec:isos-of-mpts}, we want to be able to decide when two measure-preserving transformations are `the same'. In view of the above discussion, `the same' can be replaced with `conjugate' or `isomorphic'. \key{Entropy} is one of the main conjugacy and isomorphism invariants studied in ergodic theory, and the remainder of this chapter will describe how the entropy of a measure-preserving transformation is defined.
+
+\emph{The rest of this chapter predominantly follows \cite[Chapter 4]{walters:intro-to-ergodic-theory}.}
+
+\section{Entropy of partitions and sub-\texorpdfstring{$\sigma$}{sigma}-algebras}
+\hl{Things to define:}
+	\begin{enumerate}
+		\item join
+		\item notation for partitions, sub-sigma-algebra
+	\end{enumerate}
 
 \dots
 
