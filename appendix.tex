@@ -1,6 +1,61 @@
 \chapter{Auxiliary results}
 This appendix contains results which are used throughout the dissertation. We separate the appendix into sections depending on which chapter the result is first used.
 
+\section{Entropy}
+We use the following result in Proposition \ref{prop:walters-cor-4-2-1} and also Lemma \ref{lem:pp-3-3}.
+
+\begin{definition}
+	Let $f : X \to \reals$ be a function of a convex set $X$. We say that $f$ is \key{strictly convex} if, for all $x, y \in X$ and for all $\alpha \in [0, 1]$, we have
+	\[
+		f(\alpha x + (1 - \alpha)y) \leq \alpha f(x) + (1 - \alpha)f(y),
+	\]
+	with equality if and only if $x = y$ or $\alpha = 0$ or $1$.
+	
+	In general, $f$ is strictly convex if, for any set $\{x_j \in X \mid j \in \{1, \dots, k\}\}$ and for any $\{\alpha_j \in [0, 1] \mid j \in \{1, \dots, k\},\ \sum_{j = 1}^k{\alpha_j} = 1\}$, we have
+	\[
+		f\left(\sum_{j = 1}^k{\alpha_j x_j}\right) \leq \sum_{j = 1}^k{\alpha_j} f(x_j),
+	\]
+	with equality if and only if $x_1 = x_2 = \dots = x_k$ whenever $\alpha_j \neq 0$ for all $j = 1, \dots, k$.
+\end{definition}
+
+\begin{theorem} \label{thm:walters-4-2-xlogx-convex}
+	Let $f : [0, +\infty) \to \reals$ be the function defined by
+	\[
+		f(x) =
+		\begin{cases}
+			0, & \text{if } x = 0; \\
+			x\log{x}, & \text{if } x \neq 0.
+		\end{cases}
+	\]
+	Then $f$ is \emph{strictly convex}.
+	\begin{proof}
+		For $x > 0$ we have $f'(x) = 1 + \log{x}$ and $f''(x) = 1 / x$. Suppose that $y > x$ and let $\alpha \in (0, 1)$. In particular, this means that $x < \alpha x + (1 - \alpha)y < y$. Now $f$ is clearly continuous, and hence we may apply the Mean Value Theorem. So there exists $z \in (\alpha x + (1 - \alpha)y, y)$ such that
+		\[
+			f'(z) = \frac{f(y) - f(\alpha x + (1 - \alpha)y)}{y - \alpha x - (1 - \alpha)y},
+		\]
+		and so
+		\[
+			f(y) - f(\alpha x + (1 - \alpha)y) = f'(z)\alpha(y - x).
+		\]
+		
+		Similarly, there exists $w \in (x, \alpha x + (1 - \alpha)y)$ such that
+		\[
+			f(\alpha x + (1 - \alpha)y) - f(x) = f'(w)(1 - \alpha)(y - x).
+		\]
+		
+		Since $x > 0$, we have $f''(x) = 1 / x > 0$ and so $f'(z) > f'(w)$. Hence
+		\begin{align*}
+			&(1 - \alpha)(f(y) - f(\alpha x + (1 - \alpha)y)) = f'(z)\alpha(1 - \alpha)(y - x) \\
+			& \quad > f'(w)\alpha(1 - \alpha)(y - x) = \alpha(f(\alpha x + (1 - \alpha)y) - f(x)).
+		\end{align*}
+		Cancelling terms, this gives
+		\[
+			f(\alpha x + (1 - \alpha)y) < \alpha f(x) + (1 - \alpha)f(y)
+		\]
+		for $y > x > 0$. We may apply the same argument for $x, y \geq 0$ and $x \neq y$.
+	\end{proof}
+\end{theorem}
+
 \section{Gibbs measures}
 The follow result is used in the proof of Lemma \ref{lem:pp-prop-3-4}. First, we need to a definition.
 

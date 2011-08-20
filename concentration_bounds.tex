@@ -34,7 +34,7 @@ Again, this is consistent with the results in \hl{[Reference to entropy sections
 		h_k(\nu) := -\sum_{a_0^{k - 1} \in A^k}{\nu[a_0^{k - 1}] \log{\frac{\nu[a_0^{k - 1}]}{\nu[a_0^{k - 2}]}}}.
 	\]
 \end{definition}
-Let $\alpha = \{[a_0^{k - 1}] \mid a_0^{k - 1} \in A^k\}$ is the partition of $\Sigma$ by cylinders of length $k$, and $\gamma = \{[a_0^{k - 2}] \mid a_0^{k - 2} \in A^{k - 1}\}$ is the partition of $\Sigma$ by cylinders of length $k - 1$. Note that $[a_0^{k - 1}] \subset [a_0^{k - 2}]$ and hence for $C \in \gamma$,
+Let $\alpha = \{[a_0^{k - 1}] \mid a_0^{k - 1} \in A^k\}$ be the partition of $\Sigma$ by cylinders of length $k$, and $\gamma = \{[a_0^{k - 2}] \mid a_0^{k - 2} \in A^{k - 1}\}$ is the partition of $\Sigma$ by cylinders of length $k - 1$. Note that $[a_0^{k - 1}] \subset [a_0^{k - 2}]$ and hence for $C \in \gamma$,
 \[
 	[a_0^{k - 1}] \cap C =
 	\begin{cases}
@@ -331,7 +331,7 @@ In other words,
 	\lim_{k \to +\infty} \lim_{n \to +\infty}{\frac{1}{k} \hat{H}_k(x_0^{n - 1})} = h(\nu).
 \]
 
-We can actually remove one of these limits: Recall that $0 \leq h(\nu) \leq \log{|A|}$ and so we have
+We can actually remove one of these limits: By Proposition \ref{prop:walters-cor-4-2-1}, we easily see that $0 \leq h(\nu) \leq \log{|A|}$ and so we have
 \[
 	\frac{\log{n}}{\log{|A|}} \leq \frac{\log{n}}{h(\nu)}.
 \]

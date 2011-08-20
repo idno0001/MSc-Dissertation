@@ -192,104 +192,537 @@ The following result gives the conditions for which the converse of Theorem \ref
 
 As we mentioned briefly at the beginning of Section \ref{sec:isos-of-mpts}, we want to be able to decide when two measure-preserving transformations are `the same'. In view of the above discussion, `the same' can be replaced with `conjugate' or `isomorphic'. \key{Entropy} is one of the main conjugacy and isomorphism invariants studied in ergodic theory, and the remainder of this chapter will describe how the entropy of a measure-preserving transformation is defined.
 
-\emph{The rest of this chapter predominantly follows \cite[Chapter 4]{walters:intro-to-ergodic-theory}.}
+The rest of this chapter predominantly follows \cite[Chapter 4]{walters:intro-to-ergodic-theory} unless otherwise stated. In particular, any definitions relating to \emph{information} is derived from \cite[p33-34]{parry-pollicott:zeta-fns-periodic-orbits}
 
 \section{Entropy of partitions and sub-\texorpdfstring{$\sigma$}{sigma}-algebras}
-\hl{Things to define:}
+\hl{Explain what entropy of a partition means.}
+
+\hl{[p31-32]} We begin with a finite partition $\alpha = \{A_1, \dots, A_k\}$ of $(X, \B, \mu)$, i.e. the $A_j$ are pairwise disjoint and $X = \bigsqcup_{j = 1}^k{A_j}$. For clarity, we will denote partitions by the Greek letters, usually $\alpha, \beta$ or $\gamma$. Consider the collection of all elements of $\B$ such that their unions are elements of $\alpha$. Such a collection is a sub-$\sigma$-algebra of $\B$ and we will denote it by $\A(\alpha)$.
+
+On the other hand, consider a finite sub-$\sigma$-algebra $\C = \{C_1, \dots, C_n\}$ of $\B$. We will use script uppercase letters to denote sub-$\sigma$-algebras, usually $\A, \C$ or $\D$. We can form a partition of $X$ by $\{B_1, \dots, B_n\}$, where $B_j = C_j$ or $X \setminus C_j$. We denote this partition by $\alpha(\C)$.
+
+Note that if $C$ is a sub-$\sigma$-algebra of $\B$ and $\gamma$ is a partition of $X$, then $\A(\alpha(\C)) = \C$ and $\alpha(\A(\gamma)) = \gamma$. This means that there is a one-to-one correspondence between finite partitions of $X$ and finite sub-$\sigma$-algebras of $\B$. Hence, in a lot of cases, we may use ``partition'' and ``sub-$\sigma$-algebra'' interchangably.
+
+If $T: X \to X$ is a measure-preserving transformation and $n \geq 0$, then $T^{-n}{\alpha}$ denotes the partition $\{T^{-n}{A_1}, \dots, T^{-n}{A_k}\}$.
+
+\begin{definition}
+	Suppose that $\alpha, \gamma$ are finite partitions of $(X, \B, \mu)$. If each element of $\alpha$ can be written as the union of elements of $\gamma$, then we write \key{$\alpha \leq \gamma$}. In particular, we have $\alpha \leq \gamma$ if and only if $\A(\alpha) \subset \A(\gamma)$, and $\A \subset \C$ if and only if $\alpha(\A) \leq \alpha(\C)$.
+\end{definition}
+
+\begin{definition}
+	Let $\alpha = \{A_1, \dots, A_m\}$, $\gamma = \{C_1, \dots, C_n\}$ be two finite partitions of a measure space $(X, \B, \mu)$. We define their \key{join} $\alpha \join \gamma$ as the partition
+	\[
+		\alpha \join \gamma := \{A_j \cap C_k \mid 1 \leq j \leq m, 1 \leq k \leq n\}.
+	\]
+	If $\A, \C$ are finite sub-$\sigma$-algebras of $\B$, then we define the join $\A \join \C$ in the same way. If this is the case, then $\A \join \C$ is actually the smallest sub-$\sigma$-algebra of $\B$ containing both $\A$ and $\C$.
+	
+	It is clear that $\A \join \C$ is comprised of the unions of sets of the form $A \cap C$, where $A \in \A, C \in \C$.
+	
+	We also have the relations $\alpha(\A \join \C) = \alpha(\A) \join \alpha(\C)$ and $\A(\alpha \join \gamma) = \A(\alpha) \join \A(\gamma)$.
+\end{definition}
+
+\begin{remark}
+	If $(X,\B, \mu, T)$ is a measure-preserving transformation and $n \geq 0$, then $T^{-n}$ preserves set theoretic operations and so we have
 	\begin{enumerate}
-		\item join
-		\item notation for partitions, sub-sigma-algebra
+		\item $\alpha(T^{-n}) = T^{-n}{\alpha(\A)}$,
+		\item $\A(T^{-n}{\alpha}) = T^{-n}{\A(\alpha)}$,
+		\item $T^{-n}(A \join \C) = T^{-n}{\A} \join T^{-n}{\C}$,
+		\item $T^{-n}(\alpha \join \gamma) = T^{-n}{\alpha} \join T^{-n}{\gamma}$,
+		\item if $\alpha \leq \gamma$, then $T^{-n}{\alpha} \leq T^{-n}{\gamma}$,
+		\item if $\A \subset \C$, then $T^{-n}{\A} \subset T^{-n}{\C}$.
 	\end{enumerate}
+\end{remark}
 
-\dots
+\begin{definition}
+	Let $\alpha$ be a partition of $(X, \B, \mu)$. We define the information $I(\alpha) : X \to \reals^+$ of the partition $\alpha$ (or of the sub-$\sigma$-algebra $\A(\alpha)$) by
+	\[
+		I_\mu(\A(\alpha))(x) = I_\mu(\alpha)(x) := -\sum_{A \in \gamma}{\chi_A(x) \log{\mu(A)}}.
+	\]
+	We define the entropy $H_\mu(\alpha)$ of the partition $\alpha$ (or of the sub-$\sigma$-algebra $\A(\alpha)$) to be the average of the information, i.e.
+	\begin{align*}
+		H_\mu(\A(\alpha)) = H_\mu(\alpha) &:= \int{I(\alpha)\ d\mu} \\
+			&= \int{-\sum_{A \in \alpha}{\chi_A \log{\mu(A)}}\ d\mu} \\
+			&= -\sum_{A \in \alpha}{\mu(A) \log{\mu(A)}}.
+	\end{align*}
+	Whenever we use this definition and those derived from it, we will use the convention that $x \log x = 0$ if $x = 0$.
+\end{definition}
 
-Here is Theorem 4.2 from Walters. We use this in the final chapter and also in a proof in the appendix.
+\hl{Motivate what entropy of a partition means.}
 
-\begin{theorem} \label{thm:walters-4-2-xlogx-convex}
-	Let $f : [0, +\infty) \to \reals$ be the function defined by
-	\[
-		f(x) =
-		\begin{cases}
-			0, & \text{if } x = 0; \\
-			x\log{x}, & \text{if } x \neq 0.
-		\end{cases}
-	\]
-	Then $f$ is \emph{strictly convex}, i.e. for all $x, y \in [0, +\infty)$ we have
-	\[
-		f(\alpha x + (1 - \alpha)y) \leq \alpha f(x) + (1 - \alpha)f(y),
-	\]
-	for all $\alpha \in [0, 1]$, with equality if and only if $x = y$ or $\alpha = 0$ or $1$. We can generalise the notion of convexity as
-	\[
-		f\left(\sum_{j = 1}^k{\alpha_j x_j}\right) \leq \sum_{j = 1}^k{\alpha_j} f(x_j),
-	\]
-	where $x_j \in [0, +\infty)$, $\alpha_j \in (0, 1)$ such that $\sum_{j = 1}^k{\alpha_j} = 1$, and with equality if and only if the $x_j$ values are all equal whenever $\alpha_j \neq 0$ for all $j = 1, \dots, k$.
+It is useful to know that, given a partition of $(X, \B, \mu)$ into $k$ sets, we can find an upper bound for the entropy of the partition.
+
+\begin{proposition} \label{prop:walters-cor-4-2-1}
+	Let $\alpha = \{A_1, \dots, A_k\}$ be a partition of $(X, \B, \mu)$ into $k$ sets. Then $H_\mu(\alpha) \leq \log{k}$.
+	
+	In particular, we have $H_\mu(\alpha) = \log{k}$ if and only if $\mu(A_j) = 1 / k$ for all $j = 1, \dots k$.
+	
 	\begin{proof}
-		\hl{TODO. (notes p98)}
+		By Theorem \ref{thm:walters-4-2-xlogx-convex}, $x \log{x}$ is strictly convex. This means that for any partition $\alpha = \{A_1, \dots, A_k\}$ of $(X, \B, \mu)$ and for any $\{\lambda_j \in [0, 1] \mid j \in \{1, \dots, k\},\ \sum_{j = 1}^k{\lambda_j} = 1\}$, we have
+		\[
+			\left(\sum_{j = 1}^k{\lambda_j \mu(A_j)}\right) \log{\left(\sum_{j = 1}^k{\lambda_j \mu(A_j)}\right)} \leq \sum_{j = 1}^k{\lambda_j \mu(A_j) \log{\mu(A_j)}},
+		\]
+		with equality if and only if $\mu(A_1) = \mu(A_2) = \dots = \mu(A_k)$ whenever $\lambda_j \neq 0$ for all $j = 1, \dots, k$.
+		
+		Substituting in $\lambda_j = 1 / k$ for all $j = 1, \dots, k$ and rearranging, we get
+		\[
+			H_\mu(\alpha) = -\sum_{j = 1}^k{\mu(A_j) \log{\mu(A_j)}} \leq -\log{\frac{1}{k}} = \log{k},
+		\]
+		with equality if and only if $\mu(A_j) = 1 / k$ for all $j = 1, \dots, k$.
 	\end{proof}
-\end{theorem}
-
-\begin{corollary} \label{cor:walters-4-2-1}
-	\hl{TODO.}
-\end{corollary}
+\end{proposition}
 
 \hl{In particular, $\log{|A|}$ is an upper bound for entropy by partitions.}
 
-\dots
+\section{Conditional entropy}
+\subsection{Conditional expectation}
+\hl{Given a partition $\gamma$, we can define the conditional entropy of a partition $\A$\dots}
 
-\section{Conditional expectation}
+The definitions and results in this subsection follow those in \cite[p8-9]{walters:intro-to-ergodic-theory}.
 \begin{definition}
-	Conditional expectation operator $E(\seedot \mid \C) : L^1(X, \B, \mu) \to L^1(X, \C, \mu)$ is defined...
+	Suppose that $\mu, \nu$ are probability measures on a measurable space $(X, \B)$. If all sets $B \in \B$ with $\mu$-measure zero are also sets of $\nu$-measure zero, then we say that $\nu$ is \key{absolutely continuous} with respect to $\mu$. If this is the case, we write $\nu \ll \mu$.
+	
+	Stated alternatively, we have $\nu \ll \mu$ if, for all $B \in \B$ such that $\mu(B) = 0$, then $\nu(B) = 0$.
+	
+	Note that there may be more sets of $vu$-measure zero. In the case where $\nu \ll \mu$ and $\mu \ll \nu$, we say that $\mu$ and $\nu$ are \key{equivalent}.
 \end{definition}
 
-The operator $E(f \mid \C)$ is uniquely determined by the requirement that:
-\begin{enumerate}
-	\item $E(f \mid \C)$ is $\C$-measurable, and
-	\item for all $C \in \C$ we have
+\begin{theorem}[Radon-Nikodym Theorem] \label{thm:radon-nikodym}
+	Suppose that $\mu, \nu$ are probability measures on a measurable space $(X, \B)$. Then $v \ll \mu$ if and only if there exists a nonnegative $\mu$-integrable function $f \in L^1(X, \B, \mu)$ where $f \geq 0$, $\int{f\ d\mu} = 1$, such that $\nu(B) = \int_B{f\ d\mu}$ for all $B \in \B$.
+	
+	Moreover, the function $f$ is unique almost everywhere, i.e. if there exists another function $g$ which satisfies the above properties, then $f = g$ $\mu$-almost everywhere.
+\end{theorem}
+
+The Radon-Nikodym Theorem allows us to define the conditional expectation operator.
+
+\begin{definition}
+	Let $(X, \B, \mu)$ be a measure space and let $\C$ be a sub-$\sigma$-algebra of $\B$. The \key{conditional expectation} operator $E_\mu(\seedot \mid \C) : L^1(X, \B, \mu) \to L^1(X, \C, \mu)$ is defined as follows.
+	
+	If $f \in L^1(X, \B, \mu)$ is a nonnegative real-valued integrable function, then
 	\[
-	\int_C{f\ d\mu} = \int_C{E(f \mid \C)\ d\mu}.
+		\nu_f(C) = a^{-1}\int_C{f\ d\mu},
 	\]
+	for $C \in \C$, where $a = \int_X{f\ d\mu}$, defines a probability measure $\nu_f$ on $(X, \C)$ with $\nu_f \ll \mu$. By Theorem \ref{thm:radon-nikodym}, there exists a nonnegative function $E_\mu(f \mid \C) \in L^1(X, \C, \mu)$ such that $\int_C{E_\mu(f \mid \C)\ d\mu} = \int_C{f\ d\mu}$ for all $C \in \C$. Furthermore, $E_\mu(f \mid \C)$ is unique almost everywhere.
+	
+	If $f$ is a real-valued function, we consider the positive and negative parts of $f = f^+ - f^-$, where $f^+, f^- \geq 0$, and define $E_\mu(f \mid \C) := E_\mu(f^+ \mid \C) - E_\mu(f^- \mid \C)$.
+	
+	If $f$ is complex-valued, we take the real and imaginary parts of $f$ and define $E_\mu(f \mid \C)$ linearly as above.
+\end{definition}
+
+The conditional expectation operator $E_\mu(f \mid \C)$ is uniquely determined by the requirement that $E_\mu(f \mid \C)$ is $\C$-measurable, and also that
+\[
+	\int_C{f\ d\mu} = \int_C{E_\mu(f \mid \C)\ d\mu},
+\]
+for all $C \in \C$. With this in mind, we can think of $E_\mu(f \mid \C)$ as the best approximation of $f$ in the smaller space $\C$ of measurable functions.~\cite[Lecture 21]{ergodic-lectures}
+
+\subsubsection{Properties of \texorpdfstring{$E_\mu(\seedot \mid \C)$}{the conditional expectation operator}}
+\begin{enumerate}
+	\item Conditional expectation $E_\mu(\seedot \mid \C)$ is a linear operator. \label{cond-exp:1}
+	\item If $f \geq 0$, then $E_\mu(f \mid \C)$. \label{cond-exp:2}
+	\item If $f \in L^1(X, \B, \mu)$ and $g$ is a $\C$-measurable bounded function, then $E_\mu(fg \mid \C) = gE_\mu(f \mid \C)$. \label{cond-exp:3}
+	\item For $f \in L^1(X, \B, \mu)$, we have $|E_\mu(f \mid \C) \leq E_\mu(|f| \mid \C)$. \label{cond-exp:4}
+	\item If $\C_2 \subset \C_1$, then for $f \in L^1(X, \B, \mu)$, we have $E_\mu(E_\mu(f \mid \C_1) \mid \C_2) = E_\mu(f \mid \C_2)$. \label{cond-exp:5}
 \end{enumerate}
 
-We can think of $E(f \mid \C)$ as the best approximation of $f$ in the smaller space $\C$ of measurable functions.~\cite[Lecture 21]{ergodic-lectures}
+\begin{definition}
+	Let $\C \subset \B$ be a sub-$\sigma$-algebra of a $\sigma$-algebra $\B$. The \key{conditional probability} of $B \in \B$ given $\C$ is defined
+	\[
+		\mu(B \mid \C) := E_\mu(\chi_B \mid \C).
+	\]
+\end{definition}
 
-...
+\subsection{Conditional information and entropy}
+\hl{Motivation on p29-30.}
 
-\emph{The remainder of this chapter predominantly follows \cite[Chapter 4]{walters:intro-to-ergodic-theory}.}
+\hl{[See pages 34-35, 37-38, which describe how to derive the following definition.]}
 
-\section{Conditional entropy}
-\begin{theorem}\label{thm:walters-4.3}
+\begin{definition}
+	Let $(X, \B, \mu, T)$ be a measure-preserving transformation on a probability space. Suppose that $\alpha$ is a finite measurable partition of $X$ and that $\C \subset \B$ is a sub-$\sigma$-algebra of $\B$. We define the \key{conditional information} of $\alpha$ (or $\A(\alpha)$) given $\C$ by
+	\[
+		I_\mu(\A(\alpha) \mid \C) = I_\mu(\alpha \mid \C) := -\sum_{A \in \alpha}{\chi_A \log{\mu(A \mid \C)}}.
+	\]
+	
+	The \key{conditional entropy} of $\alpha$ given $\C$ is defined
+	\begin{align*}
+		H_\mu(\A(\alpha) \mid \C) = H_\mu(\alpha \mid \C) &:= \int{I_\mu(\alpha \mid \C)\ d\mu} \\
+			&= \int{-\sum_{A \in \alpha}{\chi_A \log{\mu(A \mid \C)}}\ d\mu} \\
+			&= \int{-\sum_{A \in \alpha}{E_\mu(\chi_A \mid \C) \log{\mu(A \mid \C)}}\ d\mu} \\
+			&= \int{-\sum_{A \in \alpha}{\mu(A \mid \C) \log{\mu(A \mid \C)}}\ d\mu}.
+	\end{align*}
+\end{definition}
+
+\hl{Special cases on p29.}
+
+\begin{theorem} \label{thm:walters-4.3}
 	Let $(X, \B, \mu)$ be a probability space and let $\A, \B, \D$ be finite sub-$\sigma$-algebras of $\B$. Suppose $T : X \to X$ is a measure-preserving transformation. Then
 	\begin{enumerate}
-		\item $H_\mu(\A \join \C \mid \D) = H_\mu(\A \mid \D) + H_\mu(\C \mid \A \join \D)$,
-		\item $H_\mu(\A \join \C) = H_\mu(\A) + H_\mu(\C \mid \A)$,
-		\item if $\A \subset \C$  then $H_\mu(\A \mid \D) \leq H_\mu(\C \mid \D)$,
-		\item if $\A \subset \C$  then $H_\mu(\A) \leq H_\mu(\C)$,
-		\item if $\C \subset \D$ then $H_\mu(\A \mid \C) \geq H_\mu(\A \mid \D)$,
-		\item $H_\mu(\A) \geq H_\mu(\A \mid \D)$,
-		\item $H_\mu(\A \join \C \mid \D) \leq H_\mu(\A \mid \D) + H_\mu(\C \mid \D)$,
-		\item $H_\mu(\A \join \C) \leq H_\mu(\A) + H_\mu(\C)$,
-		\item $H_\mu(T^{-1}\A \mid T^{-1}\C) = H_\mu(\A \mid \C)$,
-		\item $H_\mu(T^{-1}\A) = H_\mu(\A)$.
+		\item $H_\mu(\A \join \C \mid \D) = H_\mu(\A \mid \D) + H_\mu(\C \mid \A \join \D)$, \label{walters-thm-4.3:1}
+		\item $H_\mu(\A \join \C) = H_\mu(\A) + H_\mu(\C \mid \A)$, \label{walters-thm-4.3:2}
+		\item if $\A \subset \C$  then $H_\mu(\A \mid \D) \leq H_\mu(\C \mid \D)$, \label{walters-thm-4.3:3}
+		\item if $\A \subset \C$  then $H_\mu(\A) \leq H_\mu(\C)$, \label{walters-thm-4.3:4}
+		\item if $\C \subset \D$ then $H_\mu(\A \mid \C) \geq H_\mu(\A \mid \D)$, \label{walters-thm-4.3:5}
+		\item $H_\mu(\A) \geq H_\mu(\A \mid \D)$, \label{walters-thm-4.3:6}
+		\item $H_\mu(\A \join \C \mid \D) \leq H_\mu(\A \mid \D) + H_\mu(\C \mid \D)$, \label{walters-thm-4.3:7}
+		\item $H_\mu(\A \join \C) \leq H_\mu(\A) + H_\mu(\C)$, \label{walters-thm-4.3:8}
+		\item $H_\mu(T^{-1}\A \mid T^{-1}\C) = H_\mu(\A \mid \C)$, \label{walters-thm-4.3:9}
+		\item $H_\mu(T^{-1}\A) = H_\mu(\A)$. \label{walters-thm-4.3:10}
 	\end{enumerate}
 	\begin{proof}
-		Coming soon!
+		\hl{TODO.}
 	\end{proof}
 \end{theorem}
 
-...
+\begin{lemma} \label{lem:walters-4-6}
+	Suppose that $\A_1 \subset \A_2 \subset \dots \subset \A_n \subset \dots$ is an increasing sequence of sub-$\sigma$-algebras of $\B$, and write $\A := \bigjoin_{n = 1}^\infty{\A_n}$. Then for all $f \in L^2(X, \B, \mu)$ we have $\|E_\mu(f \mid \A_n) - E_\mu(f \mid \A)\|_2 \to 0$, as $n \to \infty$.
+	\begin{proof}
+		By definition, the operator $E_\mu(\seedot \mid \A_n)$ maps functions from from $L^2(X, \B, \mu)$ to $L^2(X, \A_n, \mu)$. We let $A \in \A$ and choose a sequence $A_n \in \A_n$ such that $\mu(A_n \symdiff A) \to 0$, as $n \to +\infty$. (This is possible because $\A_n$ is an increasing sequence.)
+		
+		Since $E_\mu(\chi_A \mid \A_n)$ is a best approximation to $\chi_A$ in $L^2(X, \A_n, \mu)$, we have
+		\[
+			\|E_\mu(\chi_A \mid \A_n) - \chi_A\|_2^2 \leq \|\chi_{B_n} - \chi_B\|_2^2 = \mu(B_n \symdiff B) \to 0,
+		\]
+		as $n \to +\infty$.
+		
+		The set of all finite linear combinations of characteristic functions are dense in $L^2(X, \A, \mu)$ and so for all $g \in L^2(X, \A, \mu)$, we have
+		\begin{equation} \label{fml:lem-4-6-star}
+			\|E_\mu(g \mid \A_n) - g\|_2 \to 0,
+		\end{equation}
+		as $n \to +\infty$. So if $f \in L^2(X, \B, \mu)$, then by property \ref{cond-exp:5} on page \pageref{cond-exp:5}, we have $E_\mu(E_\mu(f \mid \A) \mid \A_n) = E_\mu(f \mid \A_n)$ because $\A_n \subset \A$ for all $n \geq 1$. Hence by \eqref{fml:lem-4-6-star} we have
+		\[
+			\|E_\mu(f \mid \A_n) - E_\mu(f \mid \A)\|_2 = \|E_\mu(E_\mu(f \mid \A) \mid \A_n) - E_\mu(f \mid \A)\|_2 \to 0,
+		\]
+		as $n \to +\infty$.
+	\end{proof}
+\end{lemma}
 
-\begin{theorem}\label{thm:walters-4.12}
+We also have the following theorem.
+
+\begin{theorem}[Increasing Martingale Theorem] \label{thm:increasing-martingale}
+	Suppose that we have an increasing sequence $\A_1 \subset \A_2 \subset \dots \subset \A_n \subset \dots$ of sub-$\sigma$-algebras of $\B$ such that $\A_n \to \A$, as $n \to +\infty$. Then for all $f \in L^1(X, \B, \mu)$ we have
+	\begin{enumerate}
+		\item $E_\mu(f \mid \A_n) \to E_\mu(f \mid \A)$ $\mu$-almost everywhere, as $n \to +\infty$, and
+		\item $E_\mu(f \mid \A_n) \to E_\mu(f \mid \A)$ in $L_1$, as $n \to +\infty$.
+	\end{enumerate}
+\end{theorem}
+
+So far, our definitions and results only apply for \emph{finite} partitions and \emph{finite} sub-$\sigma$-algebras. By the following theorem, we can in fact extend these results for \emph{countable} partitions and sub-$\sigma$-algebras.
+
+\begin{theorem} \label{thm:walters-4-7}
+	Suppose that $\A$ is a \emph{finite} sub-$\sigma$-algebra of $\B$. Furthermore, suppose that $\C_1 \subset \C_2 \subset \dots \subset \C_n \subset \dots$ is an increasing sequence of sub-$\sigma$-algebras of $\B$, and put $\C:= \bigvee_{n = 1}^\infty{\C_n}$. Then $H_\mu(\A \mid \C_n) \to H_\mu(\A \mid \C)$, as $n \to +\infty$.
+	\begin{proof}
+		Let $\alpha(\A) = \{A_1, \dots, \A_k\}$. By Lemma \ref{lem:walters-4-6}, for $j = 1, \dots, k$, we have $\|E_\mu(\chi_{A_j} \mid \C_n) - E_\mu(\chi_{A_j} \mid \C)\|_2 \to 0$, as $n \to +\infty$. So $E_\mu(\chi_{A_j} \mid \C_n)$ converges in measure to $E_\mu(\chi_{A_j} \mid \C)$, i.e. given $\varepsilon > 0$, we have that
+		\[
+			\lim_{n \to +\infty}{\mu(\{x \in X \mid \left|E_\mu(\chi_{A_j} \mid \C_n)(x) - E_\mu(\chi_{A_j} \mid \C)(x)\right| \geq \varepsilon\}} = 0.
+		\]
+		So it is clear that $-\sum_{j = 1}^k{E_\mu(\chi_{A_j} \mid \C_n) \log{E_\mu(\chi_{A_j} \mid \C_n)}}$ also converges in measure to $-\sum_{j = 1}^k{E_\mu(\chi_{A_j} \mid \C) \log{E_\mu(\chi_{A_j} \mid \C)}}$.
+		
+		Since $E_\mu(\seedot \mid \C)$ is a positive, linear operator and since $\sum_{j = 1}^k{\chi_{A_j}} = 1$, we have $0 \leq E_\mu(\chi_{A_j} \mid \C)(x) \leq 1$ for $\mu$-almost every $x$. Hence
+		\begin{align*}
+			-\sum_{j = 1}^k{\mu(A_j \mid \C)(x) \log{\mu(A_j \mid \C)(x)}} &= -\sum_{j = 1}^k{E_\mu(\chi_{A_j} \mid \C)(x) \log{E_\mu(\chi_{A_j} \mid \C)(x)}} \\
+				&\leq k \max_{t \in [0, 1]}(-t \log{t}) \\
+				&= ke.
+		\end{align*}
+		So all functions of this form are bounded by $ke$ and hence converge in $L^1(\mu)$. Therefore, $H_\mu(\A \mid \C_n) \to H_\mu(\A \mid \C)$, as $n \to +\infty$.
+	\end{proof}
+\end{theorem}
+
+As a result of this theorem, given a countable (not necessarily finite) sub-$\sigma$-algebra $\C$, we can find an increasing sequence $\C_1 \subset \C_2 \subset \dots \subset \C_n \subset \dots$ such that $\C_n \to \C$, as $n \to +\infty$. We then apply Theorem \ref{thm:walters-4-7} and we see that any result involving finite sub-$\sigma$-algebras can be extended for countable sub-$\sigma$-algebras.
+
+\section{Entropy of measure-preserving transformations}
+\hl{From half-way down p28:}
+
+\hl{Motivation on p31.}
+
+\begin{definition}
+	Let $(X, \B, \mu, T)$ be a measure-preserving transformation of a probability space and let $\alpha$ be a finite partition of $X$.
+	
+	The \key{information of $T$ with respect to $\alpha$} (or $\A(\alpha)$) is defined
+	\[
+		I_\mu(T, \A(\alpha)) = I_\mu(T, \alpha) := I_\mu\left(\alpha \midmid \bigjoin_{j = 1}^\infty {T^{-j}{\alpha}}\right).
+	\]
+	
+	The \key{entropy of $T$ with respect to $\alpha$} is defined
+	\[
+		h_\mu(T, \A(\alpha)) = h_\mu(T, \alpha) := H_\mu\left(\alpha \midmid \bigjoin_{j = 1}^\infty {T^{-j}{\alpha}}\right).
+	\]
+\end{definition}
+
+\begin{theorem} \label{thm:walters-4.12}
 	Let $\A, \C$ be finite sub-algebras of $\B$ and let $T$ be a measure-preserving transformation of a probability space $(X, \B, \mu)$ Then
 	\begin{enumerate}
-		\item $h_\mu(T, \A) \leq H_\mu(\A)$,
-		\item $h_\mu(T, \A \join \C) \leq h_\mu(T, \A) + h_\mu(T, \C)$,
-		\item if $\A \subset \C$ then $h_\mu(T, \A) \leq h_\mu(T, \C)$,
-		\item $h_\mu(T, \A) \leq h_\mu(T, \C) + H_\mu(\A \mid \C)$,
-		\item $h_\mu(T, T^{-1}{\A}) = h_\mu(T, \A)$,
-		\item if $k \geq 1$ then $h_\mu(T, \A) = h_\mu\left(T, \bigjoin\limits_{i = 0}^{k - 1}{T^{-i}{\A}}\right)$,
-		\item if $T$ is invertible and $k \geq 1$ then $h_\mu(T, \A) = h_\mu\left(T, \bigjoin\limits_{i = -k}^k{T^{-i}{\A}}\right)$.
+		\item $h_\mu(T, \A) \leq H_\mu(\A)$, \label{walters:thm-4-12:1}
+		\item $h_\mu(T, \A \join \C) \leq h_\mu(T, \A) + h_\mu(T, \C)$, \label{walters:thm-4-12:2}
+		\item if $\A \subset \C$ then $h_\mu(T, \A) \leq h_\mu(T, \C)$, \label{walters:thm-4-12:3}
+		\item $h_\mu(T, \A) \leq h_\mu(T, \C) + H_\mu(\A \mid \C)$, \label{walters:thm-4-12:4}
+		\item $h_\mu(T, T^{-1}{\A}) = h_\mu(T, \A)$, \label{walters:thm-4-12:5}
+		\item if $k \geq 1$ then $h_\mu(T, \A) = h_\mu\left(T, \bigjoin\limits_{j = 0}^{k - 1}{T^{-j}{\A}}\right)$, \label{walters:thm-4-12:6}
+		\item if $T$ is invertible and $k \geq 1$ then $h_\mu(T, \A) = h_\mu\left(T, \bigjoin\limits_{j = -k}^k{T^{-j}{\A}}\right)$. \label{walters:thm-4-12:7}
 	\end{enumerate}
 	\begin{proof}
 		Coming soon!
 	\end{proof}
 \end{theorem}
+
+There is an alternative defintion for $h_\mu(T, \alpha)$. To show state this, we need the following results.
+
+\begin{theorem} \label{thm:walters-4-9}
+	Let $(a_n)_{n = 1}^\infty$ be a sequence of real numbers such that $a_{n + p} \leq a_n + a_p$ for all $n, p \geq 1$. Then $\lim_{n \to +\infty}(a_n / n)$ exists and equals $\inf_{n \geq 1}(a_n / n)$.
+	
+	This limit could be $-\infty$, but if $a_n$ is bounded below then, by the properties of the sequence, the limit is non-negative.
+	\begin{proof}
+		Fix $p \geq 1$. We can write $n = kp + j$ for some $0 \leq j < p$, and then
+		\[
+			\frac{a_n}{n} = \frac{a_{kp + j}}{kp + j} \leq \frac{a_j}{kp} + \frac{a_{kp}}{kp} \leq \frac{a_j}{kp} + \frac{ka_p}{kp} = \frac{a_j}{kp} + \frac{a_p}{p}.
+		\]
+		We have that $k \to +\infty$, as $n \to +\infty$, and so
+		\[
+			\frac{a_j}{kp} \to 0,
+		\]
+		as $n \to +\infty$. Putting the above result together, we have
+		\[
+			\limsup_{n \to +\infty}{\frac{a_n}{n}} \leq \frac{a_p}{p}.
+		\]
+		Since $p$ is fixed, we have
+		\[
+			\limsup_{n \to +\infty}{\frac{a_n}{n}} \leq \inf_{p \geq 1}{\frac{a_p}{p}}.
+		\]
+		On the other hand, it is clear that
+		\[
+			\inf_{p \geq 1}{\frac{a_p}{p}} \leq \liminf_{n \to +\infty}{\frac{a_n}{n}}.
+		\]
+		Therefore
+		\[
+			\lim_{n \to +\infty}{\frac{a_n}{n}}
+		\]
+		exists and is equal to the infimum.
+	\end{proof}
+\end{theorem}
+
+\begin{corollary} \label{cor:walters-4-9-1}
+	Let $T : X \to X$ be a measure-preserving transformation and suppose that $\A$ is a finite sub-$\sigma$-algebra of $\B$. Then
+	\[
+		\lim_{n \to +\infty}{\frac{1}{n} H_\mu\left(\bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right)}
+	\]
+	exists.
+	\begin{proof}
+		Let the sequence $(a_n)_{n = 1}^\infty$ be defined by $a_n = H_\mu\left(\bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) \geq 0$. For any $n, p \geq 1$ we have
+		\begin{align*}
+			a_{n + p} &= H_\mu\left(\bigjoin_{j = 1}^{n + p - 1}{T^{-j}{\A}}\right) \\
+				&\leq H_\mu\left(\bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) + H_\mu\left(\bigjoin_{j = n}^{n + p - 1}{T^{-j}{\A}}\right) & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:8})} \\
+				&= a_n + H_\mu\left(\bigjoin_{j = 1}^{p - 1}{T^{-j}{\A}}\right) & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:10})} \\
+				&= a_n + a_p.
+		\end{align*}
+		By Theorem \ref{thm:walters-4-9}, the limit of $a_n$ exists and hence
+		\[
+			\lim_{n \to +\infty}{\frac{1}{n} H_\mu\left(\bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right)}
+		\]
+		exists.
+	\end{proof}
+\end{corollary}
+
+We may now give an alternative definition for entropy of a measure-preserving transformation $T$ with respect to a partition $\alpha$.
+
+\begin{theorem}
+	Suppose that $(X, \B, \mu, T)$ is a measure-preserving transformation of a probability space and that $\alpha$ be a finite partition of $X$. Let $\A := \A(\alpha)$. The entropy of $T$ with respect to $\alpha$ (or $\A$) may also be given by
+	\[
+		h_\mu(T, \A(\alpha)) = h_\mu(T, \alpha) = \lim_{n \to +\infty}{\frac{1}{n} H_\mu\left(\bigjoin_{j = 0}^{n - 1}{}T^{-j}{\alpha}\right)}.
+	\]
+	\begin{proof}
+		We follow the proof given in \cite[Lecture 24]{ergodic-lectures}.
+		
+		We have
+		\begin{align*}
+			H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) &= H_\mu\left(\bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) + H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:2})} \\
+				&= H_\mu\left(\bigjoin_{j = 0}^{n - 2}{T^{-j}{\A}}\right) + H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:10})}.
+		\end{align*}
+		By induction, this means that
+		\begin{align*}
+			\frac{1}{n} H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) &= \frac{1}{n}\left[H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 2}{T^{-j}{\A}}\right) + H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 3}{T^{-j}{\A}}\right)\right. \\
+				& \left. \vphantom{\bigjoin_{j = 1}^{n - 2}{T^{-j}{\A}}} \qquad + \dots + H_\mu(\A \mid T^{-1}{\A}) + H_\mu(\A)\right].
+		\end{align*}
+		By Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:5} we have
+		\[
+			H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) \leq H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 2}{T^{-j}{\A}}\right) \leq \dots \leq H_\mu(\A).
+		\]
+		We may now apply Theorem \ref{thm:increasing-martingale} to get that
+		\[
+			H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) \to H_\mu\left(\A \midmid \bigjoin_{j = 1}^\infty{T^{-j}{\A}}\right),
+		\]
+		as $n \to +\infty$, and therefore
+		\begin{align*}
+			\lim_{n \to +\infty}{\frac{1}{n} H_\mu\left(\bigjoin_{j = 0}^{n - 1}{}T^{-j}{\A}\right)} &= \lim_{n \to +\infty}{H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right)} = h_\mu(T, \A).
+		\end{align*}
+		By Corollary \ref{cor:walters-4-9-1}, this is well-defined.
+	\end{proof}
+\end{theorem}
+
+\begin{definition}
+	Let $(X, \B, \mu, T)$ be a measure-preserving transformation of a probability space. The \key{entropy of $T$} is defined
+	\[
+		h_\mu(T) := \sup_{\alpha}{h_\mu(T, \alpha)} = \sup_{\A}{h_\mu(T, \A)},
+	\]
+	where the supremum is taken over all finite measurable partitions $\alpha$ or finite sub-$\sigma$-algebras of $\B$, respectively.
+\end{definition}
+
+\begin{theorem}
+	Entropy is a conjugacy invariant and hence is also an isomorphism invariant.
+	\begin{proof}
+		Let $(X_1, \B_1, \mu_1, T_1), (X_2, \B_2, \mu_2, T_2)$ be measure-preserving transformations of probability spaces. Let $\Phi : (\tilde{B}_2, \tilde{\mu}_2) \to (\tilde{B}_1, \tilde{\mu}_1)$ be an isomorphism of measure algebras such that $\Phi \circ \tilde{T}_2^{-1} = \tilde{T}_1^{-1} \circ \Phi$. We aim to show that $h_{\mu_1}(T_1) = h_{\mu_2}(T_2)$.
+		
+		Let $\A_2$ be an arbitrary finite sub-$\sigma$-algebra of $\B_2$ and write $\alpha(\A_2) = \{A_1, \dots, A_r\}$. Since $\Phi$ is an isomorphism of measure algebras, we can choose $C_j \in \B_1$ such that $\tilde{C}_j = \Phi(\tilde{A}_j)$. Using this, we define $\gamma := \{C_1, \dots, C_r\}$, which we see is a partition of $(X_1, \B_1, \mu_1)$. We write $\A_1 := \A(\gamma)$.
+		
+		For any $(q_0, q_1, \dots, q_{n - 1})$, where $q_j \in \{1, \dots, r\}$ for each $j$, we have
+		\begin{align*}
+			\Phi\left(\bigcap_{j = 0}^{n - 1}{(T_2^{-j} A_{q_j})^\sim}\right) &= \Phi\left(\bigcap_{j = 0}^{n - 1}{\tilde{T}_2^{-j} \tilde{A}_{q_j}}\right) \\
+				&= \bigcap_{j = 0}^{n - 1}{\tilde{T}_1^{-j} \Phi(\tilde{A}_{q_j})} \\
+				&= \bigcap_{j = 0}^{n - 1}{\tilde{T}_1^{-j} \tilde{C}_{q_j}} \\
+				&= \bigcap_{j = 0}^{n - 1}{(T_1^{-j} C_{q_j})^\sim}.
+		\end{align*}
+		Hence the sets $\bigcap_{j = 0}^{n - 1}{(T_2^{-j} A_{q_j})^\sim}$ and $\bigcap_{j = 0}^{n - 1}{(T_1^{-j} C_{q_j})^\sim}$ have the same measure. Recall that the entropy of a partition is completely determined by the measure of the elements in the partition. This means that
+		\[
+			H_{\mu_1}\left(\bigjoin_{j = 0}^{n - 1}{T_1^{-j}{\A_1}}\right) = H_{\mu_2}\left(\bigjoin_{j = 0}^{n - 1}{T_2^{-j}{\A_2}}\right),
+		\]
+		and hence $h_{\mu_1}(T_1, \A_1) = h_{\mu_2}(T_2, \A_2)$. Since $\A_2$ was chosen to be an arbitrary sub-$\sigma$-algebra of $\B_1$, this means that $h_{\mu_1}(T_1) \geq h_{\mu_2}(T_2)$.
+		
+		We repeat the proof, but choose an arbitrary finite sub-$\sigma$-algebra of $\B_1$ to get the reverse inequality $h_{\mu_1}(T_1) \leq h_{\mu_2}(T_2)$, and hence $h_{\mu_1}(T_1) = h_{\mu_2}(T_2)$.
+	\end{proof}
+\end{theorem}
+
+\section{Calculating \texorpdfstring{$h(T)$}{h(T)}}
+Recall that the entropy of a measure-preserving transformation $T$ is defined $h_\mu(T) := \sup_{\alpha}{h_\mu(T, \alpha)}$, where the supremum is taken over all finite partitions of $(X, \B, \mu)$ (or, equivalently, over all finite sub-$\sigma$-algebras of $\B$). Of course, it is difficult to consider all finite partitions, so we want to find criteria which guarantee that $h_\mu(T) = h_\mu(T, \alpha)$ instead.
+
+One key result is the \key{Kolmogorov-Sinai Theorem}. We will prove this in Theorem \ref{thm:kolmogorov-sinai}, but to do this we need some preliminary results.
+
+\begin{lemma} \label{lem:walters-4-15}
+	Let $r \in \naturals$ be fixed and let $\varepsilon > 0$ be given. Then there exists $\delta > 0$ such that, if we have two partitions of $r$ sets $\alpha = \{A_1, \dots, A_r\}$, $\gamma = \{C_1, \dots, C_r\}$ of $(X, \B, \mu)$ such that
+	\[
+		\sum_{j = 1}^r{\mu(A_j \symdiff C_j)} < \delta,
+	\]
+	then we have $H_\mu(\alpha \mid \gamma) + H_\mu(\gamma \mid \alpha) < \varepsilon$.
+	\begin{proof}
+		Let $\varepsilon > 0$ be given. We choose $\delta > 0$ such that $\delta < 1 / 4$ and
+		\[
+			-r(r - 1) \delta \log{\delta} - (1 - \delta) \log(1 - \delta) < \frac{\varepsilon}{2}.
+		\]
+		
+		Let $\beta$ be the partition of $(X, \B, \mu)$ consisting of the sets of the form $A_j \cap C_k$, where $j \neq k$, and the set $\bigcup_{j = 1}^r{A_j \cap C_j}$. It is then clear that $\alpha \join \gamma = \gamma \join \beta$. For $j \neq k$, we also have
+		\[
+			A_j \cap C_k \subset \bigcup_{n = 1}^r{A_n \symdiff C_n}.
+		\]
+		This gives, by the hypothesis, $\mu(A_j \cap C_k) < \delta$ for $j \neq k$. By the definition of symmetric difference, we also have
+		\[
+			\mu\left(\bigcup_{j = 1}^r{A_j \cap C_j}\right) > 1 - \delta.
+		\]
+		Hence
+		\begin{align*}
+			H_\mu(\beta) &= -\sum_{j \neq k}{\mu(A_j \cap C_k) \log{\mu(A_j \cap C_k)}} - \mu\left(\bigcup_{j = 1}^r{A_j \cap C_j}\right) \log{\mu\left(\bigcup_{j = 1}^r{A_j \cap C_j}\right)} \\
+				&< -r(r - 1) \delta \log{\delta} - (1 - \delta) \log(1 - \delta) \\
+				&< \frac{\varepsilon}{2}.
+		\end{align*}
+		We therefore have
+		\begin{align*}
+			H_\mu(\gamma) + H_\mu(\alpha \mid \gamma) &= H_\mu(\alpha \join \gamma) & \text{(by Thorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:2})} \\
+				&= H_\mu(\gamma \join \beta) \\
+				&\leq H_\mu(\gamma) + H_\mu(\beta) & \text{(by Thorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:8})} \\
+				&< H_\mu(\gamma) + \frac{\varepsilon}{2},
+		\end{align*}
+		and hence $H_\mu(\alpha \mid \gamma) < \varepsilon / 2$.
+		
+		We repeat this argument using $\alpha \join \gamma = \alpha \join \beta$ to get $H_\mu(\gamma \mid \alpha) < \varepsilon / 2$. Combining these two results, we get $H_\mu(\alpha \mid \gamma) + H_\mu(\gamma \mid \alpha) < \varepsilon$.
+	\end{proof}
+\end{lemma}
+
+\begin{theorem} \label{thm:walters-4-16}
+	Suppose that $\C$ is a finite sub-$\sigma$-algebra of $\B$ and that $\B_0$ is an algebra such that $\B(\B_0) = \B$ $\mu$-almost everywhere. Then given any $\varepsilon > 0$, there exists a finite algebra $\D \subset \B_0$ such that
+	\[
+		H_\mu(\D \mid \C) + H_\mu(\C \mid \D) < \varepsilon.
+	\]
+	
+	\begin{proof}
+		Let $\varepsilon > 0$ be given and write $\alpha(\C) = \{C_1, \dots, C_r\}$. We choose $\delta > 0$ as in Lemma \ref{lem:walters-4-15}, where $r, \varepsilon$ here are the same as in the lemma. It suffices to show that, for each $\tau > 0$, there exists a partition $\D = \{D_1, \dots, D_r\}$, where $D_j \in \B_0$ and $\mu(C_j \symdiff D_j) < \tau$, for all $j = 1, \dots, r$. This is because we may then choose $\tau$ such that $r\tau \leq \delta$ and then apply Lemma \ref{lem:walters-4-15}.
+		
+		To begin, we choose $\lambda > 0$ such that $\lambda(r - 1)[1 + r(r - 1)] < \tau$. For each $j = 1, \dots, r$, choose $B_j \in \B_0$ such that $\mu(C_j \symdiff B_j) < \lambda$. Now if $j \neq k$, then $B_j \cap B_k \subset (B_j \symdiff C_j) \cup (\B_j \symdiff C_j)$. It follows that $\mu(B_j \cap B_k) < 2\lambda$. We let $N := \bigcup_{j \neq k}{(B_j \cap B_k)}$, so that $\mu(N) < r(r - 1)\lambda$.
+		
+		Now for $j = 1, \dots, r - 1$ we define $D_j = B_j \setminus N$, and $D_r = X \setminus \bigcup_{j = 1}^{r - 1}{D_j}$. This clearly defines a partition $\D := \{D_1, \dots, D_r\}$ of $X$, and each $D_j \in \B_0$, since $\B_0$ is an algebra (i.e. is closed under finite unions and complementation).
+		
+		If $j < r$, then $D_j \symdiff C_j \subset (B_j \symdiff C_j) \cup N$. Then by countable subadditivity,
+		\begin{align*}
+			\mu(D_j \symdiff C_j) &\leq \mu(B_j \symdiff C_j) + \mu(N) \\
+				&< \lambda + r(r - 1)\lambda \\
+				&= \lambda[1 + r(r - 1)] \\
+				&< \tau.
+		\end{align*}
+		For the last part of $\D$, we use the fact that $D_r \symdiff C_r \subset \bigcup_{j = 1}^{r - 1}{(D_j \symdiff C_j)}$. Then $\mu(D_r \symdiff C_r) < (r - 1)\lambda[1 + r(r - 1)] < \tau$.
+	\end{proof}
+\end{theorem}
+
+\begin{corollary} \label{cor:walters-4-16-1}
+	Let $\A_1 \subset \A_2 \subset \dots \subset \A_n \subset \dots$ be an increasing sequence of finite sub-algebras of $\B$. Suppose that $\C$ is a finite sub-algebra of $\B$ such that $\C \subset \bigjoin_{n \geq 1}{\A_n}$ $\mu$-almost everywhere. Then $H_\mu(\C \mid \A_n) \to 0$, as $n \to +\infty$.
+	
+	Note: We say that $\A \subset \C$ $\mu$-almost everywhere if, for all $A \in \A$, there exists $C \in \C$ such that $\mu(A \symdiff C) = 0$.
+	
+	\begin{proof}
+		Let $\varepsilon > 0$ be given. Write $\B_0 := \bigcup_{n = 1}^\infty{\A_n}$ so that $\B_0$ is an algebra. Since $\C \subset \bigjoin_{n \geq 1}{\A_n}$ $\mu$-almost everywhere, we have $\C \subset \B(\B_0)$ $\mu$-almost everywhere. By Theorem \ref{thm:walters-4-16}, there exists a finite sub-algebra $\D_\varepsilon$ of $\B_0$ such that $H_\mu(\C \mid \D_\varepsilon) < \varepsilon$.
+		
+		Since $\A_n$ is increasing and $\D_\varepsilon$ is finite, we have $\D_\varepsilon \subset A_{n_0}$ for some $n_0 \in \naturals$. Then for all $n \geq n_0$, we have
+		\[
+			H_\mu(\C \mid \A_n) \leq H_\mu(\C \mid \A_{n_0}) \leq H_\mu(\C \mid \D_\varepsilon) < \varepsilon.
+		\]
+		Hence $H_\mu(\C \mid \A_n) \to 0$, as $n \to +\infty$.
+	\end{proof}
+\end{corollary}
+
+We are ready to prove one of the main results of this chapter.
+
+\begin{theorem}[Kolmogorov-Sinai Theorem] \label{thm:kolmogorov-sinai}
+	Let $T : X \to X$ be an invertible measure-preserving transformation of a probability space $(X, \B, \mu)$. Suppose that $\A$ is a finite sub-$\sigma$-algebra of $\B$ such that
+	\[
+		\bigjoin_{n = -\infty}^\infty{T^{-n}{\A}} = \B
+	\]
+	$\mu$-almost everywhere. Then $h_\mu(T) = h_\mu(T, \A)$.
+	
+	\begin{proof}
+		Let $\C$ be a finite sub-$\sigma$-algebra of $\B$. We want to show that $h_\mu(T, \C) \leq h_\mu(T, \A)$, i.e. $h_\mu(T, \A)$ achieves the supremum as in the definition of $h_\mu(T)$. We have
+		\begin{align*}
+			h_\mu(T, \C) &\leq h_\mu\left(T, \bigjoin_{j = -n}^n{T^{-j}{\A}}\right) + H_\mu\left(\C \midmid \bigjoin_{j = -n}^n{T^{-j}{\A}}\right) & \text{(by Theorem \ref{thm:walters-4.12} \ref{walters:thm-4-12:4})} \\
+				&= h_\mu(T, \A) + H_\mu\left(\C \midmid \bigjoin_{j = -n}^n{T^{-j}{\A}} \right) & \text{(by Theorem \ref{thm:walters-4.12} \ref{walters:thm-4-12:7})}
+		\end{align*}
+		We let $\A_n := \bigjoin_{j = -n}^n{T^{-j}{\A}}$ so that $\A_n$ is an increasing sequence of finite sub-algebras of $\B$. Since $\bigjoin_{n = -\infty}^\infty{T^n{\A}} = \B$ $\mu$-almost everywhere, and $\C \subset \B$, we may apply Corollary \ref{cor:walters-4-16-1}. So $H_\mu(\C \mid \A_n) \to 0$, as $n \to +\infty$, and hence $h_\mu(T, \C) \leq h_\mu(T, \A)$.
+	\end{proof}
+\end{theorem}
+
+There is a similar result which does not require that $T$ is invertible.
+
+\begin{theorem} \label{thm:walters-4-18}
+	Let $T : X \to X$ be a (not necessarily invertible) measure-preserving transformation of a probability space $(X, \B, \mu)$. Suppose that $\A$ finite sub-algebra of $\B$ such that
+	\[
+		\bigjoin_{n = 0}^\infty{T^{-n}{\A}} = \B
+	\]
+	$\mu$-almost everywhere. Then $h_\mu(T) = h_\mu(T, \A)$.
+	
+	\begin{proof}
+		We repeat the same proof for Theorem \ref{thm:kolmogorov-sinai}, but replace $\bigjoin_{j = -n}^n{T^{-j}{\A}}$ with $\bigjoin_{j = 0}^n{T^{-j}{\A}}$ and apply Theorem \ref{thm:walters-4.12} \ref{walters:thm-4-12:6} instead of \ref{walters:thm-4-12:7}.
+	\end{proof}
+\end{theorem}
+
+The following result gives a useful criterion for deciding if an invertible measure-preserving transformation has zero entropy.
+
+\begin{corollary}
+	Suppose that $T : X \to X$ is an invertible measure-preserving transformation of a probability space $(X, \B, \mu)$, and that
+	\[
+		\bigjoin_{n = 0}^\infty{T^{-n}{\A}} = \B
+	\]
+	$\mu$-almost everywhere for some finite sub-algebra $\A$ of $\B$. Then $h_\mu(T) = 0$.
+	
+	\begin{proof}
+		By Theorem \ref{thm:walters-4-18}, we have
+		\[
+			h_\mu(T) = h_\mu(T, \A) = \lim_{n \to +\infty}{H_\mu\left(\A \midmid \bigjoin_{j = 1}^n{T^{-j}{\A}}\right)}.
+		\]
+		Since $T$ is a measure-preserving transformation, we have $\bigjoin_{j = 1}^\infty{T^{-j}{\A}} = T^{-1}{\B} = \B$ $\mu$-almost everywhere.
+		
+		We write $\A_n := \bigjoin_{j = 1}^\infty{T^{-j}{\A}}$, so that $\A_n$ is an increasing sequence of sub-algebras of $\B$, and $\bigjoin_{n = 1}^\infty{\A_n} = \B$ $\mu$-almost everywhere. In particular, for all $n \geq 1$ we have $\A \subset \A_n$ $\mu$-almost everywhere and so we may apply Corollary \ref{cor:walters-4-16-1}. So $H_\mu(\A \mid \A_n) \to 0$, as $n \to +\infty$. Hence $h_\mu(T) = 0$.
+	\end{proof}
+\end{corollary}
+
+\section{Shifts of finite type}
+(Move the background from CM chapter here, explain why stuff makes sense.)
