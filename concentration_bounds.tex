@@ -1,63 +1,10 @@
 \chapter[Concentration bounds for entropy estimation]{Concentration bounds for entropy estimation of Gibbs measures}\label{chap:concentration-bounds}
 \section{Overview}
-We now have the required background knowledge to discuss \cite{chazottes-maldonado:cbfee}, which is concerned with methods for estimating entropy of Gibbs measures. In particular, we will show that these methods yield estimated entropy values which concentrate around the actual value of entropy.
+We now have the required background knowledge to discuss \cite{chazottes-maldonado:cbfee}, which is concerned with methods for estimating the entropy of Gibbs measures. In particular, we will show that these methods yield estimated entropy values which concentrate around the actual value of entropy.
 
 \section{Restrictions and notation}
 \subsection{Full shifts}
-Let $A$ be a finite alphabet. Throughout this chapter, $\Sigma = \{(x_j)_{j = 0}^\infty \mid x_j \in A\}$ will denote the full (one-sided) shift. As usual, $\sigma : \Sigma \to \Sigma$ will be the (one-sided) shift map.
-
-For the sake of readability, if $(x_j)_{j = 0}^\infty \in \Sigma$, then will write $x_m^n := (x_j)_{j = m}^n$.
-
-\subsection{Entropy}
-\begin{definition}
-	Let $\nu$ be a $\sigma$-invariant probability measure on $\Sigma$. For shifts of finite type, for $k > 1$ we can define the \key{$k$-block entropy} of $\nu$ by
-	\[
-		H_k(\nu) = -\sum_{a_0^{k - 1} \in A^k}{\nu[a_0^{k - 1}] \log\nu[a_0^{k - 1}]},
-	\]
-	where the sum is taken over all sequences of length $k$.
-\end{definition}
-If we let $\alpha$ be the partition of $(\Sigma, \B, \nu)$ by cylinders of length $k$, then by the earlier definition in Section \hl{[Reference to section on entropy of partitions]} we have
-\[
-	H(\alpha) = -\sum_{a_0^{k - 1} \in A^k}{\nu[a_0^{k - 1}] \log\nu[a_0^{k - 1}]} = H_k(\nu).
-\]
-This shows that the definition of $k$-block entropy is consistent.
-
-We can also define the \key{entropy} of $\nu$ in terms of $k$-block entropy by
-\[
-	h(\nu) = \lim_{k \to +\infty}\frac{H_k(\nu)}{k}.
-\]
-Again, this is consistent with the results in \hl{[Reference to entropy sections]} because cylinder sets generate the Borel $\sigma$-algebra of $\Sigma$, and we may then apply \hl{[General version of K-S theorem]}.
-
-\begin{definition}
-	The \key{conditional $k$-block entropy}, where $k \geq 2$, is defined
-	\[
-		h_k(\nu) := -\sum_{a_0^{k - 1} \in A^k}{\nu[a_0^{k - 1}] \log{\frac{\nu[a_0^{k - 1}]}{\nu[a_0^{k - 2}]}}}.
-	\]
-\end{definition}
-Let $\alpha = \{[a_0^{k - 1}] \mid a_0^{k - 1} \in A^k\}$ be the partition of $\Sigma$ by cylinders of length $k$, and $\gamma = \{[a_0^{k - 2}] \mid a_0^{k - 2} \in A^{k - 1}\}$ is the partition of $\Sigma$ by cylinders of length $k - 1$. Note that $[a_0^{k - 1}] \subset [a_0^{k - 2}]$ and hence for $C \in \gamma$,
-\[
-	[a_0^{k - 1}] \cap C =
-	\begin{cases}
-		\left[a_0^{k - 1}\right],	& \text{if } C = [a_0^{k - 2}]; \\
-		\emptyset,	& \text{otherwise}.
-	\end{cases}
-\]
-Then by the definition of conditional entropy in Section \hl{[Reference to section on conditional entropy]}, we have
-\begin{align*}
-	H(\alpha \mid \gamma) &= -\sum_{a_0^{k - 1}}{\nu([a_0^{k - 2}] \cap [a_0^{k - 1}]) \log{\frac{[a_0^{k - 2}] \cap [a_0^{k - 1}]}{[a_0^{k - 2}]}}} \\
-		&= -\sum_{a_0^{k - 1}}{\nu[a_0^{k - 1}] \log{\frac{[a_0^{k - 1}]}{[a_0^{k - 2}]}}} \\
-		&= h_k(\nu),
-\end{align*}
-so the definitions are consistent.
-
-For $k \geq 2$, we also clearly have the relation $h_k(\nu) = H_k(\nu) - H_{k - 1}(\nu)$.
-
-\begin{definition}
-	For $k \geq 1$, the \key{$k$-block relative entropy} of a measure $\nu$ with respect to a measure $\mu$ is defined
-	\[
-		H_k(\nu \mid \mu) = \sum_{a_0^{k - 1} \in A^k}{\nu[a_0^{k - 1}] \log{\frac{\nu[a_0^{k - 1}]}{\mu[a_0^{k - 1}]}}}.
-	\]
-\end{definition}
+Let $A$ be a finite alphabet. Throughout this chapter, $\Sigma = \{(x_j)_{j = 0}^\infty \mid x_j \in A\}$ will denote the full (one-sided) shift with the (one-sided) shift map $\sigma : \Sigma \to \Sigma$. Once again, we will write $x_m^n := (x_j)_{j = m}^n$. We will use the definitions from Section \ref{sec:entropy:sft}.
 
 \subsection{Gibbs measures}
 Let $\phi \in F_\theta$. Recall that if there exist constants $C = C(\phi) > 1$, $P = P(\phi)$ such that
@@ -82,7 +29,7 @@ We will use and prove some results related to a couple of basic ideas in probabi
 \begin{definition}
 	The \key{expectation} of a continuous function $f : X \to \reals$ with respect to a probability measure $\mu$ is given by
 	\[
-		E_\mu(f) = \int{f\ d\mu}.
+		E_\mu(f) := \int{f\ d\mu}.
 	\]
 	The expectation is a weighted average, or mean, of the values $f$ takes.~\cite[p127]{gray:probability}
 \end{definition}
@@ -90,7 +37,7 @@ We will use and prove some results related to a couple of basic ideas in probabi
 \begin{definition}
 	The \key{variance} of a function $f : X \to \reals$ with respect to a probability measure $\mu$ is given by
 	\[
-		\Var_{\mu}(f) = \int{\left(K(x) - \int{K(y)\ d\mu(y)}\right)^2\ d\mu(x)}.
+		\Var_{\mu}(f) := \int{\left(K(x) - \int{K(y)\ d\mu(y)}\right)^2\ d\mu(x)}.
 	\]
 	The variance gives a measurement of the spread of the values $f$ takes.
 \end{definition}
@@ -280,7 +227,9 @@ the \key{oscillation at the $j$-th coordinate}.
 
 \section{Entropy estimators}\label{sec:estimator-bounds}
 \subsection{Motivation}
-Suppose we have an ergodic source with a typical sample output $(x_0, x_1, \dots, x_{n - 1}) \in A^n$. Without knowing any additional information about the source, our aim is to estimate its entropy. To do this, we will consider \key{plug-in estimators} and the \key{hitting-time estimator}.
+Suppose we have an ergodic source with a typical sample output $(x_0, x_1, \dots, x_{n - 1}) \in A^n$. If we do not know the measure-preserving transformation which yields this output, we have to use alternative methods to estimate its entropy. To do this, we will consider \key{plug-in estimators} and the \key{hitting-time estimator}.
+
+There are theorems which show that these estimators tend to the entropy $h(\nu)$, as $n \to +\infty$, for almost every sample sequence $(x_0, \dots, x_{n - 1})$. However, as we would expect, the values given by these estimators have some margin of error when $n$ is relatively small, i.e. they \key{fluctuate} around $h(\nu)$. Our aim is to find concentration bounds for these fluctuations.
 
 \subsection{Plug-in estimators}
 Before we define any \key{plug-in estimators}, we first introduce some definitions. The main concept employed by plug-in estimators is the \key{empirical frequency} with which a word $a_0^{k - 1}$ of length $k$ occurs in a sample path $x_0^{n - 1}$ of length $n$.\footnote{The word ``empirical'' relates to information gained by observations. In our case, empirical frequency is the frequency observed by taking a sample path and matching it with a word of length $k$.}
@@ -323,7 +272,7 @@ We are now in the position to define the following examples of plug-in entropy e
 We have that
 \begin{align*}
 	\frac{\hat{H}_k(x_0^{n - 1})}{k} &= \frac{H_k(\E_k(\seedot; x_0^{n - 1}))}{k} \\
-		&\to \frac{H_k(\nu)}{k}, & \text{as } n \to +\infty \text{ for } \nu \text{-a.e. } x \in \Sigma  \\
+		&\to \frac{H_k(\nu)}{k}, & \text{as } n \to +\infty, \text{ for } \nu \text{-a.e. } x \in \Sigma  \\
 		&\to h(\nu),	& \text{as } k \to +\infty.
 \end{align*}
 In other words,
@@ -343,7 +292,7 @@ for $\nu$-almost every $x \in \Sigma$.
 
 For conditional empirical entropy, we have the following result proved in \cite[Theorem II.3.5]{shields:ergodic}.
 
-\begin{theorem}[Entropy-Estimation Theorem]
+\begin{theorem}[Entropy-Estimation Theorem] \label{thm:entropy-estimation}
 	 Let $\nu$ be ergodic measure and let $\alpha \in (0, 1)$. Let $k : \naturals \to \naturals$ be a function such that $\frac{(1 - \alpha)}{\log{|A|}}\log{n}$. Then
 	 \[
 	 	\lim_{n \to +\infty}{\hat{h}_{k(n)}(x_0^{n - 1})} = h(\nu),
@@ -351,7 +300,7 @@ For conditional empirical entropy, we have the following result proved in \cite[
 	 for $\nu$-almost every $x \in \Sigma$.
 \end{theorem}
 
-Therefore both kinds of empirical entropy are useful for estimating the actual entropy $h(\nu)$.
+Therefore both kinds of empirical entropy can be used for estimating the actual entropy $h(\nu)$.
 
 We now present a concentration bound for the $k$-block empirical entropy about its expectation value.
 
@@ -420,12 +369,15 @@ We now present a concentration bound for the $k$-block empirical entropy about i
 
 This result gives a concentration bound about the expectation value. However, to quantify the accuracy of an entropy estimator, it makes more sense to find a concentration bound about the entropy $h(\mu_\phi)$. For this, we use $k$-block conditional empirical entropy.
 
-\begin{theorem}\label{thm:cm-4-2}
-	Suppose $\theta < |A|^{-1}$. If $k(n) \leq \frac{\log{n}}{2\log{|A|}}$, then there exist strictly positive constants $c, \gamma, \Gamma, \xi > 0$ such that for all $t > 0$ we have
+\begin{theorem} \label{thm:cm-4-2}
+	Suppose that $\theta < |A|^{-1}$. If $k(n) \leq \frac{\log{n}}{2\log{|A|}}$, then there exist strictly positive constants $c, \gamma, \Gamma, \xi > 0$ such that for all $t > 0$ we have
 	\begin{equation}
 		\mu_\phi\left\{\left|\hat{h}_{k(n)} - h(\mu_\phi)\right| \geq t + \frac{c}{n^\gamma}\right\} \leq 2\exp\left(-\frac{\Gamma n^\xi t^2}{(\log{n})^4}\right),
 	\end{equation}
 	for sufficiently large $n$.
+	
+	Once again, this upper bound decreases exponentially fast as $t$ becomes large. If we think of $t + (c / n^\gamma)$ as the error of the $k$-block conditional empirical entropy, we see that there are exponentially fewer sequences which yield a `bad' estimate. On the other hand, if we let $n \to +\infty$, then the upper bound will tend to zero for all $t > 0$. Hence $\mu_\phi$-almost every sequence gives an estimate which converges to $h(\mu_\phi)$ and this agrees with Theorem \ref{thm:entropy-estimation}
+	
 	\begin{proof}
 		Recall that $\hat{h}_k = \hat{H}_k - \hat{H}_{k - 1}$. We put
 		\[
@@ -505,7 +457,7 @@ Note that, while the above definitions are largely the same, $\tau_{[a_0^{n - 1}
 
 The following result relates the waiting-time function to the entropy $h(\nu)$ of certain measures $\nu$. This result is proved in \cite[Theorem III.5.1]{shields:ergodic}.
 
-\begin{theorem}[Exact-Match Theorem]\label{thm:exact-match}
+\begin{theorem}[Exact-Match Theorem] \label{thm:exact-match}
 	If $\nu$ is weak Bernoulli, then
 	\[
 		\lim_{n \to +\infty}{\frac{1}{n}\log{W_n(x, y)}} = h(\nu),
@@ -534,7 +486,7 @@ By Theorem \ref{thm:gibbs-is-weak-bernoulli}, Gibbs measures are weak Bernoulli 
 
 We are now ready to state and prove concentration bounds for the hitting time estimator.
 
-\begin{theorem}
+\begin{theorem} \label{thm:cm-4-3}
 	There exist strictly positive constants $C_1, C_2 > 0$, $t_0 > 0$ such that, for all $n \geq 1$ and for all $t > t_0$, we have
 	\begin{equation}
 		(\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} > h(\mu_\phi) + t\right\} \leq C_1 e^{-C_2 nt^2} \label{fml:cm-9}
@@ -543,9 +495,13 @@ We are now ready to state and prove concentration bounds for the hitting time es
 	\begin{equation}
 		(\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} < h(\mu_\phi) - t\right\} \leq C_1 e^{-C_2 nt}. \label{fml:cm-10}
 	\end{equation}
-	(Note that we have $t^2$ in the upper bound and $t$ in the lower bound.)
+	(Note that we have $t^2$ in \eqref{fml:cm-9} and simply $t$ in \eqref{fml:cm-10}.)
 	
-	Unfortunately, we cannot use Theorem \ref{thm:cm-3-1} and its corollaries directly. Our approach to the proof of this theorem involves approximating the value of $W_n(x, y)$.
+	Essentially, \eqref{fml:cm-9} tells us how likely the hitting time estimator is to \emph{overestimate} the entropy, while \eqref{fml:cm-10} gives how likely it is to \emph{underestimate} the entropy. In both cases, the bound decreases exponentially fast as $t$ becomes large. Hence fewer pairs $(x, y)$ yield estimates which deviate very far from $h(\mu_\phi)$.
+	
+	If we let $n \to +\infty$, both \eqref{fml:cm-9} and \eqref{fml:cm-10} are bounded above by $0$ for any $t > t_0$. This means that $\mu_\phi \otimes \mu_\phi$-almost every $(x, y)$ gives an estimate which deviates by at most $t_0$ from $h(\mu_\phi)$, and this largely agrees with Theorem \ref{thm:exact-match}.
+	
+	Unfortunately, to prove this result we cannot use Theorem \ref{thm:cm-3-1} and its corollaries directly. Our approach to the proof of this theorem involves approximating the value of $W_n(x, y)$, and to do this we need to use the fact that $\mu_\phi$ is a Gibbs measure.
 	
 	\begin{proof}
 		We concentrate on \eqref{fml:cm-9} first. We have
