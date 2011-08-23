@@ -176,12 +176,12 @@ We will also use the following result, which is proved in \cite[Theorem 12]{royd
 	If $\psi$ is any other isomorphism $(X_1, \B(X_1), \mu_1)$ to $(X_2, \B(X_2), \mu_2)$ which induces $\Phi$, then $\mu_1\{x \in X_1 \mid \phi(x) \neq \psi(x)\} = 0$.
 \end{lemma}
 
-The following result gives the conditions for which the converse of Theorem \ref{thm:walters-2-5} is true.
+The following result gives the conditions for which the converse of \thref{thm:walters-2-5} is true.
 
 \begin{theorem} \label{thm:walters-2-6}
 	Suppose that either $(X_1, \B_1, \mu_1)$, $(X_2, \B_2, \mu_2)$ are Lebesgue spaces, or that $X_1, X_2$ are each complete separable metric spaces with corresponding Borel $\sigma$-algebras $\B_1, \B_2$. Suppose that $T_1 : X_1 \to X_1$, $T_2 : X_2 \to X_2$ be measure-preserving transformations and that $T_1$ is conjugate to $T_2$. Then $T_1 \simeq T_2$.
 	\begin{proof}
-		Suppose $\Phi : (\tilde{B}_2, \tilde{\mu}_2) \to (\tilde{B}_1, \tilde{\mu}_1)$ is an isomorphism of measure algebras such that $\Phi \circ \tilde{T}_2^{-1} = \tilde{T}_1^{-1} \circ \Phi$. By Lemma \ref{lem:walters-thm-2-2} there exists sets $X'_1 \in \B_1$, $X'_2 \in \B_2$ such that $\mu_1(X'_1) = 1 = \mu(X'_2)$, and there exists an invertible measure-preserving transformation $\phi : X'_1 \to X'_2$ such that $\Phi(\tilde{B}) = (\phi^{-1}(B \cap X'_2))^\sim$ for all $B \in \B_2$. Then we have $\tilde{\phi}^{-1} \circ \tilde{T}_2^{-1} = \tilde{T}_1^{-1} \circ \tilde{\phi}^{-1}$, i.e. $T_2 \circ \phi = \phi \circ T_1$ almost everywhere.
+		Suppose $\Phi : (\tilde{B}_2, \tilde{\mu}_2) \to (\tilde{B}_1, \tilde{\mu}_1)$ is an isomorphism of measure algebras such that $\Phi \circ \tilde{T}_2^{-1} = \tilde{T}_1^{-1} \circ \Phi$. By \thref{lem:walters-thm-2-2} there exists sets $X'_1 \in \B_1$, $X'_2 \in \B_2$ such that $\mu_1(X'_1) = 1 = \mu(X'_2)$, and there exists an invertible measure-preserving transformation $\phi : X'_1 \to X'_2$ such that $\Phi(\tilde{B}) = (\phi^{-1}(B \cap X'_2))^\sim$ for all $B \in \B_2$. Then we have $\tilde{\phi}^{-1} \circ \tilde{T}_2^{-1} = \tilde{T}_1^{-1} \circ \tilde{\phi}^{-1}$, i.e. $T_2 \circ \phi = \phi \circ T_1$ almost everywhere.
 		
 		Now put
 		\[
@@ -294,7 +294,7 @@ It is useful to know that, given a partition of $(X, \B, \mu)$ into $k$ sets, we
 	In particular, we have $H_\mu(\alpha) = \log{k}$ if and only if $\mu(A_j) = 1 / k$ for all $j = 1, \dots k$.
 	
 	\begin{proof}
-		By Theorem \ref{thm:walters-4-2-xlogx-convex}, $x \log{x}$ is strictly convex. This means that for any partition $\alpha = \{A_1, \dots, A_k\}$ of $(X, \B, \mu)$ and for any $\{\lambda_j \in [0, 1] \mid j \in \{1, \dots, k\},\ \sum_{j = 1}^k{\lambda_j} = 1\}$, we have
+		By \thref{thm:walters-4-2-xlogx-convex}, $x \log{x}$ is strictly convex. This means that for any partition $\alpha = \{A_1, \dots, A_k\}$ of $(X, \B, \mu)$ and for any $\{\lambda_j \in [0, 1] \mid j \in \{1, \dots, k\},\ \sum_{j = 1}^k{\lambda_j} = 1\}$, we have
 		\[
 			\left(\sum_{j = 1}^k{\lambda_j \mu(A_j)}\right) \log{\left(\sum_{j = 1}^k{\lambda_j \mu(A_j)}\right)} \leq \sum_{j = 1}^k{\lambda_j \mu(A_j) \log{\mu(A_j)}},
 		\]
@@ -334,7 +334,7 @@ The Radon-Nikodym Theorem allows us to define the conditional expectation operat
 	\[
 		\nu_f(C) = a^{-1}\int_C{f\ d\mu},
 	\]
-	for $C \in \C$, where $a = \int_X{f\ d\mu}$, defines a probability measure $\nu_f$ on $(X, \C)$ with $\nu_f \ll \mu$. By Theorem \ref{thm:radon-nikodym}, there exists a nonnegative function $E_\mu(f \mid \C) \in L^1(X, \C, \mu)$ such that $\int_C{E_\mu(f \mid \C)\ d\mu} = \int_C{f\ d\mu}$ for all $C \in \C$. Furthermore, $E_\mu(f \mid \C)$ is unique almost everywhere.
+	for $C \in \C$, where $a = \int_X{f\ d\mu}$, defines a probability measure $\nu_f$ on $(X, \C)$ with $\nu_f \ll \mu$. By \thref{thm:radon-nikodym}, there exists a nonnegative function $E_\mu(f \mid \C) \in L^1(X, \C, \mu)$ such that $\int_C{E_\mu(f \mid \C)\ d\mu} = \int_C{f\ d\mu}$ for all $C \in \C$. Furthermore, $E_\mu(f \mid \C)$ is unique almost everywhere.
 	
 	If $f$ is a real-valued function, we consider the positive and negative parts of $f = f^+ - f^-$, where $f^+, f^- \geq 0$, and define $E_\mu(f \mid \C) := E_\mu(f^+ \mid \C) - E_\mu(f^- \mid \C)$.
 	
@@ -537,7 +537,7 @@ So far, our definitions and results only apply for \emph{finite} partitions and 
 \begin{theorem} \label{thm:walters-4-7}
 	Suppose that $\A$ is a \emph{finite} sub-$\sigma$-algebra of $\B$. Furthermore, suppose that $\C_1 \subset \C_2 \subset \dots \subset \C_n \subset \dots$ is an increasing sequence of sub-$\sigma$-algebras of $\B$, and put $\C:= \bigvee_{n = 1}^\infty{\C_n}$. Then $H_\mu(\A \mid \C_n) \to H_\mu(\A \mid \C)$, as $n \to +\infty$.
 	\begin{proof}
-		Let $\alpha(\A) = \{A_1, \dots, \A_k\}$. By Lemma \ref{lem:walters-4-6}, for $j = 1, \dots, k$, we have $\|E_\mu(\chi_{A_j} \mid \C_n) - E_\mu(\chi_{A_j} \mid \C)\|_2 \to 0$, as $n \to +\infty$. So $E_\mu(\chi_{A_j} \mid \C_n)$ converges in measure to $E_\mu(\chi_{A_j} \mid \C)$, i.e. given $\varepsilon > 0$, we have that
+		Let $\alpha(\A) = \{A_1, \dots, \A_k\}$. By \thref{lem:walters-4-6}, for $j = 1, \dots, k$, we have $\|E_\mu(\chi_{A_j} \mid \C_n) - E_\mu(\chi_{A_j} \mid \C)\|_2 \to 0$, as $n \to +\infty$. So $E_\mu(\chi_{A_j} \mid \C_n)$ converges in measure to $E_\mu(\chi_{A_j} \mid \C)$, i.e. given $\varepsilon > 0$, we have that
 		\[
 			\lim_{n \to +\infty}{\mu(\{x \in X \mid \left|E_\mu(\chi_{A_j} \mid \C_n)(x) - E_\mu(\chi_{A_j} \mid \C)(x)\right| \geq \varepsilon\}} = 0.
 		\]
@@ -553,7 +553,7 @@ So far, our definitions and results only apply for \emph{finite} partitions and 
 	\end{proof}
 \end{theorem}
 
-As a result of this theorem, given a countable (not necessarily finite) sub-$\sigma$-algebra $\C$, we can find an increasing sequence $\C_1 \subset \C_2 \subset \dots \subset \C_n \subset \dots$ such that $\C_n \to \C$, as $n \to +\infty$. We then apply Theorem \ref{thm:walters-4-7} and we see that any result involving finite sub-$\sigma$-algebras can be extended for countable sub-$\sigma$-algebras.
+As a result of this theorem, given a countable (not necessarily finite) sub-$\sigma$-algebra $\C$, we can find an increasing sequence $\C_1 \subset \C_2 \subset \dots \subset \C_n \subset \dots$ such that $\C_n \to \C$, as $n \to +\infty$. We then apply \thref{thm:walters-4-7} and we see that any result involving finite sub-$\sigma$-algebras can be extended for countable sub-$\sigma$-algebras.
 
 \section{\texorpdfstring{\sloppy Entropy of measure-preserving transformations}{Entropy of measure-preserving transformations}}
 So far, we have be focusing exclusively on the entropy of partitions and sub-$\sigma$-algebras, but we can now introduce a measure-preserving transformation $T : X \to X$. We can think of $T$ as the passing of a day in time, and so $H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\alpha}}\right)$ is the average information we gain after $n$ days. Given a partition $\alpha$, it is natural to define the entropy of $T$ by the average information we obtain \emph{per day}. First, we need to ensure that this is well-defined.
@@ -601,11 +601,11 @@ So far, we have be focusing exclusively on the entropy of partitions and sub-$\s
 		Let the sequence $(a_n)_{n = 1}^\infty$ be defined by $a_n = H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) \geq 0$. For any $n, p \geq 1$ we have
 		\begin{align*}
 			a_{n + p} &= H_\mu\left(\bigjoin_{j = 0}^{n + p - 1}{T^{-j}{\A}}\right) \\
-				&\leq H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) + H_\mu\left(\bigjoin_{j = n}^{n + p - 1}{T^{-j}{\A}}\right) & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:8})} \\
-				&= a_n + H_\mu\left(\bigjoin_{j = 0}^{p - 1}{T^{-j}{\A}}\right) & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:10})} \\
+				&\leq H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) + H_\mu\left(\bigjoin_{j = n}^{n + p - 1}{T^{-j}{\A}}\right) & \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:8})} \\
+				&= a_n + H_\mu\left(\bigjoin_{j = 0}^{p - 1}{T^{-j}{\A}}\right) & \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:10})} \\
 				&= a_n + a_p.
 		\end{align*}
-		By Theorem \ref{thm:walters-4-9}, the limit of $a_n$ exists and hence
+		By \thref{thm:walters-4-9}, the limit of $a_n$ exists and hence
 		\[
 			\lim_{n \to +\infty}{\frac{1}{n} H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right)}
 		\]
@@ -637,8 +637,8 @@ This ensures that the following definition is well-defined.
 		\begin{enumerate}
 			\item For all $n \geq 1$,
 				\begin{align*}
-					\frac{1}{n} H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) &\leq \frac{1}{n} \sum_{j = 0}^{n - 1}{H_\mu({T^{-j}{\A}})} & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:8})} \\
-						&\leq \frac{1}{n} \sum_{j = 0}^{n - 1}{H_\mu(\A)} & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:10})} \\
+					\frac{1}{n} H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) &\leq \frac{1}{n} \sum_{j = 0}^{n - 1}{H_\mu({T^{-j}{\A}})} & \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:8})} \\
+						&\leq \frac{1}{n} \sum_{j = 0}^{n - 1}{H_\mu(\A)} & \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:10})} \\
 						&= H_\mu(\A).
 				\end{align*}
 			\item We have
@@ -646,32 +646,32 @@ This ensures that the following definition is well-defined.
 					H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}(\A \join \C)}\right) &= H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}} \join \bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}\right) \\
 						&\leq H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) + H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}\right)
 				\end{align*}
-				by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:8}.
+				by \thref{thm:walters-4.3} \ref{walters-thm-4.3:8}.
 			\item If $\A \subset \C$ and since $T$ preserves set theoretic operations, then for all $n \geq 1$ we have
 				\[
 					\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}} \subset \bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}.
 				\]
-				Applying Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:4} we get
+				Applying \thref{thm:walters-4.3} \ref{walters-thm-4.3:4} we get
 				\[
 					H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) \leq H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}\right).
 				\]
 			\item We have
 				\begin{align*}
-					H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) &\leq H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}} \join \bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}\right) \\ & \hspace{60mm} \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:4})} \\
-						&= H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}\right) + H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}} \midmid \bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}\right) \\ & \hspace{60mm} \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:2}).}
+					H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) &\leq H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}} \join \bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}\right) \\ & \hspace{60mm} \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:4})} \\
+						&= H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}\right) + H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}} \midmid \bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}\right) \\ & \hspace{60mm} \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:2}).}
 				\end{align*}
-				By applying Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:7} repeatedly, we have
+				By applying \thref{thm:walters-4.3} \ref{walters-thm-4.3:7} repeatedly, we have
 				\begin{align*}
 					H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}} \midmid \bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}\right) &\leq \sum_{j = 0}^{n - 1}{H_\mu\left(T^{-j}{\A} \midmid \bigjoin_{k = 0}^{n - 1}{T^{-k}{\C}}\right)} \\
-						&\leq \sum_{j = 0}^{n - 1}{H_\mu\left(T^{-j}{\A} \midmid T^{-j}{\C}\right)} & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:5})} \\
-						&= nH_\mu(\A \mid \C) & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:9}).}
+						&\leq \sum_{j = 0}^{n - 1}{H_\mu\left(T^{-j}{\A} \midmid T^{-j}{\C}\right)} & \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:5})} \\
+						&= nH_\mu(\A \mid \C) & \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:9}).}
 				\end{align*}
 				Combining this with the previous result, we have
 				\begin{align*}
 					h_\mu(T, \A) &\leq \lim_{n \to +\infty}{\left[\frac{1}{n} H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\C}}\right) + nH_\mu(\A \mid \C)\right]} \\
 						&= h_\mu(T, \C) + H_\mu(\A \mid \C).
 				\end{align*}
-			\item By Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:10} we have
+			\item By \thref{thm:walters-4.3} \ref{walters-thm-4.3:10} we have
 				\begin{align*}
 					h_\mu(T, T^{-1}{\A}) &= \lim_{n \to +\infty}{\frac{1}{n} H_\mu\left(\bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right)} \\
 						&= \lim_{n \to +\infty}{\frac{1}{n} H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right)} \\
@@ -705,19 +705,19 @@ There is an alternative definition for $h_\mu(T, \alpha)$ which is useful if we 
 		
 		Let $\A := \A(\alpha)$. We have
 		\begin{align*}
-			H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) &= H_\mu\left(\bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) + H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:2})} \\
-				&= H_\mu\left(\bigjoin_{j = 0}^{n - 2}{T^{-j}{\A}}\right) + H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:10})}.
+			H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) &= H_\mu\left(\bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) + H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) & \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:2})} \\
+				&= H_\mu\left(\bigjoin_{j = 0}^{n - 2}{T^{-j}{\A}}\right) + H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) & \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:10})}.
 		\end{align*}
 		By induction, this means that
 		\begin{align*}
 			\frac{1}{n} H_\mu\left(\bigjoin_{j = 0}^{n - 1}{T^{-j}{\A}}\right) &= \frac{1}{n}\left[H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 2}{T^{-j}{\A}}\right) + H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 3}{T^{-j}{\A}}\right)\right. \\
 				& \left. \vphantom{\bigjoin_{j = 1}^{n - 2}{T^{-j}{\A}}} \qquad + \dots + H_\mu(\A \mid T^{-1}{\A}) + H_\mu(\A)\right].
 		\end{align*}
-		By Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:5} we have
+		By \thref{thm:walters-4.3} \ref{walters-thm-4.3:5} we have
 		\[
 			H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) \leq H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 2}{T^{-j}{\A}}\right) \leq \dots \leq H_\mu(\A).
 		\]
-		We may now apply Theorem \ref{thm:increasing-martingale} to get that
+		We may now apply \thref{thm:increasing-martingale} to get that
 		\[
 			H_\mu\left(\A \midmid \bigjoin_{j = 1}^{n - 1}{T^{-j}{\A}}\right) \to H_\mu\left(\A \midmid \bigjoin_{j = 1}^\infty{T^{-j}{\A}}\right),
 		\]
@@ -769,7 +769,7 @@ Finally, we can think of the entropy of a measure-preserving transformation $T$,
 \section{Calculating \texorpdfstring{$h(T)$}{h(T)}}
 Recall that the entropy of a measure-preserving transformation $T$ is defined $h_\mu(T) := \sup_{\alpha}{h_\mu(T, \alpha)}$, where the supremum is taken over all finite partitions of $(X, \B, \mu)$ (or, equivalently, over all finite sub-$\sigma$-algebras of $\B$). Of course, it is difficult to consider all finite partitions, so we want to find criteria which guarantee that $h_\mu(T) = h_\mu(T, \alpha)$ instead.
 
-One key result is the \key{Kolmogorov-Sinai Theorem}. We will prove this in Theorem \ref{thm:kolmogorov-sinai}, but to do this we need some preliminary results.
+One key result is the \key{Kolmogorov-Sinai Theorem}. We will prove this in \thref{thm:kolmogorov-sinai}, but to do this we need some preliminary results.
 
 \begin{lemma} \label{lem:walters-4-15}
 	Let $r \in \naturals$ be fixed and let $\varepsilon > 0$ be given. Then there exists $\delta > 0$ such that, if we have two partitions of $r$ sets $\alpha = \{A_1, \dots, A_r\}$, $\gamma = \{C_1, \dots, C_r\}$ of $(X, \B, \mu)$ such that
@@ -799,9 +799,9 @@ One key result is the \key{Kolmogorov-Sinai Theorem}. We will prove this in Theo
 		\end{align*}
 		We therefore have
 		\begin{align*}
-			H_\mu(\gamma) + H_\mu(\alpha \mid \gamma) &= H_\mu(\alpha \join \gamma) & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:2})} \\
+			H_\mu(\gamma) + H_\mu(\alpha \mid \gamma) &= H_\mu(\alpha \join \gamma) & \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:2})} \\
 				&= H_\mu(\gamma \join \beta) \\
-				&\leq H_\mu(\gamma) + H_\mu(\beta) & \text{(by Theorem \ref{thm:walters-4.3} \ref{walters-thm-4.3:8})} \\
+				&\leq H_\mu(\gamma) + H_\mu(\beta) & \text{(by \thref{thm:walters-4.3} \ref{walters-thm-4.3:8})} \\
 				&< H_\mu(\gamma) + \frac{\varepsilon}{2},
 		\end{align*}
 		and hence $H_\mu(\alpha \mid \gamma) < \varepsilon / 2$.
@@ -817,7 +817,7 @@ One key result is the \key{Kolmogorov-Sinai Theorem}. We will prove this in Theo
 	\]
 	
 	\begin{proof}
-		Let $\varepsilon > 0$ be given and write $\alpha(\C) = \{C_1, \dots, C_r\}$. We choose $\delta > 0$ as in Lemma \ref{lem:walters-4-15}, where $r, \varepsilon$ here are the same as in the lemma. It suffices to show that, for each $\tau > 0$, there exists a partition $\D = \{D_1, \dots, D_r\}$, where $D_j \in \B_0$ and $\mu(C_j \symdiff D_j) < \tau$, for all $j = 1, \dots, r$. This is because we may then choose $\tau$ such that $r\tau \leq \delta$ and then apply Lemma \ref{lem:walters-4-15}.
+		Let $\varepsilon > 0$ be given and write $\alpha(\C) = \{C_1, \dots, C_r\}$. We choose $\delta > 0$ as in \thref{lem:walters-4-15}, where $r, \varepsilon$ here are the same as in the lemma. It suffices to show that, for each $\tau > 0$, there exists a partition $\D = \{D_1, \dots, D_r\}$, where $D_j \in \B_0$ and $\mu(C_j \symdiff D_j) < \tau$, for all $j = 1, \dots, r$. This is because we may then choose $\tau$ such that $r\tau \leq \delta$ and then apply \thref{lem:walters-4-15}.
 		
 		To begin, we choose $\lambda > 0$ such that $\lambda(r - 1)[1 + r(r - 1)] < \tau$. For each $j = 1, \dots, r$, choose $B_j \in \B_0$ such that $\mu(C_j \symdiff B_j) < \lambda$. Now if $j \neq k$, then $B_j \cap B_k \subset (B_j \symdiff C_j) \cup (\B_j \symdiff C_j)$. It follows that $\mu(B_j \cap B_k) < 2\lambda$. We let $N := \bigcup_{j \neq k}{(B_j \cap B_k)}$, so that $\mu(N) < r(r - 1)\lambda$.
 		
@@ -840,7 +840,7 @@ One key result is the \key{Kolmogorov-Sinai Theorem}. We will prove this in Theo
 	Note: We say that $\A \subset \C$ $\mu$-almost everywhere if, for all $A \in \A$, there exists $C \in \C$ such that $\mu(A \symdiff C) = 0$.
 	
 	\begin{proof}
-		Let $\varepsilon > 0$ be given. Write $\B_0 := \bigcup_{n = 1}^\infty{\A_n}$ so that $\B_0$ is an algebra. Since $\C \subset \bigjoin_{n \geq 1}{\A_n}$ $\mu$-almost everywhere, we have $\C \subset \B(\B_0)$ $\mu$-almost everywhere. By Theorem \ref{thm:walters-4-16}, there exists a finite sub-algebra $\D_\varepsilon$ of $\B_0$ such that $H_\mu(\C \mid \D_\varepsilon) < \varepsilon$.
+		Let $\varepsilon > 0$ be given. Write $\B_0 := \bigcup_{n = 1}^\infty{\A_n}$ so that $\B_0$ is an algebra. Since $\C \subset \bigjoin_{n \geq 1}{\A_n}$ $\mu$-almost everywhere, we have $\C \subset \B(\B_0)$ $\mu$-almost everywhere. By \thref{thm:walters-4-16}, there exists a finite sub-algebra $\D_\varepsilon$ of $\B_0$ such that $H_\mu(\C \mid \D_\varepsilon) < \varepsilon$.
 		
 		Since $\A_n$ is increasing and $\D_\varepsilon$ is finite, we have $\D_\varepsilon \subset A_{n_0}$ for some $n_0 \in \naturals$. Then for all $n \geq n_0$, we have
 		\[
@@ -862,10 +862,10 @@ We are ready to prove one of the main results of this chapter.
 	\begin{proof}
 		Let $\C$ be a finite sub-$\sigma$-algebra of $\B$. We want to show that $h_\mu(T, \C) \leq h_\mu(T, \A)$, i.e. $h_\mu(T, \A)$ achieves the supremum as in the definition of $h_\mu(T)$. We have
 		\begin{align*}
-			h_\mu(T, \C) &\leq h_\mu\left(T, \bigjoin_{j = -n}^n{T^{-j}{\A}}\right) + H_\mu\left(\C \midmid \bigjoin_{j = -n}^n{T^{-j}{\A}}\right) & \text{(by Theorem \ref{thm:walters-4.12} \ref{walters:thm-4-12:4})} \\
-				&= h_\mu(T, \A) + H_\mu\left(\C \midmid \bigjoin_{j = -n}^n{T^{-j}{\A}} \right) & \text{(by Theorem \ref{thm:walters-4.12} \ref{walters:thm-4-12:7})}
+			h_\mu(T, \C) &\leq h_\mu\left(T, \bigjoin_{j = -n}^n{T^{-j}{\A}}\right) + H_\mu\left(\C \midmid \bigjoin_{j = -n}^n{T^{-j}{\A}}\right) & \text{(by \thref{thm:walters-4.12} \ref{walters:thm-4-12:4})} \\
+				&= h_\mu(T, \A) + H_\mu\left(\C \midmid \bigjoin_{j = -n}^n{T^{-j}{\A}} \right) & \text{(by \thref{thm:walters-4.12} \ref{walters:thm-4-12:7})}
 		\end{align*}
-		We let $\A_n := \bigjoin_{j = -n}^n{T^{-j}{\A}}$ so that $\A_n$ is an increasing sequence of finite sub-algebras of $\B$. Since $\bigjoin_{n = -\infty}^\infty{T^n{\A}} = \B$ $\mu$-almost everywhere, and $\C \subset \B$, we may apply Corollary \ref{cor:walters-4-16-1}. So $H_\mu(\C \mid \A_n) \to 0$, as $n \to +\infty$, and hence $h_\mu(T, \C) \leq h_\mu(T, \A)$.
+		We let $\A_n := \bigjoin_{j = -n}^n{T^{-j}{\A}}$ so that $\A_n$ is an increasing sequence of finite sub-algebras of $\B$. Since $\bigjoin_{n = -\infty}^\infty{T^n{\A}} = \B$ $\mu$-almost everywhere, and $\C \subset \B$, we may apply \thref{cor:walters-4-16-1}. So $H_\mu(\C \mid \A_n) \to 0$, as $n \to +\infty$, and hence $h_\mu(T, \C) \leq h_\mu(T, \A)$.
 	\end{proof}
 \end{theorem}
 
@@ -879,7 +879,7 @@ There is a similar result which does not require that $T$ is invertible.
 	$\mu$-almost everywhere. Then $h_\mu(T) = h_\mu(T, \A)$.
 	
 	\begin{proof}
-		We repeat the same proof for Theorem \ref{thm:kolmogorov-sinai}, but replace $\bigjoin_{j = -n}^n{T^{-j}{\A}}$ with $\bigjoin_{j = 0}^n{T^{-j}{\A}}$ and apply Theorem \ref{thm:walters-4.12} \ref{walters:thm-4-12:6} instead of \ref{walters:thm-4-12:7}.
+		We repeat the same proof for \thref{thm:kolmogorov-sinai}, but replace $\bigjoin_{j = -n}^n{T^{-j}{\A}}$ with $\bigjoin_{j = 0}^n{T^{-j}{\A}}$ and apply \thref{thm:walters-4.12} \ref{walters:thm-4-12:6} instead of \ref{walters:thm-4-12:7}.
 	\end{proof}
 \end{theorem}
 
@@ -893,13 +893,13 @@ The following result gives a useful criterion for deciding if an invertible meas
 	$\mu$-almost everywhere for some finite sub-algebra $\A$ of $\B$. Then $h_\mu(T) = 0$.
 	
 	\begin{proof}
-		By Theorem \ref{thm:walters-4-18}, we have
+		By \thref{thm:walters-4-18}, we have
 		\[
 			h_\mu(T) = h_\mu(T, \A) = \lim_{n \to +\infty}{H_\mu\left(\A \midmid \bigjoin_{j = 1}^n{T^{-j}{\A}}\right)}.
 		\]
 		Since $T$ is a measure-preserving transformation, we have $\bigjoin_{j = 1}^\infty{T^{-j}{\A}} = T^{-1}{\B} = \B$ $\mu$-almost everywhere.
 		
-		We write $\A_n := \bigjoin_{j = 1}^\infty{T^{-j}{\A}}$, so that $\A_n$ is an increasing sequence of sub-algebras of $\B$, and $\bigjoin_{n = 1}^\infty{\A_n} = \B$ $\mu$-almost everywhere. In particular, for all $n \geq 1$ we have $\A \subset \A_n$ $\mu$-almost everywhere and so we may apply Corollary \ref{cor:walters-4-16-1}. So $H_\mu(\A \mid \A_n) \to 0$, as $n \to +\infty$. Hence $h_\mu(T) = 0$.
+		We write $\A_n := \bigjoin_{j = 1}^\infty{T^{-j}{\A}}$, so that $\A_n$ is an increasing sequence of sub-algebras of $\B$, and $\bigjoin_{n = 1}^\infty{\A_n} = \B$ $\mu$-almost everywhere. In particular, for all $n \geq 1$ we have $\A \subset \A_n$ $\mu$-almost everywhere and so we may apply \thref{cor:walters-4-16-1}. So $H_\mu(\A \mid \A_n) \to 0$, as $n \to +\infty$. Hence $h_\mu(T) = 0$.
 	\end{proof}
 \end{corollary}
 
@@ -933,7 +933,7 @@ In other words, $k$-block entropy is the entropy of the partition of $\Sigma$ by
 	\]
 \end{definition}
 
-Let $\A$ be the sub-algebra of $\B$ consisting of unions cylinders of length $1$. Then $\bigjoin_{k = 0}^\infty{\sigma^{-k}{\A}} = \B$ and hence Theorem \ref{thm:walters-4-18} applies. So
+Let $\A$ be the sub-algebra of $\B$ consisting of unions cylinders of length $1$. Then $\bigjoin_{k = 0}^\infty{\sigma^{-k}{\A}} = \B$ and hence \thref{thm:walters-4-18} applies. So
 \[
 	h_\nu(\sigma) = h_\nu(\sigma, \A) = \lim_{k \to +\infty}{\frac{1}{k} H_\nu\left(\bigjoin_{k = 0}^\infty{\sigma^{-k}{\A}}\right)} = \lim_{k \to +\infty}{\frac{1}{k} H_k\left(\nu\right)} = h(\nu).
 \]

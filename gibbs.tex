@@ -1,12 +1,58 @@
 \chapter{Gibbs measures}
-\emph{This chapter predominantly follows \cite[Chapter 3]{parry-pollicott:zeta-fns-periodic-orbits}.}
 
 \section{Overview}
 This chapter introduces Gibbs measures, a class of probability measures on shifts of finite type. Gibbs measures have properties which we make use of when we discuss \cite{chazottes-maldonado:cbfee} in Chapter \ref{chap:concentration-bounds}.
 
 Throughout this chapter we will let $\Sigma = \Sigma_A^+$, where $A$ is an irreducible $k \times k$ matrix.
 
+\section{The Ruelle operator}
+\emph{This section predominantly follows material from \cite[Chapter 2]{parry-pollicott:zeta-fns-periodic-orbits}.}
+
+We briefly introduce a theorem due to Ruelle. Later, it will be apparent that this theorem is useful for constructing Gibbs measures.
+
+\begin{definition}
+	Let $f \in F_\theta^+$. The \key{Ruelle operator} (or \key{transfer operator}) $L_f : F_\theta^+ \to F_\theta^+$ (or, more generally, $L_f : C(\Sigma, \complex) \to C(\Sigma, \complex)$) is defined
+	\[
+	(L_f{w})(x) = \sum_{y \in \Sigma \midcolon \sigma{y} = x}{e^{f(y)} w(y)} = \sum_{j \midcolon A_{j, x_0} = 1}{e^{f(j, x_0, x_1, \dots)} w(j, x_0, x_1, \dots)},
+	\]
+	where $x = (x_j)_{j = 0}^\infty \in \Sigma$. This is a bounded linear operator.
+	
+	The $n$-th iterate of $L_f$ is given by
+	\[
+	(L_f^n{w})(x) = \sum_{y \in \Sigma \midcolon \sigma^n{y} = x}{e^{f^n(y)} w(y)}.
+	\]
+	
+	If $f$ is also real-valued and $L_f{1} = 1$, then we say that $f$ or $L_f$ is \key{normalised}.
+\end{definition}
+
+%\begin{proposition}
+%	Let $f \in F_\theta^+$ with $f = u + iv$, where $u, v \in F_\theta^+$ are real-valued functions. If $L_u$ is normalised, i.e. $L_u{1} = 1$, then for all $n \geq 0$,
+%	\[
+%	|L_f^n{w}|_\theta \leq K|w|_\infty + \theta^n |w|_\theta
+%	\]
+%	for all $w \in F_\theta^+$, where $K > 0$ is a constant depending only on $f$ and $\theta$.
+%\end{proposition}
+
+\begin{theorem}[Ruelle's Perron-Frobenius Theorem] \label{thm:rpf}
+	Suppose that $\Sigma = \Sigma_A^+$ is an aperiodic shift of finite type and let $f \in F_\theta^+$ be a real-valued function. Then
+	\begin{enumerate}
+		\item There is a simple maximal eigenvalue $\lambda$ of $L_f : C(\Sigma, \reals) \to C(\Sigma, \reals)$ with a corresponding eigenfunction $h \in C(\Sigma_A^+, \reals)$, with $h > 0$. \label{rpf:1}
+		\item The remainder of the spectrum of $L_f$ is contained in a disc of radius strictly less than $\lambda$. \label{rpf:2}
+		\item There is a unique probability measure $\mu$ such that $L_f^*{\mu} = \lambda\mu$. That is,
+		\[
+		\int{L_f{w}\ d\mu} = \lambda \int{w\ d\mu},
+		\]
+		for all $w \in C(\Sigma, \reals)$. Additionally, if $h$ is the eigenfunction as in \ref{rpf:1} and $\int{h\ d\mu} = 1$, then the measure $\nu$ defined by $d\nu = h\ d\mu$ is a $\sigma$-invariant probability measure. \label{rpf:3}
+		\item If $h$ is the eigenfunction as in \ref{rpf:1} and $\int{h\ d\mu} = 1$, then for all $w \in C(\Sigma, \reals)$,
+		\[
+		\frac{1}{\lambda^n}L_f^n{w} \to h \int{w\ d\mu}
+		\]
+		uniformly, as $n \to +\infty$. \label{rpf:4}
+	\end{enumerate}
+\end{theorem}
+
 \section{Definition and basic results}
+\emph{The remainder of this chapter predominantly follows \cite[Chapter 3]{parry-pollicott:zeta-fns-periodic-orbits}.}
 
 \begin{definition}
 	Let $\phi \in C(\Sigma, \reals)$ be a continuous function. Let $\mu$ be a probability measure such that there exists a constants $C = C(\phi) > 1$, $P = P(\phi) \in \reals$, such that
@@ -27,7 +73,7 @@ The following proposition and its corollary show that, given any $\phi \in F_\th
 	\begin{equation}
 		e^{-|\phi|_\theta \theta^n} \leq \frac{\mu[x_0, \dots, x_n]}{\mu[x_1, \dots, x_n]} e^{-\phi(x)} \leq e^{|\phi|_\theta \theta^n},
 	\end{equation}
-	where $L_\phi^*\mu = \mu$ is the unique measure in Ruelle's Perron-Frobenius Theorem \ref{rpf:3} (Theorem \ref{thm:rpf}) with $\lambda = 1$.
+	where $L_\phi^*\mu = \mu$ is the unique measure in Ruelle's Perron-Frobenius Theorem \ref{rpf:3} (\thref{thm:rpf}) with $\lambda = 1$.
 	\begin{proof}
 		Let $w \in C(\Sigma, \reals)$. We have
 		\begin{align*}
@@ -62,9 +108,9 @@ The following proposition and its corollary show that, given any $\phi \in F_\th
 \end{proposition}
 
 \begin{corollary} \label{cor:pp-3-2-1}
-	The measure $\mu$ in Proposition \ref{prop:pp-3-2} is a Gibbs measure for $\phi$ with $P = 0$.
+	The measure $\mu$ in \thref{prop:pp-3-2} is a Gibbs measure for $\phi$ with $P = 0$.
 	\begin{proof}
-		We apply Proposition \ref{prop:pp-3-2} to $\phi$, $\phi \circ \sigma$, \dots, $\phi \circ \sigma^n$ to get the sequence of inequalities
+		We apply \thref{prop:pp-3-2} to $\phi$, $\phi \circ \sigma$, \dots, $\phi \circ \sigma^n$ to get the sequence of inequalities
 		\[
 			\left.
 			\begin{matrix}
@@ -92,12 +138,12 @@ We can generalise these results for $\phi \in F_\theta$ which is not normalised.
 \begin{corollary}
 	Suppose that $\phi \in F_\theta$ is a real-valued function. Let $\mu$ be the unique measure where $L_\phi^*\mu = \lambda\mu$, where $\lambda > 0$ is the maximal eigenvalue in Ruelle's Perron-Frobenius Theorem \ref{rpf:3}. Then $\mu$ is a Gibbs measure for $\phi$ with $P = \log{\lambda}$.
 	\begin{proof}
-		First note that $\psi = \phi - \log{(h \circ \sigma)} + \log{h} - \log{\lambda}$ is normalised, where $h > 0$ is the eigenfunction corresponding to $\lambda$ in Theorem \ref{thm:rpf}. We have
+		First note that $\psi = \phi - \log{(h \circ \sigma)} + \log{h} - \log{\lambda}$ is normalised, where $h > 0$ is the eigenfunction corresponding to $\lambda$ in \thref{thm:rpf}. We have
 		\begin{align*}
 			\exp\left(\sum_{j = 0}^{n - 1}{\psi(\sigma^j{x})}\right) &= \exp\left(\sum_{j = 0}^{n - 1}{\phi(\sigma^j{x}) - \log{h(\sigma^{j + 1}{x})} + \log{h(\sigma^j{x})} - \log{\lambda}}\right) \\
 				&= \exp\left(-n\log{\lambda} + \sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})}\right) \frac{h(x)}{h(\sigma^n{x})}.
 		\end{align*}
-		We apply Corollary \ref{cor:pp-3-2-1} to $\psi = \phi - \log{(h \circ \sigma)} + \log{h} - \log{\lambda}$ to get
+		We apply \thref{cor:pp-3-2-1} to $\psi = \phi - \log{(h \circ \sigma)} + \log{h} - \log{\lambda}$ to get
 		\[
 			C_0^{-1} \leq \frac{\mu[x_0, \dots, x_n]}{\exp\left(-n\log{\lambda} + \sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})}\right)} \leq C_0,
 		\]
@@ -161,23 +207,23 @@ where $\alpha = \{[j] \mid j \in \{1, \dots, k\}\}$ is the partition of $\Sigma$
 	\]
 	with equality if and only if $m = \mu$.
 	\begin{proof}
-		Let $m \in M(\Sigma, \sigma)$ be a $\sigma$-invariant probability measure. We define a probability distribution on $\{1, \dots, k\}$ by $\mu[j \mid \sigma^{-1}{x}]$ as in Proposition \ref{prop:mu-sq-bkt-pd}. If $m = \mu$, then $L_\phi^*{m} = m$ and so we have the probability distribution
+		Let $m \in M(\Sigma, \sigma)$ be a $\sigma$-invariant probability measure. We define a probability distribution on $\{1, \dots, k\}$ by $\mu[j \mid \sigma^{-1}{x}]$ as in \thref{prop:mu-sq-bkt-pd}. If $m = \mu$, then $L_\phi^*{m} = m$ and so we have the probability distribution
 		\[
 			m[j \mid \sigma^{-1}{x}] = \exp(\phi(j, x_0, x_1, \dots))
 		\]
 		for all $x \in \Sigma$.
 		
-		We apply Lemma \ref{lem:pp-3-3} so that
+		We apply \thref{lem:pp-3-3} so that
 		\[
 			-\sum_{j = 1}^k{m[j \mid \sigma^{-1}{x}] \log{m[j \mid \sigma^{-1}{x}]}} + \sum_{j = 1}^k{m[j \mid \sigma^{-1}{x}] \phi(j, x_0, x_1, \dots)} \leq 0,
 		\]
 		for $m$-almost every $x$, with equality if and only if $m[j \mid \sigma^{-1}{x}] = \phi(j, x_0, x_1, \dots)$ for all $j = 1, \dots, k$.
 		
-		We integrate with respect to $m$ and apply Lemma \ref{lem:pp-prop-p36} to get
+		We integrate with respect to $m$ and apply \thref{lem:pp-prop-p36} to get
 		\[
 			h_m(\sigma) + \sum_{j = 1}^k{\int{m[j \mid \sigma^{-1}{x}] \phi(j, x_0, x_1, \dots)\ dm}} = h_m(\sigma) + \int{\phi\ dm} \leq 0,
 		\]
-		with equality if and only if $m[j \mid \sigma^{-1}{x}] = \phi(j, x_0, x_1, \dots)$ for $m$-almost every $x$. By Lemma \ref{lem:pp-prop-p36}, this equality condition is equivalent to
+		with equality if and only if $m[j \mid \sigma^{-1}{x}] = \phi(j, x_0, x_1, \dots)$ for $m$-almost every $x$. By \thref{lem:pp-prop-p36}, this equality condition is equivalent to
 		\begin{align*}
 			\int{\sum_{j = 1}^k{m[j \mid \sigma^{-1}{x}] \psi(j, x_0, x_1, \dots)}\ dm} &= \int{\sum_{j = 1}^k{\phi(j, x_0, x_1, \dots) \psi(j, x_0, x_1, \dots)}\ dm} \\
 				&= \int{\psi\ dm}
@@ -201,9 +247,9 @@ The following result shows one of the main distinguishing characteristics of Gib
 	\]
 	for all $m \in M(\Sigma, \sigma)$, with equality if and only if $m = \mu_\phi$.
 	\begin{proof}
-		Let $\phi \in F_\theta$. By Proposition \ref{prop:pp-1-2}, there exists $g \in F_{\theta^{1 / 2}}^+$, $u \in F_{\theta^{1 / 2}}$ such that $\phi = g + (u \circ \sigma) - u$. By Ruelle's Perron-Frobenius Theorem, we can write $g = \log(h \circ \sigma) - \log{h} + \log{\lambda} + k$ for some $k \in F_{\theta^{1/2}}^+$ such that $L_k^*{\mu_\phi} = \mu_\phi$ and $L_k$ is normalised.
+		Let $\phi \in F_\theta$. By \thref{prop:pp-1-2}, there exists $g \in F_{\theta^{1 / 2}}^+$, $u \in F_{\theta^{1 / 2}}$ such that $\phi = g + (u \circ \sigma) - u$. By Ruelle's Perron-Frobenius Theorem, we can write $g = \log(h \circ \sigma) - \log{h} + \log{\lambda} + k$ for some $k \in F_{\theta^{1/2}}^+$ such that $L_k^*{\mu_\phi} = \mu_\phi$ and $L_k$ is normalised.
 		
-		Let $m$ be a $\sigma$-invariant probability measure. By Lemma \ref{lem:pp-prop-3-4} we have
+		Let $m$ be a $\sigma$-invariant probability measure. By \thref{lem:pp-prop-3-4} we have
 		\[
 			h_m(\sigma) + \int{k\ dm} \leq h_{\mu_\phi}(\sigma) + \int{k\ d\mu_\phi} = 0.
 		\]
@@ -215,7 +261,7 @@ The following result shows one of the main distinguishing characteristics of Gib
 	\end{proof}
 \end{theorem}
 
-From the proof of Theorem \ref{thm:variational-principle}, we see that
+From the proof of \thref{thm:variational-principle}, we see that
 \[
 	P(\phi) = \sup_{m \in M(\Sigma, \sigma)}\left\{h_m(\sigma) + \int{\phi\ dm}\right\} = h_{\mu_\phi}(\sigma) + \int{\phi\ d\mu_\phi}.
 \]
@@ -297,7 +343,7 @@ Before we state the main result, we need an auxiliary lemma.
 				&= |\nu((\lambda^{-t} L_\phi^t(h \chi_B) - \nu(h \chi_B)h)\chi_C)| \\
 				&\leq \|\lambda^{-t} L_\phi^t(h \chi_B) - \nu(h \chi_B)h\| \nu(C).
 		\end{align*}
-		Since $\chi_B \in C(\Sigma, \reals)$ and $\var_r(\chi_B) = 0$ for all $r \geq 0$, we may apply Lemma \ref{bowen:lem-1-12}. So if $t \geq s$, then
+		Since $\chi_B \in C(\Sigma, \reals)$ and $\var_r(\chi_B) = 0$ for all $r \geq 0$, we may apply \thref{bowen:lem-1-12}. So if $t \geq s$, then
 		\[
 			\|\lambda^{-t}L_\phi^{t}(h \chi_B) - \nu(h \chi_B)h\| \leq M\nu(h \chi_B)\rho^{t - s},
 		\]

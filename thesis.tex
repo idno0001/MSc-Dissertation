@@ -1,17 +1,25 @@
 \documentclass[12pt,MSc]{muthesis}
 \usepackage{amssymb,amsmath}
-\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{fouriernc}
+%\usepackage{eucal}
 \usepackage{verbatim}
-\usepackage{color}
 \usepackage{enumitem}
-\usepackage{eucal}
 %\usepackage{accents}
-\usepackage{mdframed}
-\usepackage{soul}
+\usepackage{todonotes}
 \usepackage{hyperref}
-\usepackage[thmmarks,amsmath]{ntheorem}
+\usepackage[thmmarks,thref,amsmath,hyperref]{ntheorem}
 
-\graphicspath{{fig/}}
+% Font candidates:
+% \usepackage{lmodern}
+%
+% The following fonts are nice but \nu looks too much like v.
+% \usepackage{txfonts} (\mathcal looks nice apart from \C which looks like C.)
+% \usepackage{fouriernc}
+% \usepackage[bitstream-charter]{mathdesign}
+%
+% Note - can set standard text font to (e.g.) fouriernc by:
+% \renewcommand*{\rmdefault}{fnc}
 
 % Inkscape graphics. Compiles new diagram if svg file changes.
 \newcommand{\executeiffilenewer}[3]{%
@@ -19,12 +27,12 @@
 	{\pdffilemoddate{#2}}>0%
 	{\immediate\write18{#3}}\fi%
 }
-\newcommand{\includesvg}[1]{%
-	\executeiffilenewer{fig/#1.svg}{fig/#1.pdf}%
-	{inkscape -z -D --file=fig/#1.svg %
-		--export-pdf=fig/#1.pdf --export-latex}%
-		\input{fig/#1.pdf_tex}%
-}
+%\newcommand{\includesvg}[1]{%
+%	\executeiffilenewer{fig/#1.svg}{fig/#1.pdf}%
+%	{inkscape -z -D --file=fig/#1.svg %
+%		--export-pdf=fig/#1.pdf --export-latex}%
+%		\input{fig/#1.pdf_tex}%
+%}
 
 % Theorem environments.
 %\newcounter{ctr}[section]
@@ -135,6 +143,7 @@ I would like to thank...
 % and all the new results that you have discovered
 
 \input{conventions}
+\input{introduction}
 \input{background}
 \input{entropy}
 \input{gibbs}

@@ -1,53 +1,52 @@
-\chapter{Background}
-\section{Preliminaries}
-This section briefly introduces some concepts which will be used throughout this dissertation.
-
-\begin{definition}
-	Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f : X \to Y$ is a \key{Lipschitz function} if there exists a constant $K > 0$ such that
-	\[
-		d_Y(f(x), f(y)) \leq Kd_X(x, y)
-	\]
-	for all $x, y \in X$. We say that $f$ is a Lipschitz function with \key{Lipschitz constant} $K$.~\cite[p154]{searcoid:metric-spaces}
-%	
-%	More generally, we say that $f$ is \key{H\"older continuous} if there exists some constants $K > 0$ and $\alpha \in (0, 1]$ such that
+%\chapter{Background}
+%\section{Preliminaries}
+%This section briefly introduces some concepts which will be used throughout this dissertation.
+%
+%\begin{definition}
+%	Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f : X \to Y$ is a \key{Lipschitz function} if there exists a constant $K > 0$ such that
 %	\[
-%	d_Y(f(x), f(y)) \leq K(d_X(x, y))^\alpha
+%		d_Y(f(x), f(y)) \leq Kd_X(x, y)
 %	\]
-%	for all $x, y \in X$. In this case, we say that $f$ is H\"older continuous with \key{H\"older exponent} $\alpha$ and \key{H\"older constant} $K$.~\cite[p143]{brin-stuck:dynsys}
-\end{definition}
+%	for all $x, y \in X$. We say that $f$ is a Lipschitz function with \key{Lipschitz constant} $K$.~\cite[p154]{searcoid:metric-spaces}
+%%	
+%%	More generally, we say that $f$ is \key{H\"older continuous} if there exists some constants $K > 0$ and $\alpha \in (0, 1]$ such that
+%%	\[
+%%	d_Y(f(x), f(y)) \leq K(d_X(x, y))^\alpha
+%%	\]
+%%	for all $x, y \in X$. In this case, we say that $f$ is H\"older continuous with \key{H\"older exponent} $\alpha$ and \key{H\"older constant} $K$.~\cite[p143]{brin-stuck:dynsys}
+%\end{definition}
+%
+%\begin{definition}
+%	A transformation $T : (X_1, \B_1, \mu_1) \to (X_2, \B_2, \mu_2)$ is \key{measure-preserving} if:
+%	\begin{enumerate}
+%		\item $T$ is measurable, i.e. if $B_2 \in \B_2$, then $T^{-1}{B_2} \in \B_1$, and
+%		\item $\mu_1(T^{-1}{B_2}) = \mu_2(B_2)$ for all $B_2 \in \B_2$.
+%	\end{enumerate}
+%	This agrees with our usual definition when $X_1 = X_2$.
+%\end{definition}
+%
+%\begin{definition}
+%	Let $X$ be a compact metric space with Borel $\sigma$-algebra $\B$. We let $M(X)$ denote the set of all probability measures on $(X, \B)$.
+%	
+%	Let $T : X \to X$ be a continuous mapping on $X$. We let $M(X, T)$ denote the set of $T$-invariant probability measures on $(X, B)$.
+%\end{definition}
+%
+%\begin{definition}
+%	The \key{symmetric difference} of two sets $A, B$ is defined $(A \setminus B) \cup (B \setminus A)$. We will write this as
+%	\begin{equation*}
+%		A \symdiff B := (A \setminus B) \cup (B \setminus A).
+%	\end{equation*}
+%\end{definition}
 
-\begin{definition}
-	A transformation $T : (X_1, \B_1, \mu_1) \to (X_2, \B_2, \mu_2)$ is \key{measure-preserving} if:
-	\begin{enumerate}
-		\item $T$ is measurable, i.e. if $B_2 \in \B_2$, then $T^{-1}{B_2} \in \B_1$, and
-		\item $\mu_1(T^{-1}{B_2}) = \mu_2(B_2)$ for all $B_2 \in \B_2$.
-	\end{enumerate}
-	This agrees with our usual definition when $X_1 = X_2$.
-\end{definition}
-
-\begin{definition}
-	Let $X$ be a compact metric space with Borel $\sigma$-algebra $\B$. We let $M(X)$ denote the set of all probability measures on $(X, \B)$.
-	
-	Let $T : X \to X$ be a continuous mapping on $X$. We let $M(X, T)$ denote the set of $T$-invariant probability measures on $(X, B)$.
-\end{definition}
-
-\begin{definition}
-	The \key{symmetric difference} of two sets $A, B$ is defined $(A \setminus B) \cup (B \setminus A)$. We will write this as
-	\begin{equation*}
-		A \symdiff B := (A \setminus B) \cup (B \setminus A).
-	\end{equation*}
-\end{definition}
-
-\section{Shifts of finite type}
-\emph{A large portion of this section follows \cite[Chapter 1]{parry-pollicott:zeta-fns-periodic-orbits}.}
-\subsection{The basics}
+\chapter{Shifts of finite type}
+\section{The basics}
 Let $A$ be a $k \times k$ matrix with entries in $\{0, 1\}$. A \key{(two-sided) shift of finite type} $\Sigma_A$ is defined by
 \[
-	\Sigma_A = \{(x_j)_{j = -\infty}^\infty \mid A_{x_j, x_{j + 1}} = 1,\ j \in \integers\}.
+	\Sigma_A := \{(x_j)_{j = -\infty}^\infty \mid A_{x_j, x_{j + 1}} = 1,\ j \in \integers\}.
 \]
 Similarly, a \key{(one-sided) shift of finite type} $\Sigma_A^+$ is defined by
 \[
-	\Sigma_A^+ = \{(x_j)_{j = 0}^\infty \mid A_{x_j, x_{j + 1}} = 1,\ j \in \naturals_0\}.
+	\Sigma_A^+ := \{(x_j)_{j = 0}^\infty \mid A_{x_j, x_{j + 1}} = 1,\ j \in \naturals_0\}.
 \]
 
 Let $x = (x_j)_{j = -\infty}^\infty \in \Sigma_A$. We define the \key{(two-sided, left) shift map} $\sigma : \Sigma_A \to \Sigma_A$ by
@@ -66,8 +65,8 @@ To avoid excessive use of subscripts and superscripts, we will often write $\sig
 
 If $x = (x_j)_{j = -\infty}^\infty \in \Sigma_A$, then we call $(x_j)_{j = -\infty}^0$ the \key{past}, $x_0$ the \key{present}, and $(x_j)_{j = 0}^\infty$ the \key{future}.
 
-\subsubsection{Irreducibility, aperiodicity and cylinders}
-Let $A$ is a $k \times k$ matrix with entries in $\{0, 1\}$, and let $\Sigma_A$ (or $\Sigma_A^+$) be the associated shift of finite type. We may consider $A$ to be the adjacency matrix of a directed graph $G_A$ with $k$ vertices.
+\subsection{Irreducibility, aperiodicity and cylinders}
+Let $A$ be a $k \times k$ matrix with entries in $\{0, 1\}$, and let $\Sigma_A$ (or $\Sigma_A^+$) be the associated shift of finite type. We may consider $A$ to be the adjacency matrix of a directed graph $G_A$ with $k$ vertices.
 
 We say that $A$ is \key{irreducible} if, for each $i, j \in \{1, \dots, k\}$, there exists $n = n(i, j) > 0$ such that $(A^n)_{i, j} > 0$. Alternatively, $A$ is irreducible if there exists an edge-path between any two vertices in the corresponding graph $G_A$. In this case, we say that the shift of finite type $\Sigma_A$ (or $\Sigma_A^+$) is irreducible.
 
@@ -75,18 +74,20 @@ If there exists $n > 0$ such that $(A^n)_{i, j} > 0$ for all $i, j \in \{1, \dot
 
 A \key{cylinder} $C$ on $\Sigma_A$ is defined
 \[
-	C = [i_{-m}, \dots, i_{-1}, i_0, i_1, \dots, i_n]_{-m, n} = \{(x_j)_{j = -\infty}^\infty \in \Sigma \mid x_j = i_j \text{ for } -m \leq j \leq n\}.
+	C = [y_{-m}, \dots, y_{-1}, y_0, y_1, \dots, y_n]_{-m, n} := \{(x_j)_{j = -\infty}^\infty \in \Sigma \mid x_j = y_j \text{ for } -m \leq j \leq n\}.
 \]
 Similarly, a cylinder $C^+$ on $\Sigma_A^+$ is given by
 \[
-	C^+ = [i_0, i_1, \dots, i_{n - 1}, i_n]_{0, n} = \{(x_j)_{j = 0}^\infty \in \Sigma \mid x_j = i_j \text{ for } 0 \leq j \leq n\}.
+	C^+ = [y_0, y_1, \dots, y_{n - 1}, y_n]_{0, n} := \{(x_j)_{j = 0}^\infty \in \Sigma \mid x_j = y_j \text{ for } 0 \leq j \leq n\}.
 \]
 In other words, a cylinder is the set of all sequences which agree in the given positions.
 
-\subsection{Function spaces for shifts of finite type}
+\section{Function spaces for shifts of finite type}
+\emph{This section predominantly follows \cite[Chapter 1]{parry-pollicott:zeta-fns-periodic-orbits}.}
+
 Let $\Sigma_A$ and $\Sigma_A^+$ be two-sided and one-sided shifts of finite type, respectively, and let $\theta \in (0, 1)$ be fixed.
 
-\subsubsection{Metrics for shifts of finite type}
+\subsection{Metrics for shifts of finite type}
 Let $x = (x_j)_{j = -\infty}^\infty, y = (y_j)_{j = -\infty}^\infty \in \Sigma_A$. We define $n = n(x, y) \geq 0$ to be the largest integer such that $x_j = y_j$ for all $|j| < n$, but $x_n \neq y_n$ or $x_{-n} \neq y_{-n}$. If $x_j = y_j$ for all $j \in \integers$ then we define $n = +\infty$.
 
 We define the map $d_\theta : \Sigma_A \times \Sigma_A \to \reals^+$ by
@@ -94,14 +95,14 @@ We define the map $d_\theta : \Sigma_A \times \Sigma_A \to \reals^+$ by
 	d_\theta(x, y) =
 	\begin{cases}
 		\theta^n, & \text{if } x \neq y; \\
-		0 & \text{if } x = y.
+		0, & \text{if } x = y.
 	\end{cases}
 \]
 It can be shown that $d_\theta$ is a \key{metric} on $\Sigma_A$, so sequences in $\Sigma_A$ are `close' if they agree for a large number of leading coordinates.
 
-Similarly, if $x = (x_j)_{j = 0}^\infty, y = (y_j)_{j = 0}^\infty \in \Sigma_A^+$, then $n = n(x, y) \geq 0$ is defined to be the largest integer such that $x_j = y_j$ for all $0 \leq j < n$ but $x_n \neq y_n$. We define the map $d_\theta : \Sigma_A^+ \times \Sigma_A^+ \to \reals^+$ in the same way as the two-sided case, and it can be shown that $d_\theta$ is also a metric.
+Similarly, if $x = (x_j)_{j = 0}^\infty, y = (y_j)_{j = 0}^\infty \in \Sigma_A^+$, then $n = n(x, y) \geq 0$ is defined to be the largest integer such that $x_j = y_j$ for all $0 \leq j < n$ but $x_n \neq y_n$. We define the map $d_\theta : \Sigma_A^+ \times \Sigma_A^+ \to \reals^+$ in the same way as the two-sided case, and it can be shown that this also defines a metric on $\Sigma_A^+$.
 
-\subsubsection{The space of Lipschitz functions}
+\subsection{The space of Lipschitz functions}
 \begin{definition}
 	Let $f : \Sigma_A \to \complex$ be a continuous function and let $n \geq 0$. We define the \key{$n$-th variation of $f$} by
 	\[
@@ -132,7 +133,7 @@ It is easy to see that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$ if and only
 	\[
 		|f|_\theta = \sup_{n \geq 0}\left\{\frac{\var_n(f)}{\theta^n}\right\}
 	\]
-	to be the least Lipschitz constant of $f$. In other words, $|f|_\theta$ is the smallest $K > 0$ such that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$.
+	to be the \key{least Lipschitz constant} of $f$. In other words, $|f|_\theta$ is the smallest $K > 0$ such that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$.
 	
 	We can then define a \key{norm} on $F_\theta$ (or $F_\theta^+$) by
 	\[
@@ -146,21 +147,17 @@ It is easy to see that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$ if and only
 \end{proposition}
 
 \begin{definition}
-	Let $f, g \in F_\theta$ (or $F_\theta^+$). We say $f$ and $g$ are \key{cohomologous} if there exists a continuous function $h$ such that $f = g + h \circ \sigma - h$. In this case, we write $f \sim g$.
+	Let $f, g \in F_\theta$ (or $F_\theta^+$). We say $f$ and $g$ are \key{cohomologous} if there exists a continuous function $h$ such that $f = g + h \circ \sigma - h$. In this case, we write $f \sim g$. (It is clear that $\sim$ is an equivalence relation.)
 	
 	If $f$ is cohomologous to $0$, then we say $f$ is a \key{coboundary}.
 \end{definition}
-
-\begin{remark}
-	It is clear that $\sim$ is an equivalence relation.
-\end{remark}
 
 \begin{proposition} \label{prop:pp-1-2}
 	Suppose that $f \in F_\theta$. Then there exists $g, h \in F_{\theta^{1 / 2}}$ such that $f = g + h - h \circ \sigma$, where $g(x) = g(y)$ if $x_j = y_j$ for all $j \geq 0$. In other words, the value of $g(x)$ is determined only by the future coordinates of $x$.
 	\begin{proof}
 		For each $j = 1, \dots, k$ we choose a sequence $(a_n^{(j)})_{n = -\infty}^0$ from the past such that $a_0^{(j)} = j$. Now we define a function $\phi : \Sigma_A \to \Sigma_A : x \mapsto x'$, where
 		\[
-			(x')_n
+			(x')_n =
 			\begin{cases}
 				x_n, & \text{if } n \geq 0; \\
 				a_n^{(x_0)}, & \text{if } n \leq 0.
@@ -168,19 +165,19 @@ It is easy to see that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$ if and only
 		\]
 		So $\phi$ fixes the future coordinates of $x$, but replaces the past with $(a_n^{(x_0)})_{n = -\infty}^0$.
 		
-		Let $h(x) = \sum_{n = 0}^\infty{(f(\sigma^n{x}) - f(\sigma^n \phi{x}))}$. Note that $h$ converges because for all $n \geq 0$,
+		Let $h(x) := \sum_{n = 0}^\infty{(f(\sigma^n{x}) - f(\sigma^n \phi{x}))}$. Note that $h$ converges because for all $n \geq 0$,
 		\[
-			|f(\sigma^n{x}) - f(\sigma^n \phi{x})| \leq \var_n(f) \leq |f|_\theta \theta^n,
+			|f(\sigma^n{x}) - f(\sigma^n \phi{x})| \leq \var_n(f) \leq |f|_\theta \theta^n \to 0,
 		\]
-		We have
+		as $n \to +\infty$. We have
 		\begin{align*}
-			h(x) - h(\sigma{x}) &= \sum_{n = 0}^\infty{(f(\sigma^n{x}) - f(\sigma^n \phi{x}))} - \sum_{n = 0}^\infty{(f(\sigma^{n + 1}{x}) - f(\sigma^n \phi \sigma{x}))} \\
+			h(x) - h(\sigma{x}) &= \sum_{n = 0}^\infty{\left(f(\sigma^n{x}) - f(\sigma^n \phi{x})\right)} - \sum_{n = 0}^\infty{\left(f(\sigma^{n + 1}{x}) - f(\sigma^n \phi \sigma{x})\right)} \\
 				&= f(x) - \left(f(\phi{x}) + \sum_{n = 0}^\infty{(f(\sigma^{n + 1} \phi{x}) - f(\sigma^n \phi \sigma{x}))}\right) \\
 				&= f(x) - g(x),
 		\end{align*}
-		where $g(x) := f(\phi{x}) + \sum_{n = 0}^\infty{(f(\sigma^{n + 1} \phi{x}) - f(\sigma^n \phi \sigma{x}))}$. Since all terms in $g$ contain $\phi$, we see that $g$ depends only on its future coordinates.
+		where $g(x) := f(\phi{x}) + \sum_{n = 0}^\infty{\left(f(\sigma^{n + 1} \phi{x}) - f(\sigma^n \phi \sigma{x})\right)}$. Since all terms in $g$ contain $\phi$, we see that $g$ depends only on its future coordinates.
 		
-		It remains to show that $h \in F_{\theta^{1 / 2}}$ and it we will immediately have $g \in F_{\theta^{1 / 2}}$. It is sufficient to show that $\var_{2N}(h) \leq K\theta^N$ for all $N \geq 0$, for some constant $K > 0$, because this gives that
+		It remains to show that $h \in F_{\theta^{1 / 2}}$ and we will immediately have $g \in F_{\theta^{1 / 2}}$. It is sufficient to show that $\var_{2N}(h) \leq K\theta^N$ for all $N \geq 0$, for some constant $K > 0$, because this gives that
 		\[
 			\var_{2N + 1}(h) \leq K\theta^N = \frac{K}{\theta^{1 / 2}}(\theta^{1 / 2})^{2N + 1}.
 		\]
@@ -195,11 +192,11 @@ It is easy to see that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$ if and only
 		\]
 		Hence
 		\begin{align*}
-			|h(x) - h(y)| &= \left|\sum_{n = 0}^\infty{(f(\sigma^n{x}) - f(\sigma^n \phi{x}) - f(\sigma^n{y}) + f(\sigma^n \phi{y}))}\right| \\
+			|h(x) - h(y)| &= \left|\sum_{n = 0}^\infty{\left(f(\sigma^n{x}) - f(\sigma^n \phi{x}) - f(\sigma^n{y}) + f(\sigma^n \phi{y})\right)}\right| \\
 				&\leq \sum_{n = 0}^N{|f(\sigma^n{x}) - f(\sigma^n{y})| + | f(\sigma^n \phi{x}) -  f(\sigma^n \phi{y})|} \\
 				&\quad + \sum_{n = N + 1}^\infty{|f(\sigma^n{x}) - f(\sigma^n \phi{x})| + | f(\sigma^n \phi{y}) -  f(\sigma^n {y})|} \\
-				&\leq 2|f|_\theta \sum_{n = 0}^N{\theta^{2N - n}} + 2|f|_\theta \sum_{n + N + 1}^\infty{\theta^n} \\
-				&= 2|f|_theta \theta^{2N} \left(\frac{\theta^{-N - 1} - 1}{\theta^{-1} - 1}\right) + |f|_\theta \frac{\theta^{N + 1}}{1 - \theta} \\
+				&\leq 2|f|_\theta \sum_{n = 0}^N{\theta^{2N - n}} + 2|f|_\theta \sum_{n = N + 1}^\infty{\theta^n} \\
+				&= 2|f|_\theta \theta^{2N} \left(\frac{\theta^{-N - 1} - 1}{\theta^{-1} - 1}\right) + |f|_\theta \frac{\theta^{N + 1}}{1 - \theta} \\
 				&\leq 4|f|_\theta \frac{\theta^N}{1 - \theta}.
 		\end{align*}
 		Therefore
@@ -210,83 +207,4 @@ It is easy to see that $\var_n(f) \leq K\theta^n$ for all $n \geq 0$ if and only
 	\end{proof}
 \end{proposition}
 
-The above result allows us to write $f \in F_\theta$ using $g \in F_{\theta^{1 / 2}}^+$. This allows us to apply results to $g$ which hold for $F_\theta^+$ but not necessarily for $F_\theta$. We will encounter such uses for this proposition in due course.
-
-\begin{comment}
-If a function $f : \Sigma \to \complex$ is $\alpha$-H\"older continuous, $\alpha \in (0, 1]$, then it is a Lipschitz function with respect to $d_{\theta^\alpha}$.
-
-Suppose we have $0 < \theta < \theta' < 1$. Then
-\[
-	F_{\theta'}(\Sigma) \supset F_\theta(\Sigma) \quad \text{and} \quad F_{\theta'}^+(\Sigma^+) \supset F_\theta^+(\Sigma^+).
-\]
-We can therefore define
-\[
-	F = \bigcup_{0 < \theta < 1}{F_\theta(\Sigma)} \quad \text{and} \quad F^+ = \bigcup_{0 < \theta < 1}{F_\theta^+(\Sigma^+)},
-\]
-the spaces of all H\"older continuous functions.
-
-
-We now consider a class of functions lying in $F_\theta^+$ for all $0 < \theta < 1$. For all $m \geq 1$ we define
-\[
-	F_m^+ = \{f : \Sigma^+ \to \complex \mid f(x) = f(y) \text{ if } x_j = y_j, \text{ for all } 0 \leq j < m\},
-\]
-the set of all locally constant functions which depend on the first $m$ terms of $x \in \Sigma^+$. It is clear that
-\[
-	F_1^+ \subset F_2^+ \subset F_3^+ \subset \dots.
-\]
-and, for $f \in F_m^+$, $\var_m(f) = 0$. Hence
-\[
-	\bigcup_{m = 1}^\infty{F_m^+} \subset \bigcap_{0 < \theta < 1}{F_\theta^+}.
-\]
-
-\begin{proposition}
-	Suppose $0 < \theta < \theta' < 1$. Then for all $m \geq 0$ we have
-	\begin{equation*}
-		|f - f_m|_{\theta'} \leq |f|_\theta \left(\frac{\theta}{\theta'}\right)^m.
-	\end{equation*}
-\end{proposition}
-\end{comment}
-
-\section{The Ruelle operator}
-Throughout this section, let $\Sigma = \Sigma_A^+$ be a (one-sided) shift of finite type.
-
-\begin{definition}
-	Let $f \in F_\theta^+$. The \key{Ruelle operator} (or \key{transfer operator}) $L_f : F_\theta^+ \to F_\theta^+$ (or, more generally, $L_f : C(\Sigma, \complex) \to C(\Sigma, \complex)$) is defined
-	\[
-		(L_f{w})(x) = \sum_{y \in \Sigma \midcolon \sigma{y} = x}{e^{f(y)} w(y)} = \sum_{j \midcolon A_{j, x_0} = 1}{e^{f(j, x_0, x_1, \dots)} w(j, x_0, x_1, \dots)},
-	\]
-	where $x = (x_j)_{j = 0}^\infty \in \Sigma$. This is a bounded linear operator.
-	
-	The $n$-th iterate of $L_f$ is given by
-	\[
-		(L_f^n{w})(x) = \sum_{y \in \Sigma \midcolon \sigma^n{y} = x}{e^{f^n(y)} w(y)}.
-	\]
-	
-	If $f$ is also real-valued and $L_f{1} = 1$, then we say that $f$ or $L_f$ is \key{normalised}.
-\end{definition}
-
-\begin{proposition}
-	Let $f \in F_\theta^+$ with $f = u + iv$, where $u, v \in F_\theta^+$ are real-valued functions. If $L_u$ is normalised, i.e. $L_u{1} = 1$, then for all $n \geq 0$,
-	\[
-		|L_f^n{w}|_\theta \leq K|w|_\infty + \theta^n |w|_\theta
-	\]
-	for all $w \in F_\theta^+$, where $K > 0$ is a constant depending only on $f$ and $\theta$.
-\end{proposition}
-
-\begin{theorem}[Ruelle's Perron-Frobenius Theorem] \label{thm:rpf}
-	Suppose $\Sigma = \Sigma_A^+$ is an aperiodic shift of finite type and let $f \in F_\theta^+$ be a real-valued function. Then
-	\begin{enumerate}
-		\item There is a simple maximal eigenvalue $\lambda$ of $L_f : C(\Sigma, \reals) \to C(\Sigma, \reals)$ with a corresponding eigenfunction $h \in C(\Sigma_A^+, \reals)$, with $h > 0$. \label{rpf:1}
-		\item The remainder of the spectrum of $L_f$ is contained in a disc of radius strictly less than $\lambda$. \label{rpf:2}
-		\item There is a unique probability measure $\mu$ such that $L_f^*{\mu} = \lambda\mu$. That is,
-		\[
-			\int{L_f{v}\ d\mu} = \lambda \int{v\ d\mu},
-		\]
-		for all $v \in C(\Sigma, \reals)$. Additionally, if $h$ is the eigenfunction as in \ref{rpf:1} and $\int{h\ d\mu} = 1$, then the measure $\nu$ defined by $d\nu = h\ d\mu$ is a $\sigma$-invariant probability measure. \label{rpf:3}
-		\item If $h$ is the eigenfunction as in \ref{rpf:1} and $\int{h\ d\mu} = 1$, then for all $v \in C(\Sigma, \reals)$,
-		\[
-			\frac{1}{\lambda^n}L_f^n{v} \to h \int{v\ d\mu}
-		\]
-		uniformly. \label{rpf:4}
-	\end{enumerate}
-\end{theorem}
+The above result allows us to write $f \in F_\theta$ using $g \in F_{\theta^{1 / 2}}^+$. We can then apply results to $g$ which hold for $F_\theta^+$ but not necessarily for $F_\theta$. We will encounter such uses for this proposition in due course.

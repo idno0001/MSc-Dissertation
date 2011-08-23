@@ -1,0 +1,36 @@
+\chapter{Introduction}
+\section{Overview}
+\todo[inline]{Provide an introduction to the main aim of the dissertation. Mention that we will be working with shifts of finite type. Briefly introduce entropy (isomorphism invariant) and Gibbs measures. Say something about fluctuations of entropy estimators and that the climax of this dissertation is to find exponential bounds for this behaviour.}
+
+\section{Preliminaries}
+This section briefly introduces some concepts which will be used throughout this dissertation.
+
+\begin{definition}
+	Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f : X \to Y$ is a \key{Lipschitz function} if there exists a constant $K > 0$ such that
+	\[
+		d_Y(f(x), f(y)) \leq Kd_X(x, y)
+	\]
+	for all $x, y \in X$. We say that $f$ is a Lipschitz function with \key{Lipschitz constant} $K$.~\cite[p154]{searcoid:metric-spaces}
+\end{definition}
+
+\begin{definition}
+	A transformation $T : (X_1, \B_1, \mu_1) \to (X_2, \B_2, \mu_2)$ is \key{measure-preserving} if:
+	\begin{enumerate}
+		\item $T$ is measurable, i.e. if $B_2 \in \B_2$, then $T^{-1}{B_2} \in \B_1$, and
+		\item $\mu_1(T^{-1}{B_2}) = \mu_2(B_2)$ for all $B_2 \in \B_2$.
+	\end{enumerate}
+	This agrees with our usual definition when $X_1 = X_2$.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a compact metric space with Borel $\sigma$-algebra $\B$. We let $M(X)$ denote the set of all probability measures on $(X, \B)$.
+	
+	Let $T : X \to X$ be a continuous mapping on $X$. We let $M(X, T)$ denote the set of $T$-invariant probability measures on $(X, B)$.
+\end{definition}
+
+\begin{definition}
+	The \key{symmetric difference} of two sets $A, B$ is defined $(A \setminus B) \cup (B \setminus A)$. We will write this as
+	\[
+		A \symdiff B := (A \setminus B) \cup (B \setminus A).
+	\]
+\end{definition}

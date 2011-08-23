@@ -2,7 +2,7 @@
 This appendix contains results which are used throughout the dissertation. We separate the appendix into sections depending on which chapter the result is first used.
 
 \section{Entropy}
-We use the following result in Proposition \ref{prop:walters-cor-4-2-1} and also Lemma \ref{lem:pp-3-3}.
+We use the following result in \thref{prop:walters-cor-4-2-1} and also \thref{lem:pp-3-3}.
 
 \begin{definition}
 	Let $f : X \to \reals$ be a function of a convex set $X$. We say that $f$ is \key{strictly convex} if, for all $x, y \in X$ and for all $\alpha \in [0, 1]$, we have
@@ -57,7 +57,7 @@ We use the following result in Proposition \ref{prop:walters-cor-4-2-1} and also
 \end{theorem}
 
 \section{Gibbs measures}
-The follow result is used in the proof of Lemma \ref{lem:pp-prop-3-4}. First, we need to a definition.
+The follow result is used in the proof of \thref{lem:pp-prop-3-4}. First, we need to a definition.
 
 \begin{definition}
 	Let $X$ be a convex set and suppose $f : X \to \reals$ (or $\complex$). We say that the function $f$ is \key{concave} on $X$ if for all $x, y \in X$ we have
@@ -80,7 +80,7 @@ The follow result is used in the proof of Lemma \ref{lem:pp-prop-3-4}. First, we
 				&= \sum_{j = 1}^k{-p_j \frac{q_j}{p_j} \log\left(\frac{q_j}{p_j}\right)} \nonumber \\
 				&= \sum_{j = 1}^k{p_j \phi\left(\frac{q_j}{p_j}\right)}, \label{fml:pp-3-3-sums}
 		\end{align}
-		where $\phi(x) = -x \log{x}$, with the convention that $\phi(0) = 0$. By Theorem \ref{thm:walters-4-2-xlogx-convex}, we have that $x \log{x}$ is a strictly convex function, and so $\phi$ is strictly concave. Continuing from \eqref{fml:pp-3-3-sums}, we have
+		where $\phi(x) = -x \log{x}$, with the convention that $\phi(0) = 0$. By \thref{thm:walters-4-2-xlogx-convex}, we have that $x \log{x}$ is a strictly convex function, and so $\phi$ is strictly concave. Continuing from \eqref{fml:pp-3-3-sums}, we have
 		\[
 			-\sum_{j = 1}^k{q_j \log{q_j}} + \sum_{j = 1}^k{q_j \log{p_j}} \leq \phi\left(\sum_{j = 1}^k{p_j \frac{q_j}{p_j}}\right) = \phi(1) = 0,
 		\]
@@ -90,7 +90,7 @@ The follow result is used in the proof of Lemma \ref{lem:pp-prop-3-4}. First, we
 
 \section{Concentration bounds}
 
-The following result is used in the proof of Theorem \ref{thm:cm-4-1}.
+The following result is used in the proof of \thref{thm:cm-4-1}.
 
 \begin{proposition}\label{prop:logs-thm-4-1}
 	Let $\ell, k \in \naturals$ be such that $\ell + k \leq n$. Then
@@ -122,7 +122,7 @@ The following result is used in the proof of Theorem \ref{thm:cm-4-1}.
 	\end{proof}
 \end{proposition}
 
-The following result allows us to write the $k$-block conditional empirical entropy $\hat{h}_{k(n)}(x_0^{n - 1})$ in a more useful form. It is used in the proof of Theorem \ref{thm:cm-4-2}.
+The following result allows us to write the $k$-block conditional empirical entropy $\hat{h}_{k(n)}(x_0^{n - 1})$ in a more useful form. It is used in the proof of \thref{thm:cm-4-2}.
 
 \begin{lemma}\label{lem:cm-4-1}
 	Let $\phi \in F_\theta$. We have
@@ -179,7 +179,7 @@ The following result allows us to write the $k$-block conditional empirical entr
 		\[
 			\phi_k(y) = \log\frac{\mu_\phi[y_0^{k - 1}]}{\mu_\phi[y_1^{k - 1}]}.
 		\]
-		By Proposition \ref{prop:pp-3-2}, for all $y \in \Sigma$ we have
+		By \thref{prop:pp-3-2}, for all $y \in \Sigma$ we have
 		\[
 			\|\phi_k(y) - \phi(y)\|_\infty = \left\|\log\frac{\mu_\phi[y_0^{k - 1}]}{\mu_\phi[y_1^{k - 1}]} - \phi(y)\right\|_\infty \leq |\phi|_\theta \theta^k.
 		\]
