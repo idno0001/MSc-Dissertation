@@ -152,14 +152,14 @@ The following result is an immediate consequence of \thref{cor:cm-3-1}.
 
 We can also find an upper bound for the variance of $K$ with respect to $\mu_\phi$.
 
-\begin{corollary}
+\begin{corollary} \label{cor:cm-3-2}
 	For all $n \in \naturals$ and all separately Lipschitz functions $K$, we have
 	\[
 		\int{\left[K(x, \dots, \sigma^{n - 1}{x}) - \int{K(y, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)}\right]^2\ d\mu_\phi(x)} \leq 2D\sum_{j = 0}^{n - 1}{\Lip_j^2(K)}.
 	\]
 	
 	\begin{proof}
-		Suppose $\lambda \neq 0$. Applying \thref{thm:cm-3-1} $\lambda K$, subtracting one and then dividing by $\lambda^2$, we get
+		Suppose $\lambda \neq 0$. Applying \thref{thm:cm-3-1} to $\lambda K$, subtracting one and then dividing by $\lambda^2$, we get
 		\begin{equation} \label{fml:cor-3-2-variance}
 			\frac{1}{\lambda^2}\left(\int{e^{\lambda\left[(x, \dots, \sigma^{n - 1}{x}) - \int{K(y, \dots, \sigma^{n - 1}{y})\ d\mu_\phi(y)}\right]}\ d\mu_\phi(x)} - 1\right) \leq \frac{1}{\lambda^2}\left(e^{\lambda^2 D \sum_{j = 0}^{n - 1}{\Lip_j^2(K)}} - 1\right).
 		\end{equation}
@@ -352,7 +352,7 @@ We now present a concentration bound for the $k$-block empirical entropy about i
 		\end{align*}
 		This completes the proof of the concentration bound.
 		
-		For the variance, we apply \thref{fml:cor-3-2-variance} to get
+		For the variance, we apply \thref{cor:cm-3-2} to get
 		\begin{align*}
 			\Var_{\mu_\phi}\left(\frac{\hat{H}_{k(n)}}{k(n)}\right) &= \Var_{\mu_\phi}\left(\frac{\tilde{K}}{k(n)}\right) \\
 				&= \frac{1}{(k(n))^2}\int{\left[\tilde{K} - E_{\mu_\phi}(\tilde{K})\right]^2\ d\mu_\phi} \\
@@ -371,7 +371,7 @@ This result gives a concentration bound about the expectation value. However, to
 	\end{equation}
 	for sufficiently large $n$.
 	
-	Once again, this upper bound decreases exponentially fast as $t$ becomes large. If we think of $t + (c / n^\gamma)$ as the error of the $k$-block conditional empirical entropy, we see that there are exponentially fewer sequences which yield a `bad' estimate. On the other hand, if we let $n \to +\infty$, then the upper bound will tend to zero for all $t > 0$. Hence $\mu_\phi$-almost every sequence gives an estimate which converges to $h(\mu_\phi)$ and this agrees with \thref{thm:entropy-estimation}
+	Here, this upper bound decays superexponentially as $t \to +\infty$. If we think of $t + (c / n^\gamma)$ as the error of the $k$-block conditional empirical entropy, we see that the number of sequences which yield a `bad' estimate decays superexponentially. On the other hand, if we let $n \to +\infty$, then the upper bound will tend to zero for all $t > 0$. Hence $\mu_\phi$-almost every sequence gives an estimate which converges to $h(\mu_\phi)$ and this agrees with \thref{thm:entropy-estimation}
 	
 	\begin{proof}
 		Recall that $\hat{h}_k = \hat{H}_k - \hat{H}_{k - 1}$. We put
@@ -489,10 +489,8 @@ We are now ready to state and prove concentration bounds for the hitting time es
 	and
 	\begin{equation}
 		(\mu_\phi \otimes \mu_\phi)\left\{(x, y) \midmid \frac{1}{n}\log{W_n(x, y)} < h(\mu_\phi) - t\right\} \leq C_1 e^{-C_2 nt}. \label{fml:cm-10}
-	\end{equation}
-	(Note that we have $t^2$ in \eqref{fml:cm-9} and simply $t$ in \eqref{fml:cm-10}.)
-	
-	Essentially, \eqref{fml:cm-9} tells us how likely the hitting time estimator is to \emph{overestimate} the entropy, while \eqref{fml:cm-10} gives how likely it is to \emph{underestimate} the entropy. In both cases, the bound decreases exponentially fast as $t$ becomes large. Hence fewer pairs $(x, y)$ yield estimates which deviate very far from $h(\mu_\phi)$.
+	\end{equation}	
+	Essentially, \eqref{fml:cm-9} tells us how likely the hitting time estimator is to \emph{overestimate} the entropy, while \eqref{fml:cm-10} gives how likely it is to \emph{underestimate} the entropy. Note that the upper bound in \eqref{fml:cm-10} decays exponentially, whereas in \eqref{fml:cm-9} the bound decays superexponentially. In either case, this means that fewer pairs $(x, y)$ yield estimates which deviate very far from $h(\mu_\phi)$.
 	
 	If we let $n \to +\infty$, both \eqref{fml:cm-9} and \eqref{fml:cm-10} are bounded above by $0$ for any $t > t_0$. This means that $\mu_\phi \otimes \mu_\phi$-almost every $(x, y)$ gives an estimate which deviates by at most $t_0$ from $h(\mu_\phi)$, and this largely agrees with \thref{thm:exact-match}.
 	
