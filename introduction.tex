@@ -1,9 +1,21 @@
 \chapter{Introduction}
 \section{Overview}
-\todo[inline]{Provide an introduction to the main aim of the dissertation. Mention that we will be working with shifts of finite type. Briefly introduce entropy (isomorphism invariant) and Gibbs measures. Say something about fluctuations of entropy estimators and that the climax of this dissertation is to find exponential bounds for this behaviour.}
+The main aim of this dissertation is to provide a more accessible account of \cite{chazottes-maldonado:cbfee}, which we will do in Chapter \ref{chap:concentration-bounds}. To achieve this, the following chapters are devoted to describing the key concepts required to provide the reader with the relevant background knowledge.
+
+A property of measure-preserving transformations called \key{entropy} makes up a crucial part of this dissertation. We will show that, if two measure-preserving transformations are `the same', then they have the same entropy. (In Chapter \ref{chap:entropy} we will formally define `the same'.)
+
+The main ideas in \cite{chazottes-maldonado:cbfee} focus on methods for estimating entropy. For example, there is a theorem which says that, for almost all $(x, y)$ we have
+\[
+	\frac{1}{n} \log{W_n(x, y)} \to h(\nu),
+\]
+as $n \to +\infty$, where $W_n$ is a function we will define later and $h(\nu)$ is the entropy of a measure $\nu$. We will see later that this is called the hitting time entropy estimator.
+
+Although it may seem obvious, it is worth emphasising that entropy estimators give \emph{estimates} for the entropy. For example, consider two sample pairs $(x_1, y_1)$, $(x_2, y_2)$ which achieve convergence for the above function. If we fix $n \geq 1$, it is possible that $\frac{1}{n} \log{W_n(x_1, y_1)}$ gives a value which is close to $h(\nu)$, whereas $\frac{1}{n} \log{W_n(x_2, y_2)}$ gives a value which is far away from $h(\nu)$. In the final part of this dissertation, we will be particularly interested in these fluctuation properties of entropy estimators.
+
+We will work with \key{Gibbs measures}, which is a class of measures on shifts of finite type with a distinguishing property. Therefore Chapter \ref{chap:sft} will provide the relevant background for shifts of finite type, and Chapter \ref{chap:gibbs} will define Gibbs measures and its main properties.
 
 \section{Preliminaries}
-This section briefly introduces some concepts which will be used throughout this dissertation.
+Before we begin with the main background material, this section briefly introduces some concepts and definitions which will be used throughout this dissertation.
 
 \begin{definition}
 	Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f : X \to Y$ is a \key{Lipschitz function} if there exists a constant $K > 0$ such that

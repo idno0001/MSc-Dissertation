@@ -1,8 +1,9 @@
 \chapter{Auxiliary results}
 This appendix contains results which are used throughout the dissertation. We separate the appendix into sections depending on which chapter the result is first used.
 
-\section{Entropy}
-We use the following result in \thref{prop:walters-cor-4-2-1} and also \thref{lem:pp-3-3}.
+%\section{Entropy}
+\section{Gibbs measures}
+We use the following result in \thref{lem:pp-3-3} and also \thref{prop:walters-cor-4-2-1}. First, we need the following definitions.
 
 \begin{definition}
 	Let $f : X \to \reals$ be a function of a convex set $X$. We say that $f$ is \key{strictly convex} if, for all $x, y \in X$ and for all $\alpha \in [0, 1]$, we have
@@ -16,6 +17,8 @@ We use the following result in \thref{prop:walters-cor-4-2-1} and also \thref{le
 		f\left(\sum_{j = 1}^k{\alpha_j x_j}\right) \leq \sum_{j = 1}^k{\alpha_j} f(x_j),
 	\]
 	with equality if and only if $x_1 = x_2 = \dots = x_k$ whenever $\alpha_j \neq 0$ for all $j = 1, \dots, k$.
+	
+	The function $f$ is \key{strictly concave} if the $-f$ is strictly convex.
 \end{definition}
 
 \begin{theorem} \label{thm:walters-4-2-xlogx-convex}
@@ -56,16 +59,16 @@ We use the following result in \thref{prop:walters-cor-4-2-1} and also \thref{le
 	\end{proof}
 \end{theorem}
 
-\section{Gibbs measures}
-The follow result is used in the proof of \thref{lem:pp-prop-3-4}. First, we need to a definition.
+%\section{Gibbs measures}
+The follow result is used in the proof of \thref{lem:pp-prop-3-4}. %First, we need to a definition.
 
-\begin{definition}
-	Let $X$ be a convex set and suppose $f : X \to \reals$ (or $\complex$). We say that the function $f$ is \key{concave} on $X$ if for all $x, y \in X$ we have
-	\[
-		f(\alpha x + (1 - \alpha)y) \geq \alpha f(x) + (1 - \alpha)f(y),
-	\]
-	for all $\alpha \in [0, 1]$. The function $f$ is \key{strictly concave} if the inequality is strict.~\cite[p11]{cambini-martein:generalized}
-\end{definition}
+%\begin{definition}
+%	Let $X$ be a convex set and suppose $f : X \to \reals$ (or $\complex$). We say that the function $f$ is \key{concave} on $X$ if for all $x, y \in X$ we have
+%	\[
+%		f(\alpha x + (1 - \alpha)y) \geq \alpha f(x) + (1 - \alpha)f(y),
+%	\]
+%	for all $\alpha \in [0, 1]$. The function $f$ is \key{strictly concave} if the inequality is strict.~\cite[p11]{cambini-martein:generalized}
+%\end{definition}
 
 \begin{lemma} \label{lem:pp-3-3}
 	Suppose that $(p_1, \dots, p_k), (q_1, \dots, q_k)$ are probability vectors with $p_j > 0$ for all $j = 1, \dots, k$. Then
