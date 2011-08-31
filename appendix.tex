@@ -6,19 +6,19 @@ This appendix contains results which are used throughout the dissertation. We se
 We use the following result in \thref{lem:pp-3-3} and also \thref{prop:walters-cor-4-2-1}. First, we need the following definitions.
 
 \begin{definition}
-	Let $f : X \to \reals$ be a function of a convex set $X$. We say that $f$ is \key{strictly convex} if, for all $x, y \in X$ and for all $\alpha \in [0, 1]$, we have
+	Let $f : X \to \reals$ be a function on a convex set $X$. We say that $f$ is \key{strictly convex} if, for all $x, y \in X$ and for all $\alpha \in [0, 1]$, we have
 	\[
 		f(\alpha x + (1 - \alpha)y) \leq \alpha f(x) + (1 - \alpha)f(y),
 	\]
 	with equality if and only if $x = y$ or $\alpha = 0$ or $1$.
 	
-	In general, $f$ is strictly convex if, for any set $\{x_j \in X \mid j \in \{1, \dots, k\}\}$ and for any $\{\alpha_j \in [0, 1] \mid j \in \{1, \dots, k\},\ \sum_{j = 1}^k{\alpha_j} = 1\}$, we have
+	We may generalise this so that $f$ is strictly convex if, for any set $\{x_j \in X \mid j \in \{1, \dots, k\}\}$ and for any $\{\alpha_j \in [0, 1] \mid j \in \{1, \dots, k\},\ \sum_{j = 1}^k{\alpha_j} = 1\}$, we have
 	\[
 		f\left(\sum_{j = 1}^k{\alpha_j x_j}\right) \leq \sum_{j = 1}^k{\alpha_j} f(x_j),
 	\]
 	with equality if and only if $x_1 = x_2 = \dots = x_k$ whenever $\alpha_j \neq 0$ for all $j = 1, \dots, k$.
 	
-	The function $f$ is \key{strictly concave} if the $-f$ is strictly convex.
+	The function $f$ is \key{strictly concave} if $-f$ is strictly convex.
 \end{definition}
 
 \begin{theorem} \label{thm:walters-4-2-xlogx-convex}
@@ -48,8 +48,9 @@ We use the following result in \thref{lem:pp-3-3} and also \thref{prop:walters-c
 		
 		Since $x > 0$, we have $f''(x) = 1 / x > 0$ and so $f'(z) > f'(w)$. Hence
 		\begin{align*}
-			&(1 - \alpha)(f(y) - f(\alpha x + (1 - \alpha)y)) = f'(z)\alpha(1 - \alpha)(y - x) \\
-			& \quad > f'(w)\alpha(1 - \alpha)(y - x) = \alpha(f(\alpha x + (1 - \alpha)y) - f(x)).
+			(1 - \alpha)(f(y) - f(\alpha x + (1 - \alpha)y)) &= f'(z)\alpha(1 - \alpha)(y - x) \\
+				&> f'(w)\alpha(1 - \alpha)(y - x) \\
+				&= \alpha(f(\alpha x + (1 - \alpha)y) - f(x)).
 		\end{align*}
 		Cancelling terms, this gives
 		\[
@@ -104,8 +105,7 @@ The following result is used in the proof of \thref{thm:cm-4-1}.
 	\begin{proof}
 		We have
 		\begin{align*}
-			&\left(\frac{\ell}{n}\right)\log\left(\frac{\ell}{n}\right) - \left(\frac{\ell + k}{n}\right)\log\left(\frac{\ell + k}{n}\right) \\
-				&\quad = \left(\frac{k}{n}\right)\log{n} - \left[\left(\frac{\ell + k}{n}\right)\log(\ell + k) - \left(\frac{\ell}{n}\right)\log{\ell}\right].
+			&\left(\frac{\ell}{n}\right)\log\left(\frac{\ell}{n}\right) - \left(\frac{\ell + k}{n}\right)\log\left(\frac{\ell + k}{n}\right) = \left(\frac{k}{n}\right)\log{n} - \left[\left(\frac{\ell + k}{n}\right)\log(\ell + k) - \left(\frac{\ell}{n}\right)\log{\ell}\right].
 		\end{align*}
 		Since $k \geq 1$, we have
 		\begin{align*}
@@ -164,7 +164,7 @@ The following result allows us to write the $k$-block conditional empirical entr
 		This means that
 		\begin{align*}
 			\sum_{a_0^{k - 1} \in A^k}&\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\E_{k - 1}(a_0^{k - 2}; x_0^{n - 1})}{\mu_\phi[a_1^{k - 1}]}} \\
-				&= \sum_{a_0^{k - 1} \in A^k}\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\sum_{a_{k} \in A}{\mathcal{E}_k(a_0^{k - 1}; x_0^{n - 1})}}{\mu_\phi[a_1^{k - 1}]}} \\
+				&= \sum_{a_0^{k - 1} \in A^k}\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\sum_{a_{k - 1} \in A}{\mathcal{E}_k(a_0^{k - 1}; x_0^{n - 1})}}{\mu_\phi[a_1^{k - 1}]}} \\
 				&= \sum_{a_0^{k - 1} \in A^k}\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\mathcal{E}_k(a_0^{k - 1}; x_0^{n - 1})}{\mu_\phi[a_1^{k - 1}]}} \\
 				&= \sum_{a_1^{k - 1} \in A^{k - 1}}\sum_{a_0 \in A}\E_k(a_0^{k - 1}; x_0^{n - 1}) \log{\frac{\mathcal{E}_k(a_0^{k - 1}; x_0^{n - 1})}{\mu_\phi[a_1^{k - 1}]}} \\
 				&= \sum_{a_1^{k - 1} \in A^{k - 1}}\E_{k - 1}(a_1^{k - 1}; x_0^{n - 1}) \log{\frac{\mathcal{E}_{k - 1}(a_1^{k - 1}; x_0^{n - 1})}{\mu_\phi[a_1^{k - 1}]}} \\
@@ -172,7 +172,7 @@ The following result allows us to write the $k$-block conditional empirical entr
 		\end{align*}
 		Hence $\hat{\Delta}_k(x_0^{n - 1}) = -H_k(\E_k(\seedot; x_0^{n - 1})) + H_{k - 1}(\E_{k - 1}(\seedot; x_0^{n - 1}))$.
 		
-		There is a formula due to \cite[Formulae (4.15), (4.16)]{gabrielli-galves-guiol:fluctuations} which gives the bound
+		There is a formula due to \cite[Formulae (4.15), (4.16)]{gabrielli-galves-guiol:fluctuations} which gives the upper bound
 		\[
 			|E_{\mu_\phi}(\hat{\Delta}_{k(n)})| \leq \frac{M|A|^k}{n}
 		\]

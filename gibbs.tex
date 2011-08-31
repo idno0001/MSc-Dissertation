@@ -50,7 +50,7 @@ We briefly introduce a theorem due to Ruelle. Later, it will be apparent that th
 	\end{enumerate}
 \end{theorem}
 
-\section{Definition and basic results}
+\section{Gibbs measures and basic results}
 \emph{The remainder of this chapter predominantly follows \cite[Chapter 3]{parry-pollicott:zeta-fns-periodic-orbits}.}
 
 \begin{definition}
@@ -65,7 +65,7 @@ We briefly introduce a theorem due to Ruelle. Later, it will be apparent that th
 	The Gibbs measure $\mu_\phi$ is not necessarily $\sigma$-invariant.
 \end{remark}
 
-The following proposition and its corollary show that, given any $\phi \in F_\theta$, there exists a Gibbs measure $\mu_\phi$ for $\phi$.
+Given any $\phi \in F_\theta$, it can be shown that there exists a Gibbs measure $\mu_\phi$ for $\phi$. We prove this in the following results.
 
 \begin{proposition} \label{prop:pp-3-2}
 	Suppose that $\phi \in F_\theta$ is a normalised, real-valued function. Then for all $x \in \Sigma$ we have
@@ -132,12 +132,12 @@ The following proposition and its corollary show that, given any $\phi \in F_\th
 	\end{proof}
 \end{corollary}
 
-We can generalise these results for $\phi \in F_\theta$ which is not normalised.
+We can generalise these results for Lipschitz functions $\phi \in F_\theta$ which are not normalised.
 
 \begin{corollary}
 	Suppose that $\phi \in F_\theta$ is a real-valued function. Let $\mu$ be the unique measure where $L_\phi^*\mu = \lambda\mu$, where $\lambda > 0$ is the maximal eigenvalue in Ruelle's Perron-Frobenius Theorem \ref{rpf:3}. Then $\mu$ is a Gibbs measure for $\phi$ with $P = \log{\lambda}$.
 	\begin{proof}
-		First note that $\psi = \phi - \log{(h \circ \sigma)} + \log{h} - \log{\lambda}$ is normalised, where $h > 0$ is the eigenfunction corresponding to $\lambda$ in \thref{thm:rpf}. We have
+		First note that $\psi := \phi - \log{(h \circ \sigma)} + \log{h} - \log{\lambda}$ is normalised, where $h > 0$ is the eigenfunction corresponding to $\lambda$ in \thref{thm:rpf}. We have
 		\begin{align*}
 			\exp\left(\sum_{j = 0}^{n - 1}{\psi(\sigma^j{x})}\right) &= \exp\left(\sum_{j = 0}^{n - 1}{\phi(\sigma^j{x}) - \log{h(\sigma^{j + 1}{x})} + \log{h(\sigma^j{x})} - \log{\lambda}}\right) \\
 				&= \exp\left(-n\log{\lambda} + \sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})}\right) \frac{h(x)}{h(\sigma^n{x})}.
@@ -170,7 +170,7 @@ where $\alpha = \{[j] \mid j \in \{1, \dots, k\}\}$ is the partition of $\Sigma$
 	\]
 	is a well-defined probability distribution on $\{1, \dots, k\}$ for $\mu$-almost every $x \in \Sigma$.
 	\begin{proof}
-		First note that $\bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}} \to \B$, as $n \to +\infty$. By definition we also have $\mu([j] \mid \bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}) = E(\chi_{[j]} \mid \bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}})$. Since $\chi_{[j]} \in L^1(\Sigma, \B, \mu)$, we may apply the Increasing Martingale Theorem so that
+		First note that $\bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}} \to \B$, as $n \to +\infty$. By definition we also have $\mu([j] \mid \bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}) = E_\mu(\chi_{[j]} \mid \bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}})$. Since $\chi_{[j]} \in L^1(\Sigma, \B, \mu)$, we may apply the Increasing Martingale Theorem so that
 		\[
 			\lim_{n \to +\infty}{\mu\left([j] \midmid \bigjoin_{r = 0}^{n - 1}{\sigma^{-r}{\alpha}}\right)} = \mu([j] \mid \B),
 		\]
@@ -178,7 +178,7 @@ where $\alpha = \{[j] \mid j \in \{1, \dots, k\}\}$ is the partition of $\Sigma$
 		\[
 			\mu[j \mid \sigma^{-1}{x}] = \mu([j] \mid \B)(x)
 		\]
-		for $\mu$-almost every $x$, i.e. $\mu[j \mid \sigma^{-1}{x}]$ is a well-defined probability distribution on $\{1, \dots, k\}$.
+		for $\mu$-almost every $x$, i.e. $\mu[j \mid \sigma^{-1}{x}]$ is a well-defined probability distribution on $\{1, \dots, k\}$ for $\mu$-almost every $x$.
 	\end{proof}
 \end{proposition}
 
@@ -200,7 +200,7 @@ where $\alpha = \{[j] \mid j \in \{1, \dots, k\}\}$ is the partition of $\Sigma$
 \end{lemma}
 
 \begin{lemma} \label{lem:pp-prop-3-4}
-	Suppose that $\phi \in F_\theta$ is a real-valued function and suppose that $L_\phi$ is normalised. Let $\mu$ be a probability measure such that $L_\phi^*{\mu} = \mu$. Then for any $\sigma$-invariant probability measure $m$, we have
+	Suppose that $\phi \in F_\theta$ is a real-valued function and that $L_\phi$ is normalised. Let $\mu$ be a probability measure such that $L_\phi^*{\mu} = \mu$. Then for any $\sigma$-invariant probability measure $m$, we have
 	\[
 		h_m(\sigma) + \int{\phi\ dm} \leq 0,
 	\]
@@ -210,9 +210,7 @@ where $\alpha = \{[j] \mid j \in \{1, \dots, k\}\}$ is the partition of $\Sigma$
 		\[
 			m[j \mid \sigma^{-1}{x}] = \exp(\phi(j, x_0, x_1, \dots))
 		\]
-		for all $x \in \Sigma$.
-		
-		We apply \thref{lem:pp-3-3} so that
+		for all $x \in \Sigma$. We apply \thref{lem:pp-3-3} so that
 		\[
 			-\sum_{j = 1}^k{m[j \mid \sigma^{-1}{x}] \log{m[j \mid \sigma^{-1}{x}]}} + \sum_{j = 1}^k{m[j \mid \sigma^{-1}{x}] \phi(j, x_0, x_1, \dots)} \leq 0,
 		\]
@@ -239,20 +237,20 @@ It can be shown that similar results hold for 2-sided shifts of finite type, and
 
 The following result shows one of the main distinguishing characteristics of Gibbs measures.
 
-\begin{theorem}[The Variational Principle] \label{thm:variational-principle}
-	Suppose $\phi \in F_\theta^+$ (or $F_\theta$). The Gibbs measure $\mu_\phi$ is the unique $\sigma$-invariant probability measure such that
+\begin{theorem}[Variational Principle] \label{thm:variational-principle}
+	Suppose that $\phi \in F_\theta$ (or $F_\theta^+$). The Gibbs measure $\mu_\phi$ is the unique $\sigma$-invariant probability measure such that
 	\[
 		h_m(\sigma) + \int{\phi\ dm} \leq h_{\mu_\phi}(\sigma) + \int{\phi\ d\mu_\phi}
 	\]
 	for all $m \in M(\Sigma, \sigma)$, with equality if and only if $m = \mu_\phi$.
 	\begin{proof}
-		Let $\phi \in F_\theta$. By \thref{prop:pp-1-2}, there exists $g \in F_{\theta^{1 / 2}}^+$, $u \in F_{\theta^{1 / 2}}$ such that $\phi = g + (u \circ \sigma) - u$. By Ruelle's Perron-Frobenius Theorem, we can write $g = \log(h \circ \sigma) - \log{h} + \log{\lambda} + k$ for some $k \in F_{\theta^{1/2}}^+$ such that $L_k^*{\mu_\phi} = \mu_\phi$ and $L_k$ is normalised.
+		Let $\phi \in F_\theta$. By \thref{prop:pp-1-2}, there exists $g \in F_{\theta^{1 / 2}}^+$, $u \in F_{\theta^{1 / 2}}$ such that $\phi = g + (u \circ \sigma) - u$. By Ruelle's Perron-Frobenius Theorem, we can write $g = \log(h \circ \sigma) - \log{h} + \log{\lambda} + k$, for some $k \in F_{\theta^{1/2}}^+$ such that $L_k^*{\mu_\phi} = \mu_\phi$ and $L_k$ is normalised.
 		
 		Let $m$ be a $\sigma$-invariant probability measure. By \thref{lem:pp-prop-3-4} we have
 		\[
 			h_m(\sigma) + \int{k\ dm} \leq h_{\mu_\phi}(\sigma) + \int{k\ d\mu_\phi} = 0.
 		\]
-		Substituting in $k = \phi - (u \circ \sigma) + u - \log(h \circ \sigma) + \log{h} - \log{\lambda}$ and cancelling terms, we have
+		Substituting in $k = \phi - (u \circ \sigma) + u - \log(h \circ \sigma) + \log{h} - \log{\lambda}$ and cancelling terms, we get
 		\[
 			h_m(\sigma) + \int{\phi\ dm} \leq h_{\mu_\phi}(\sigma) + \int{\phi\ d\mu_\phi},
 		\]
@@ -276,7 +274,7 @@ So $P(\phi) = \log{\lambda}$, where $\lambda$ is the maximal positive eigenvalue
 	If a measure a $\sigma$-invariant probability measure $m$ attains this supremum, i.e. $P(\phi) = h_m(\sigma) + \int{\phi\ dm}$, then we say that $m$ is an \key{equilibrium state}.
 \end{definition}
 
-The Variational Principle gives that if we have $\phi \in F_\theta$, then the equilibrium states is unique and we can also define the pressure of $\phi$ by $P(\phi) = \log{\lambda}$.
+The Variational Principle gives that if we have $\phi \in F_\theta$, then the equilibrium state is unique and we can also define the pressure of $\phi$ by $P(\phi) = \log{\lambda}$.
 
 \section{Gibbs measures are weak Bernoulli}
 We now describe a particular property of Gibbs measures which we will use in Subsection \ref{ssec:hitting-times}. The following definitions and results follow \cite[Section 1.E]{bowen:equilibrium}.
@@ -301,16 +299,15 @@ Before we state the main result, we need an auxiliary lemma.
 \begin{lemma}\label{bowen:lem-1-12}
 	Let $r \geq 0$, $f \in C(\Sigma, \reals)$ and $\var_r(f) = 0$. Let
 	\begin{align*}
-		F \in \{g \in C(\Sigma, \reals) \mid g & \geq 0,\ \nu(g) = 1,\ g(x) \leq B_m g(x') \\
-			& \text{whenever } x_j = x'_j \text{ for all } j = 0, \dots, m\},
+		F \in \{g \in C(\Sigma, \reals) \mid g & \geq 0,\ \nu(g) = 1,\ g(x) \leq B_m g(x') \text{ whenever } x_j = x'_j \text{ for all } j = 0, \dots, m\},
 	\end{align*}
-	where $B_m = \exp\left(\sum_{k = m + 1}^\infty{2b\alpha^k}\right)$, where $b > 0$, $\alpha \in (0, 1)$ are any pair of constants which satisfy $\var_k(\phi) \leq b\alpha^k$ for all $k > 0$.
+	where $B_m := \exp\left(\sum_{k = m + 1}^\infty{2b\alpha^k}\right)$, where $b > 0$, $\alpha \in (0, 1)$ are any pair of constants which satisfy $\var_k(\phi) \leq b\alpha^k$ for all $k > 0$.
 	
 	Then for any $n \geq 0$ we have
 	\[
 		\|\lambda^{-n - r}L_\phi^{n + r}(fF) - \nu(fF)h\| \leq M\nu(|fF|)\rho^n,
 	\]
-	where $\nu$, $\lambda$, $h$ are as in the Ruelle's Perron Frobenius Theorem, and $M > 0$, $\beta \in (0, 1)$ are constants.
+	where $\nu$, $\lambda$, $h$ are as in the Ruelle's Perron Frobenius Theorem, and $M > 0$, $\rho \in (0, 1)$ are constants.
 \end{lemma}
 
 \begin{theorem}\label{thm:gibbs-is-weak-bernoulli}

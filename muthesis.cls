@@ -350,26 +350,10 @@ acceptable looking results, but it may be omitted to get smaller print.
 
 \ifx\degreetitle\@msc
 \begin{enumerate}
-\item[{\bf i.}] Copyright in text of this dissertation rests with the
-author. Copies (by any process) either in full, or of extracts, may be
-made {\bf only} in accordance with instructions given by the author.
-Details may be obtained from the appropriate Graduate Office. This page
-must form part of any such copies made. Further copies (by any process)
-of copies made in accordance with such instructions may not be made
-without the permission (in writing) of the author.
-\item[{\bf ii.}] The ownership of any intellectual property rights which
-may be described in this dissertation is vested in the University of
-Manchester, subject to any prior agreement to the contrary, and may not be
-made available for use by third parties without the written permission of
-the University, which will prescribe the terms and conditions of any such
-agreement.
-\item[{\bf iii.}] Further information on the conditions under which
-disclosures and exploitation may take place is available from 
-\ifx\@empty\@school
-    the Vice-President and Dean of the Faculty of \expandafter{\@faculty}.
-    \else
-    the Head of the School of \expandafter{\@school}.
-\fi
+	\item The author of this dissertation (including any appendices and/or schedules to this dissertation) owns certain copyright or related rights in it (the ``Copyright'') and s/he has given The University of Manchester certain rights to use such Copyright, including for administrative purposes.
+	\item Copies of this dissertation, either in full or in extracts and whether in hard or electronic copy, may be made \textbf{only} in accordance with the Copyright, Designs and Patents Act 1988 (as amended) and regulations issued under it or, where appropriate, in accordance with licensing agreements which the University has entered into.  This page must form part of any such copies made.
+	\item  The ownership of certain Copyright, patents, designs, trade marks and other intellectual property (the ``Intellectual Property'') and any reproductions of copyright works in the dissertation, for example graphs and tables (``Reproductions''), which may be described in this dissertation, may not be owned by the author and may be owned by third parties. Such Intellectual Property and Reproductions cannot and must not be made available for use without the prior written permission of the owner(s) of the relevant Intellectual Property and/or Reproductions.
+	\item Further information on the conditions under which disclosure, publication and commercialisation of this dissertation, the Copyright and any Intellectual Property and/or Reproductions described in it may take place is available in the University IP Policy (see \url{http://documents.manchester.ac.uk/display.aspx?DocID=487}), in any relevant Dissertation restriction declarations deposited in the University Library, The University Library's regulations (see \url{http://www.manchester.ac.uk/library/aboutus/regulations}) and in The University's Guidance for the Presentation of Dissertations.
 \end{enumerate}
 \else
 \begin{enumerate}
