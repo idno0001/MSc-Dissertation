@@ -54,9 +54,9 @@ We briefly introduce a theorem due to Ruelle. Later, it will be apparent that th
 \emph{The remainder of this chapter predominantly follows \cite[Chapter 3]{parry-pollicott:zeta-fns-periodic-orbits}.}
 
 \begin{definition}
-	Let $\phi \in C(\Sigma, \reals)$ be a continuous function. Let $\mu$ be a probability measure such that there exists a constants $C = C(\phi) > 1$, $P = P(\phi) \in \reals$, such that
+	Let $\phi \in C(\Sigma, \reals)$ be a continuous function. Let $\mu$ be a probability measure such that there exist constants $C = C(\phi) > 1$, $P = P(\phi) \in \reals$, such that
 	\begin{equation}
-		C^{-1} \leq \frac{\mu[x_0, \dots, x_n]}{\exp\left(-Pn + \sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})} \right)} \leq C,
+		C^{-1} \leq \frac{\mu[x_0, \dots, x_{n - 1}]}{\exp\left(-Pn + \sum_{j = 0}^{n - 1}{\phi(\sigma^j{x})} \right)} \leq C,
 	\end{equation}
 	for all $n \geq 0$ and for all $x \in \Sigma$. Then the measure $\mu$ is a \key{Gibbs measure for $\phi$} or a \key{Gibbs measure with potential $\phi$}. We will write $\mu_\phi = \mu$.
 \end{definition}
